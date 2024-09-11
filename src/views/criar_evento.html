@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Criar Evento</title>
+</head>
+<body>
+  <h1>Criar Evento</h1>
+  <form action="/criar_evento" method="POST">
+    <label for="name">Nome do Evento:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="date">Data:</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="location">Localização:</label>
+    <input type="text" id="location" name="location" required>
+
+    <button type="submit">Criar</button>
+  </form>
+</body>
+</html>

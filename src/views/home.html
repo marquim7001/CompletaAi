@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Event Organizer - Home</title>
+</head>
+<body>
+  <h1>Eventos</h1>
+  {{#eventos}}
+  <ul>
+    {{#eventos}}
+    <li>{{name}} - {{date}} - {{location}} <a href="/remover_evento/{{id}}">Remover</a></li>
+    {{/eventos}}
+  </ul>
+  {{/eventos}}
+
+  <a href="/eventForm.html">Criar Novo Evento</a>
+</body>
+</html>
+    

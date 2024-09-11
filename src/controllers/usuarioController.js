@@ -1,4 +1,4 @@
-const Usuario = require('../model/usuario');
+const Usuario = require('../models/usuario');
 
 function cadastrarUsuario(req, res) {
     let usuario = {
