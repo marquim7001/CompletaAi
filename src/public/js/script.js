@@ -1,23 +1,21 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Função para buscar eventos da API
-    const fetchEvents = async () => {
-      try {
-        const response = await fetch('/events');
-        const events = await response.json();
-  
-        const eventList = document.getElementById('event-list');
-        eventList.innerHTML = '';  // Limpa a lista antes de adicionar novos itens
-  
-        events.forEach(event => {
-          const li = document.createElement('li');
-          li.textContent = `${event.name} - ${event.date} at ${event.location}`;
-          eventList.appendChild(li);
-        });
-      } catch (error) {
-        console.error('Error fetching events:', error);
-      }
-    };
-  
-    fetchEvents();
-  });
-  
+console.log("Script carregado!");
+const deleteBtn = document.querySelector("#delete-btn");
+deleteBtn.addEventListener("click", () => {
+  criarFormularioDelecao(deleteBtn.dataset.id);
+});
+
+function criarFormularioDelecao(id) {
+  console.log("Criando formulário de deleção para o id:", id);
+  const formularioDelecao = document.createElement("form");
+  formularioDelecao.setAttribute("action", "/excluir_evento/" + id);
+  formularioDelecao.setAttribute("method", "POST");
+
+  const inputId = document.createElement("input");
+  inputId.setAttribute("type", "hidden");
+  inputId.setAttribute("name", "id");
+  inputId.setAttribute("value", id);
+    
+  formularioDelecao.appendChild(inputId);
+  document.body.appendChild(formularioDelecao);
+  formularioDelecao.submit();
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Evento</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Editar Evento</h1>
+    </header>
+    <main>
+        <form action="/editar_evento/{{evento.id}}" method="POST">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" value="{{evento.nome}}" required>
+            </div>
+            <div class="form-group">
+                <label for="categoria">Categoria:</label>
+                <input type="text" id="categoria" name="categoria" value="{{evento.categoria}}" required>
+            </div>
+            <div class="form-group">
+                <label for="num-vagas">Número de vagas:</label>
+                <input type="number" id="num-vagas" name="num-vagas" value="{{evento.num_vagas}}" required>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" rows="4" required>{{evento.descricao}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="data-inicio">Data de início:</label>
+                <input type="date" id="data-inicio" name="data-inicio" value="{{evento.data_inicio}}" required>
+            </div>
+            <div class="form-group">
+                <label for="data-fim">Data de fim:</label>
+                <input type="date" id="data-fim" name="data-fim" value="{{evento.data_fim}}" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Salvar Alterações</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 CompletaAi</p>
+    </footer>
+</body>
+</html>

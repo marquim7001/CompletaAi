@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/styles.css">
   <title>Criar Evento</title>
 </head>
+
 <body>
   <h1>Criar Evento</h1>
   <form action="/criar_evento" method="POST">
-    <label for="name">Nome do Evento:</label>
-    <input type="text" id="name" name="name" required>
+    <label for="Nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required>
 
-    <label for="date">Data:</label>
-    <input type="date" id="date" name="date" required>
+    <label for="categoria">Categoria:</label>
+    <input type="text" id="categoria" name="categoria" required>
 
-    <label for="location">Localização:</label>
-    <input type="text" id="location" name="location" required>
+    <label for="numVagas">Número de vagas:</label>
+    <input type="number" id="numVagas" name="num-vagas" required>
 
-    <button type="submit">Criar</button>
+    <label for="descricao">Descrição:</label>
+    <input type="text" id="descricao" name="descricao" required>
+
+    <label for="dataInicio">Data de início:</label>
+    <input type="date" id="dataInicio" name="data-inicio" required>
+
+    <label for="dataFim">Data de fim:</label>
+    <input type="date" id="dataFim" name="data-fim" required>
+
+    <button type="submit">Criar evento</button>
   </form>
+
+  <a href="/home">Voltar para a Lista de Eventos</a>
 </body>
+
 </html>

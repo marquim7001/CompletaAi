@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Detalhes do Evento</title>
+</head>
+
+<body>
+    <h1>Detalhes do Evento</h1>
+    <p><strong>Nome:</strong> {{evento.nome}}</p>
+    <p><strong>Categoria:</strong> {{evento.categoria}}</p>
+    <p><strong>Número de Vagas:</strong> {{evento.num_vagas}}</p>
+    <p><strong>Descrição:</strong> {{evento.descricao}}</p>
+    <p><strong>Data de Início:</strong> {{evento.data_inicio}}</p>
+    <p><strong>Data de Fim:</strong> {{evento.data_fim}}</p>
+
+    <a href="/editar_evento/{{evento.id}}">Editar Evento</a>
+    <button id="delete-btn" data-id="{{evento.id}}">Excluir evento</button>
+    <a href="/home">Voltar para a Lista de Eventos</a>
+
+    <!-- <script src="/src/public/js/script.js"></script> -->
+    <script>
+        console.log("Script carregado!");
+        const deleteBtn = document.querySelector("#delete-btn");
+        deleteBtn.addEventListener("click", () => {
+            criarFormularioDelecao(deleteBtn.dataset.id);
+        });
+
+        function criarFormularioDelecao(id) {
+            console.log("Criando formulário de deleção para o id:", id);
+            const formularioDelecao = document.createElement("form");
+            formularioDelecao.setAttribute("action", "/excluir_evento/" + id);
+            formularioDelecao.setAttribute("method", "POST");
+
+            const inputId = document.createElement("input");
+            inputId.setAttribute("type", "hidden");
+            inputId.setAttribute("name", "id");
+            inputId.setAttribute("value", id);
+
+            formularioDelecao.appendChild(inputId);
+            document.body.appendChild(formularioDelecao);
+            formularioDelecao.submit();
+        }
+    </script>
+</body>
+
+</html>
