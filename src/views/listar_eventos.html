@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompletaAi - Detalhes do Evento</title>
+    <title>CompletaAi - Lista de Eventos</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -29,17 +29,24 @@
     </nav>
 
     <div class="container mt-5">
-        <h2>Detalhes do Evento</h2>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title" id="eventName">Nome do Evento</h5>
-                <h6 class="card-subtitle mb-2 text-muted" id="eventCategory">Categoria do Evento</h6>
-                <p class="card-text" id="eventDescription">Descrição do Evento</p>
-                <p class="card-text"><strong>Quantidade de Vagas:</strong> <span id="eventSlots">0</span></p>
-                <p class="card-text"><strong>Data de Início:</strong> <span id="startDate">dd/mm/aaaa</span></p>
-                <p class="card-text"><strong>Data de Término:</strong> <span id="endDate">dd/mm/aaaa</span></p>
-                <button type="button" class="btn btn-primary" id="checkInButton">Fazer Check-in</button>
-            </div>
+        <h2>Lista de Eventos</h2>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Nome do Evento 1</h5>
+                    <small>Data de Início: 01/01/2024</small>
+                </div>
+                <p class="mb-1">Descrição breve do evento 1.</p>
+                <small>Categoria: Categoria do Evento 1</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Nome do Evento 2</h5>
+                    <small>Data de Início: 02/02/2024</small>
+                </div>
+                <p class="mb-1">Descrição breve do evento 2.</p>
+                <small>Categoria: Categoria do Evento 2</small>
+            </a>
         </div>
     </div>
 
