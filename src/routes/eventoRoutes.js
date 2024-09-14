@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const eventoController = require('../controllers/eventoController');
+const usuarioController = require('../controllers/usuarioController');
 
 // Protege as rotas com autenticação
 //GET
-// router.get('/cadastro', eventoController.);
+router.get('/home', eventoController.listarEventos);
 router.get('/criar_evento', eventoController.exibirCriarEvento);
 router.get('/detalhes_evento/:id', eventoController.exibirDetalhesEvento);
 router.get('/editar_evento/:id', eventoController.exibirEditarEvento);
-router.get('/home', eventoController.listarEventos);
 // router.get('/inscricao_evento', eventoController.);
 // router.get('/login', eventoController.);
+
 //POST
 router.post('/criar_evento', eventoController.criarEvento);
 router.post('/excluir_evento/:id', eventoController.excluirEvento);

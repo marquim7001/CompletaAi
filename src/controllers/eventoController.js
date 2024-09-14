@@ -4,11 +4,10 @@ const Evento = require('../models/evento');
 const criarEvento = async (req, res) => {
   try {
     // console.log(`req.body: ${JSON.stringify(req.body)}`);  // Exibe o corpo da requisição
-    const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim } = req.body;
+    const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim, criador } = req.body;
 
-    const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim };
+    const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador };
     // console.log(`eventoData: ${JSON.stringify(eventoData)}`);  // Exibe os dados do evento
-
     await Evento.criar(eventoData);  // Chama a função para inserir no banco de dados
 
     res.redirect('/home');  // Redireciona para a página de eventos após o sucesso
@@ -20,8 +19,8 @@ const criarEvento = async (req, res) => {
 
 const editarEvento = async (req, res) => {
   const id = req.params.id;
-  const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim } = req.body;
-  const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim };
+  const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim, criador } = req.body;
+  const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador };
   try {
     // Atualizar evento no banco de dados
     await Evento.editar(id, eventoData);

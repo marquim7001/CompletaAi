@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Usuarios Home</title>
+</head>
+
+<body>
+    <h1>Usuários</h1>
+    <ul>
+      {{#usuarios}}
+      <li>{{nome}} - {{email}} - {{senha}} - {{data_nascimento}}
+        <a href="/perfil_usuario/{{id}}">Ver Perfil do Usuário</a>
+      </li>
+      {{/usuarios}}
+    </ul>
+
+    <a href="cadastro">Criar Novo Usuario</a>
+</body>
+
+</html>

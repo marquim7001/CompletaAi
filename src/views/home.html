@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/styles.css">
   <title>Event Organizer - Home</title>
 </head>
+
 <body>
   <h1>Eventos</h1>
   <ul>
     {{#eventos}}
-    <li>{{nome}} - {{categoria}} - {{num_vagas}} - {{descricao}} - {{data_inicio}} - {{data_fim}}</li>
+    <li>{{nome}} - {{categoria}} - {{num_vagas}} - {{descricao}} - {{data_inicio}} - {{data_fim}} - {{criador}}</li>
     <a href="/detalhes_evento/{{id}}">Ver Detalhes</a> <!-- Botão para ver detalhes -->
     {{/eventos}}
   </ul>
 
   <a href="criar_evento">Criar Novo Evento</a>
+  <a href="cadastro">Criar Novo Usuário</a>
 </body>
+
 </html>
-    

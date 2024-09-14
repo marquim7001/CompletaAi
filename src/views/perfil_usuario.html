@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .profile-group {
+            margin-bottom: 15px;
+        }
+        .profile-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .profile-group p {
+            margin: 0;
+            padding: 8px;
+            background-color: #f4f4f4;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Perfil do Usuário</h2>
+        <div class="profile-group"></div>
+            <label for="nome">Nome:</label>
+            <p id="nome">{{usuario.nome}}</p>
+        </div>
+        <div class="profile-group">
+            <label for="email">Email:</label>
+            <p id="email">{{usuario.email}}</p>
+        </div>
+        <div class="profile-group">
+            <label for="senha">Senha:</label>
+            <p id="senha">{{usuario.senha}}</p>
+        </div>
+        <div class="profile-group">
+            <label for="data_nascimento">Data de Nascimento:</label>
+            <p id="data_nascimento">{{usuario.data_nascimento}}</p>
+        </div>
+        <a href="/editar_usuario/{{usuario.id}}">Editar dados do usuário</a>
+        <button id="delete-btn" data-id="{{usuario.id}}">Excluir usuário</button>
+    </div>
+
+    <script>
+        console.log("Script carregado!");
+        const deleteBtn = document.querySelector("#delete-btn");
+        deleteBtn.addEventListener("click", () => {
+            criarFormularioDelecao(deleteBtn.dataset.id);
+        });
+
+        function criarFormularioDelecao(id) {
+            console.log("Criando formulário de deleção para o id:", id);
+            const formularioDelecao = document.createElement("form");
+            formularioDelecao.setAttribute("action", "/excluir_usuario/" + id);
+            formularioDelecao.setAttribute("method", "POST");
+
+            const inputId = document.createElement("input");
+            inputId.setAttribute("type", "hidden");
+            inputId.setAttribute("name", "id");
+            inputId.setAttribute("value", id);
+
+            formularioDelecao.appendChild(inputId);
+            document.body.appendChild(formularioDelecao);
+            formularioDelecao.submit();
+        }
+    </script>
+</body>
+</html>

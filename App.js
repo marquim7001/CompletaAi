@@ -28,6 +28,7 @@ testDatabaseConnection();
 
 // Rotas do organizador de eventos
 app.use('/', require('./src/routes/eventoRoutes'));
+app.use('/', require('./src/routes/usuarioRoutes'));
 
 // Definindo porta e rodando servidor
 const app_port = 8080;
