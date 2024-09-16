@@ -1,0 +1,44 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+*.log.*
+pids/
+*.pid
+*.pid.lock
+
+# Environment variables
+.env
+
+# MySQL files (if using volumes)
+mysql-data/
+
+# Docker
+docker-compose.override.yml
+Dockerfile
+.dockerignore
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor specific
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Compiled or temporary files
+*.tmp
+*.lock
+*.swp
+*.swo
+
+# Coverage and build outputs
+coverage/
+dist/
