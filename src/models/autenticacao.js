@@ -17,6 +17,6 @@ exports.autenticar = async (email, senha) => {
     // Comparar a senha fornecida com a senha armazenada
     const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
 
-    // Retornar o usuário se a senha estiver correta
+    // Retornar o usuário se a senha estiver correta, ou null se incorreta
     return senhaCorreta ? usuario : null;
 };

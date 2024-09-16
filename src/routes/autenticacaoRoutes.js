@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const autenticacaoController = require('../controllers/autenticacaoController');
-const { verificarAutenticacao } = require('../middlewares/authMiddleware');
+const verificarAutenticacao = require('../middlewares/autenticacaoMiddleware');
 
 // GET
 router.get('/login', autenticacaoController.exibirLogin);

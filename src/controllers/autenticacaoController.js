@@ -22,11 +22,18 @@ const fazerLogin = async (req, res) => {
 };
 
 const fazerLogout = (req, res) => {
-    req.session.destroy(); // Destrói a sessão do usuário
-    res.redirect('/login'); // Redireciona para a página de login
+    req.session.destroy((err) => {
+        if (err) {
+            return res.status(500).send('Erro ao fazer logout');
+        }
+        res.redirect('/login'); // Redireciona para a página de login
+    });
 };
 
 const exibirLogin = (req, res) => {
+    if (req.session.usuario) {
+        return res.redirect('/home');  // Se o usuário já estiver logado, redireciona para a home
+    }
     res.render('login.html');
 };
 
