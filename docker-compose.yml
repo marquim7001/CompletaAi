@@ -1,27 +1,53 @@
+version: '3.8'
 services:
   node-app:
-    build: .  # Certifique-se de que o Dockerfile está na raiz do projeto
+    # Serviço para produção
+    build:
+      context: .
+      dockerfile: Dockerfile # Usando Dockerfile para produção
     ports:
-      - "3000:8080"  # Expondo a porta 8080 do contêiner na porta 3000 da máquina host
-    volumes:
-      - .:/app  # Montando o diretório atual no contêiner
-    depends_on:
-      - mysql  # A aplicação Node.js depende do contêiner MySQL
+      - "3000:8080" # Mapeia a porta 8080 do contêiner para 3000 no host
     environment:
-      - DB_HOST=mysql  # Nome do serviço MySQL
+      - NODE_ENV=production
+      - DB_HOST=mysql
       - DB_USER=root
       - DB_PASSWORD=flamengo
       - DB_NAME=completa_ai
+    depends_on:
+      - mysql
+    volumes:
+      - .:/app # Montar o diretório atual no contêiner
+      - /app/node_modules # Adiciona um volume separado para node_modules
+
+  node-app-dev:
+    # Serviço para desenvolvimento
+    build:
+      context: .
+      dockerfile: Dockerfile.dev # Usando Dockerfile.dev para desenvolvimento
+    ports:
+      - "3001:8080" # Mapeia a porta 8080 do contêiner para 3001 no host
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=flamengo
+      - DB_NAME=completa_ai
+    depends_on:
+      - mysql
+    volumes:
+      - .:/app # Montar o diretório atual no contêiner
+      - /app/node_modules # Adiciona um volume separado para node_modules
 
   mysql:
-    image: mysql:8.0  # Usando a imagem MySQL 8.0
+    # Serviço MySQL
+    image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: flamengo
       MYSQL_DATABASE: completa_ai
-    volumes:
-      - mysql-data:/var/lib/mysql  # Persistindo dados do MySQL
     ports:
-      - "3307:3306"  # Expondo a porta 3306 do contêiner na porta 3307 da máquina host
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
 
 volumes:
-  mysql-data:  # Declarando um volume para persistência
+  mysql-data:

@@ -1,0 +1,25 @@
+# Dockerfile para Desenvolvimento
+
+# Usar uma imagem base do Node.js
+FROM node:14
+
+# Definir o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copiar o package.json e o package-lock.json para o diretório de trabalho
+COPY package*.json ./
+
+# Instalar todas as dependências, incluindo dependências de desenvolvimento
+RUN npm install
+
+# Instalar nodemon globalmente para facilitar o monitoramento
+RUN npm install -g nodemon
+
+# Copiar o restante do código para o diretório de trabalho
+COPY . .
+
+# Expor a porta usada pela aplicação
+EXPOSE 8080
+
+# Comando para iniciar a aplicação com nodemon no ambiente de desenvolvimento
+CMD ["nodemon", "App.js"]
