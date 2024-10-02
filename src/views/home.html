@@ -1,24 +1,215 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/styles.css">
-  <title>Event Organizer - Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompletaAi</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <style>
+        .event-card {
+            margin-bottom: 20px;
+        }
+        .event-image {
+            height: 150px;
+            object-fit: cover;
+        }
+        .ad-section {
+            border-left: 1px solid #ddd;
+            padding-left: 20px;
+        }
+        .scrolling-wrapper {
+            overflow-x: scroll;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .scrolling-wrapper .card {
+            flex: 0 0 auto;
+            margin-right: 20px;
+        }
+    </style>
 </head>
-
 <body>
-  <h1>Eventos</h1>
-  <ul>
-    {{#eventos}}
-    <li>{{nome}} - {{categoria}} - {{num_vagas}} - {{descricao}} - {{data_inicio}} - {{data_fim}} - {{criador}}</li>
-    <a href="/detalhes_evento/{{id}}">Ver Detalhes</a> <!-- Botão para ver detalhes -->
-    {{/eventos}}
-  </ul>
 
-  <a href="criar_evento">Criar Novo Evento</a>
-  <a href="cadastro">Criar Novo Usuário</a>
-</body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CompletaAi</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cadastro">Registrar-se</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-</html>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <input type="text" class="form-control" placeholder="Pesquisar eventos...">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Criar Evento</h5>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="eventName">Nome do Evento</label>
+                                        <input type="text" class="form-control" id="eventName" placeholder="Digite o nome do evento">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventDate">Data do Evento</label>
+                                        <input type="date" class="form-control" id="eventDate">
+                                    </div>
+                                    <a href="criar_evento" class="btn btn-primary">Criar</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                      <h5>Meus Eventos</h5>
+                      <div class="scrolling-wrapper">
+                          {{#eventos}}
+                          <div class="card event-card">
+                              <div class="card-body">
+                                  <h5 class="card-title">{{nome}}</h5>
+                                  <p class="card-text">{{descricao}}</p>
+                                  <p class="card-text"><small class="text-muted">{{data_inicio}} - {{data_fim}}</small></p>
+                                  <p class="card-text"><small class="text-muted">Criado por: {{criador}}</small></p>
+                                  <a href="/detalhes_evento/{{id}}" class="btn btn-primary">Ver Detalhes</a>
+                              </div>
+                          </div>
+                          {{/eventos}}
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="mb-4">Eventos Diversos</h5>
+                        <div class="scrolling-wrapper">
+                            <div class="card event-card">
+                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
+                                <div class="card-body">
+                                    <h5 class="card-title">Evento 1</h5>
+                                    <p class="card-text">Detalhamento evento</p>
+                                    <p class="card-text"><small class="text-muted">01/01/2024</small></p>
+                                </div>
+                            </div>
+                            <div class="card event-card">
+                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
+                                <div class="card-body">
+                                    <h5 class="card-title">Evento 2</h5>
+                                    <p class="card-text">Detalhamento evento</p>
+                                    <p class="card-text"><small class="text-muted">02/02/2024</small></p>
+                                </div>
+                            </div>
+                            <div class="card event-card">
+                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
+                                <div class="card-body">
+                                    <h5 class="card-title">Evento 3</h5>
+                                    <p class="card-text">Detalhamento evento</p>
+                                    <p class="card-text"><small class="text-muted">03/03/2024</small></p>
+                                </div>
+                            </div>
+                            <div class="card event-card">
+                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
+                                <div class="card-body">
+                                    <h5 class="card-title">Evento 4</h5>
+                                    <p class="card-text">Detalhamento evento</p>
+                                    <p class="card-text"><small class="text-muted">04/04/2024</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="mb-4">Eventos ao Vivo</h5>
+                        <div class="scrolling-wrapper">
+                            <div class="card event-card">
+                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
+                                <div class="card-body">
+                                    <h5 class="card-title">Evento ao Vivo 1</h5>
+                                    <p class="card-text">Detalhamento evento ao vivo</p>
+                                    <p class="card-text"><small class="text-muted">03/03/2024</small></p>
+                                </div>
+                            </div>
+                            <div class="card event-card">
+                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
+                                <div class="card-body">
+                                    <h5 class="card-title">Evento ao Vivo 2</h5>
+                                    <p class="card-text">Detalhamento evento ao vivo</p>
+                                    <p class="card-text"><small class="text-muted">04/04/2024</small></p>
+                                </div>
+                            </div>
+                            <div class="card event-card">
+                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
+                                <div class="card-body">
+                                    <h5 class="card-title">Evento ao Vivo 3</h5>
+                                    <p class="card-text">Detalhamento evento ao vivo</p>
+                                    <p class="card-text"><small class="text-muted">05/05/2024</small></p>
+                                </div>
+                            </div>
+                            <div class="card event-card">
+                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
+                                <div class="card-body">
+                                    <h5 class="card-title">Evento ao Vivo 4</h5>
+                                    <p class="card-text">Detalhamento evento ao vivo</p>
+                                    <p class="card-text"><small class="text-muted">06/06/2024</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 ad-section">
+                <h5 class="mb-4">Anúncios</h5>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Anúncio 1</h5>
+                        <p class="card-text">Detalhes do anúncio 1</p>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Anúncio 2</h5>
+                        <p class="card-text">Detalhes do anúncio 2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-light text-center text-lg-start mt-5">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">CompletaAi</h5>
+                    <p>Endereço: Rua Exemplo, 123, Cidade Ocidental, Goiás, Brasil</p>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Contato</h5>
+                    <p>Email: contato@completaai.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3 bg-light">
+            © 2024 CompletaAi
+        </div>
+    </footer>
+
+    <script src="

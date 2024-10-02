@@ -1,55 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Evento</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <title>CompletaAi - Editar Evento</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-    <header>
-        <h1>Editar Evento</h1>
-    </header>
-    <main>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CompletaAi</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Registrar-se</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Editar Evento</h2>
         <form action="/editar_evento/{{evento.id}}" method="POST">
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" value="{{evento.nome}}" required>
+                <input type="text" class="form-control" id="nome" name="nome" value="{{evento.nome}}" required>
             </div>
             <div class="form-group">
                 <label for="categoria">Categoria:</label>
-                <input type="text" id="categoria" name="categoria" value="{{evento.categoria}}" required>
+                <input type="text" class="form-control" id="categoria" name="categoria" value="{{evento.categoria}}" required>
             </div>
             <div class="form-group">
                 <label for="num-vagas">Número de vagas:</label>
-                <input type="number" id="num-vagas" name="num-vagas" value="{{evento.num_vagas}}" required>
+                <input type="number" class="form-control" id="num-vagas" name="num-vagas" value="{{evento.num_vagas}}" required>
             </div>
             <div class="form-group">
                 <label for="descricao">Descrição:</label>
-                <textarea id="descricao" name="descricao" rows="4" required>{{evento.descricao}}</textarea>
+                <textarea class="form-control" id="descricao" name="descricao" rows="4" required>{{evento.descricao}}</textarea>
             </div>
             <div class="form-group">
                 <label for="data-inicio">Data de início:</label>
-                <input type="date" id="data-inicio" name="data-inicio" value="{{evento.data_inicio}}" required>
+                <input type="date" class="form-control" id="data-inicio" name="data-inicio" value="{{evento.data_inicio}}" required>
             </div>
             <div class="form-group">
                 <label for="data-fim">Data de fim:</label>
-                <input type="date" id="data-fim" name="data-fim" value="{{evento.data_fim}}" required>
+                <input type="date" class="form-control" id="data-fim" name="data-fim" value="{{evento.data_fim}}" required>
             </div>
             <div class="form-group">
                 <label for="criador">Criador:</label>
-                <input type="text" id="criador" name="criador" required>
+                <input type="text" class="form-control" id="criador" name="criador" required>
             </div>
-            <div class="form-group">
-                <button type="submit">Salvar Alterações</button>
-            </div>
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
         </form>
-    </main>
-    <footer>
-        <p>&copy; 2024 CompletaAi</p>
-    </footer>
-</body>
+    </div>
 
+    <footer class="text-center mt-5">
+        <p>© 2024 CompletaAi</p>
+    </footer>
+
+</body>
 </html>

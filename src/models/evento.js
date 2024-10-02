@@ -3,13 +3,13 @@ const db = require('../config/db');  // Arquivo de conexão com o banco
 // Função para criar um evento
 exports.criar = (eventoData) => {
   const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador } = eventoData;
-  const query = `INSERT INTO eventos (nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+  const query = `INSERT INTO eventos (nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador) VALUES (?, ?, ?, ?, ?, ?, ?)`;
   return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador]);
 };
 
 exports.editar = (id, eventoData) => {
   const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador } = eventoData;
-  const query = 'UPDATE eventos SET nome = ?, categoria = ?, num_vagas = ?, descricao = ?, data_inicio = ?, data_fim = ?, criador = ? WHERE id = ?';
+  const query = 'UPDATE eventos SET nome = ?, categoria = ?, num_vagas = ?, descricao = ?, data_inicio = ?, data_fim = ?, id_criador = ? WHERE id = ?';
 
   return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador, id]);
 };

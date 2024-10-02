@@ -1,48 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/styles.css">
-  <title>Criar Evento</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompletaAi - Criar Evento</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-  <h1>Criar Evento</h1>
-  <form action="/criar_evento" method="POST">
-    <div class="form-group">
-      <label for="Nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required>
-    </div>
-    <div class="form-group">
-      <label for="categoria">Categoria:</label>
-      <input type="text" id="categoria" name="categoria" required>
-    </div>
-    <div class="form-group">
-      <label for="numVagas">Número de vagas:</label>
-      <input type="number" id="numVagas" name="num-vagas" required>
-    </div>
-    <div class="form-group">
-      <label for="descricao">Descrição:</label>
-      <input type="text" id="descricao" name="descricao" required>
-    </div>
-    <div class="form-group">
-      <label for="dataInicio">Data de início:</label>
-      <input type="date" id="dataInicio" name="data-inicio" required>
-    </div>
-    <div class="form-group">
-      <label for="dataFim">Data de fim:</label>
-      <input type="date" id="dataFim" name="data-fim" required>
-    </div>
-    <div class="form-group">
-      <label for="criador">Criador:</label>
-      <input type="text" id="criador" name="criador" required>
-    </div>
-    <button type="submit">Criar evento</button>
-  </form>
 
-  <a href="/home">Voltar para a Lista de Eventos</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CompletaAi</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Registrar-se</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Criar Evento</h2>
+        <form action="/criar_evento" method="POST">
+            <div class="form-group">
+                <label for="nome">Nome do Evento</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do evento" required>
+            </div>
+            <div class="form-group">
+                <label for="categoria">Categoria do Evento</label>
+                <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Digite a categoria do evento" required>
+            </div>
+            <div class="form-group">
+                <label for="numVagas">Quantidade de Vagas</label>
+                <input type="number" class="form-control" id="numVagas" name="num-vagas" placeholder="Digite a quantidade de vagas" required>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição do Evento</label>
+                <textarea class="form-control" id="descricao" name="descricao" rows="3" placeholder="Digite a descrição do evento" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="dataInicio">Data de Início</label>
+                <input type="date" class="form-control" id="dataInicio" name="data-inicio" required>
+            </div>
+            <div class="form-group">
+                <label for="dataFim">Data de Término</label>
+                <input type="date" class="form-control" id="dataFim" name="data-fim" required>
+            </div>
+            <div class="form-group">
+                <label for="criador">Criador</label>
+                <input type="text" class="form-control" id="criador" name="criador" placeholder="Digite o nome do criador" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Criar Evento</button>
+        </form>
+        <a href="/home" class="btn btn-secondary mt-3">Voltar para a Lista de Eventos</a>
+    </div>
 </body>
-
 </html>
