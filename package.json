@@ -1,4 +1,11 @@
 {
+  "name": "completa-ai",
+  "version": "1.0.0",
+  "description": "Aplicação web para criar, participar e organizar eventos",
+  "main": "App.js",
+  "scripts": {
+    "start": "node App.js"
+  },
   "dependencies": {
     "express": "^4.21.0",
     "express-session": "^1.18.0",

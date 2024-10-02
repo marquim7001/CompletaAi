@@ -31,8 +31,8 @@ app.use(verificarAutenticacao);
 // Teste de conexão com o banco de dados
 const testDatabaseConnection = async () => {
   try {
-    const [rows] = await db.query('SELECT 1');
-    console.log('Banco de dados conectado e pronto para uso');
+    const [rows] = await db.query('SHOW TABLES');  // Lista as tabelas no banco
+    console.log('Tabelas no banco de dados completa_ai:', rows);
   } catch (err) {
     console.error('Erro ao testar conexão com o banco de dados:', err);
   }
