@@ -60,7 +60,7 @@ const editarUsuario = async (req, res) => {
 const excluirUsuario = async (req, res) => {
     try {
         await Usuario.deletar(req.params.id);
-        res.redirect('/home_usuario');  // Redireciona após a exclusão
+        res.redirect('/home');  // Redireciona após a exclusão
     } catch (erro) {
         res.render('home.html', { erro_exclusao: true });
     }

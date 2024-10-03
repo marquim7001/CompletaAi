@@ -53,17 +53,17 @@ const excluirEvento = async (req, res) => {
     await Evento.deletar(req.params.id);
     res.redirect('/home');  // Redireciona após a exclusão
   } catch (erro) {
-    res.render('listarEventos.html', { erro_exclusao: true });
+    res.render('home.html', { erro_exclusao: true });
   }
 };
 
-const listarEventos = async (req, res) => {
+const listarEventos = async () => {
   try {
     const resultado = await Evento.procurarTodos();  // Aguarda a lista de eventos
-    res.render('home.html', { eventos: resultado });
+    return resultado;  // Retorna a lista de eventos para ser usada em outra função
   } catch (erro) {
     console.error('Erro ao listar eventos:', erro);
-    res.render('home.html', { erro_listagem: true });
+    throw erro;  // Lança o erro para ser tratado pela função que chamar listarEventos
   }
 };
 
