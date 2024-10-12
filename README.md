@@ -68,6 +68,12 @@ Na pasta raiz do projeto, criar um arquivo chamado Dockerfile e inserir essas in
 6. No MySQL Workbench, criar as tabelas do banco de dados:
 
   ```sql
+   CREATE SCHEMA completa_ai;
+  ```
+  ```sql
+   USE completa_ai;
+  ```
+  ```sql
   CREATE TABLE usuarios (
     id int NOT NULL AUTO_INCREMENT,
     email varchar(200) NOT NULL,
