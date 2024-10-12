@@ -1,4 +1,6 @@
 const Autenticacao = require('../models/autenticacao');
+const eventoController = require('../controllers/eventoController');
+const verificarAutenticacao = require('../middlewares/autenticacaoMiddleware');
 
 const fazerLogin = async (req, res) => {
     const { email, senha } = req.body;
@@ -12,9 +14,11 @@ const fazerLogin = async (req, res) => {
             return res.status(401).render('login.html', { erro_login: true });
         }
 
-        // Login bem-sucedido, salva na sessão
-        req.session.usuario = usuario;
-        res.redirect('/home');  // Redireciona após login bem-sucedido
+        // Login bem-sucedido, salva na sessão (apenas algumas informações)
+        req.session.usuario = { id: usuario.id, email: usuario.email, nome: usuario.nome };
+
+        // Redireciona após login bem-sucedido
+        res.redirect('/home');
     } catch (erro) {
         console.error('Erro ao fazer login:', erro);
         res.status(500).send('Erro ao fazer login');
@@ -37,8 +41,30 @@ const exibirLogin = (req, res) => {
     res.render('login.html');
 };
 
+const exibirHome = async (req, res) => {
+    try {
+        verificarAutenticacao(req, res, async () => {
+            // Obtém o ID do usuário logado
+            const usuarioId = req.session.usuario.id;
+
+            // Chama listarEventos para buscar os eventos
+            const eventos = await eventoController.listarEventos();
+
+            // Renderiza a home com as informações dos eventos e do usuário logado
+            const usuarioLogado = true; // Definindo diretamente como true, pois a autenticação passou
+            console.log('Dados para home.html:', { usuarioLogado, usuarioId, eventos });
+            res.render('home.html', { usuarioLogado, usuarioId, eventos });
+            console.log('Renderizando home.html com usuarioLogado:', usuarioLogado);
+        });
+    } catch (erro) {
+        console.error('Erro ao exibir a home:', erro);
+        res.render('home.html', { erro_listagem: true });
+    }
+};
+
 module.exports = {
     fazerLogin,
     exibirLogin,
-    fazerLogout
+    fazerLogout,
+    exibirHome
 };
