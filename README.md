@@ -93,13 +93,13 @@ Na pasta raiz do projeto, criar um arquivo chamado Dockerfile e inserir essas in
   ```
   ```sql
   CREATE TABLE participacoes (
-    id_usuario int NOT NULL,
-    id_evento int NOT NULL,
-    PRIMARY KEY (id_usuario,id_evento),
-    KEY id_evento (id_evento),
-    CONSTRAINT participacoes_ibfk_1 FOREIGN KEY (id_usuario) REFERENCES usuarios (id),
-    CONSTRAINT participacoes_ibfk_2 FOREIGN KEY (id_evento) REFERENCES eventos (id)
-  )
+     id_usuario int NOT NULL,
+     id_evento int NOT NULL,
+     PRIMARY KEY (id_usuario, id_evento),
+     KEY id_evento (id_evento),
+     CONSTRAINT participacoes_ibfk_1 FOREIGN KEY (id_usuario) REFERENCES usuarios (id),
+     CONSTRAINT participacoes_ibfk_2 FOREIGN KEY (id_evento) REFERENCES eventos (id)
+   );
   ```
 
 7. Rodar esse comando no terminal na pasta raiz:
