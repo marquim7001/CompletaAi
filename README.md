@@ -16,9 +16,9 @@ Aplicação web para criar, participar e organizar eventos.
    cd CompletaAi
    ```
 
-2. Criar arquivo Dockerfile
+2. Criar arquivo Dockerfile:
 
-Na pasta raiz do projeto, criar um arquivo chamado Dockerfile e inserir essas informações
+Na pasta raiz do projeto, criar um arquivo chamado Dockerfile e inserir essas informações:
 
   ```Dockerfile
   # Dockerfile
@@ -45,7 +45,7 @@ Na pasta raiz do projeto, criar um arquivo chamado Dockerfile e inserir essas in
   CMD ["npm", "start"]
   ```
 
-3. Alterar essas linhas no arquivo docker-compose.yml
+3. Alterar essas linhas no arquivo docker-compose.yml:
 
   ```yml
   - DB_PASSWORD=<senha_do_BD_local>
@@ -55,17 +55,17 @@ Na pasta raiz do projeto, criar um arquivo chamado Dockerfile e inserir essas in
   MYSQL_ROOT_PASSWORD: <senha_do_BD_local>
   ```
 
-4. Alterar essa linha no arquivo db.js
+4. Alterar essa linha no arquivo db.js:
 
   ```js
   password: '<senha_do_BD_local>'
   ```
 
-5. Criar uma nova conexão no MySQL Workbench
+5. Criar uma nova conexão no MySQL Workbench:
 
   ![image](https://github.com/user-attachments/assets/c7276b63-6103-4f0d-8820-f13fb2561c54)
 
-6. Criar as tabelas do banco de dados
+6. No MySQL Workbench, criar as tabelas do banco de dados:
 
   ```sql
   CREATE TABLE usuarios (
@@ -102,16 +102,16 @@ Na pasta raiz do projeto, criar um arquivo chamado Dockerfile e inserir essas in
   )
   ```
 
-7. Rodar esse comando no terminal na pasta raiz
+7. Rodar esse comando no terminal na pasta raiz:
 
   ```bash
   docker-compose up -d
   ```
 
-8. Verificar se o projeto está rodando no Docker Desktop
+8. Verificar se o projeto está rodando no Docker Desktop:
 
   ![image](https://github.com/user-attachments/assets/6107f71b-7edb-4e56-a921-53c3d3bd067d)
 
-9. Acessar o link da aplicação
+9. Acessar o link da aplicação:
 
   (http://localhost:3000/)
