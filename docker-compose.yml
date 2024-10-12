@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   node-app:
-    # Serviço para produção
+    # Serviço de produção
     build:
       context: .
       dockerfile: Dockerfile # Usando Dockerfile para produção
@@ -16,27 +16,8 @@ services:
     depends_on:
       - mysql
     volumes:
-      - .:/app # Montar o diretório atual no contêiner
-      - /app/node_modules # Adiciona um volume separado para node_modules
-
-  node-app-dev:
-    # Serviço para desenvolvimento
-    build:
-      context: .
-      dockerfile: Dockerfile.dev # Usando Dockerfile.dev para desenvolvimento
-    ports:
-      - "3001:8080" # Mapeia a porta 8080 do contêiner para 3001 no host
-    environment:
-      - NODE_ENV=development
-      - DB_HOST=mysql
-      - DB_USER=root
-      - DB_PASSWORD=flamengo
-      - DB_NAME=completa_ai
-    depends_on:
-      - mysql
-    volumes:
-      - .:/app # Montar o diretório atual no contêiner
-      - /app/node_modules # Adiciona um volume separado para node_modules
+      - .:/app # Monta o diretório atual no contêiner
+      - /app/node_modules # Volume separado para node_modules
 
   mysql:
     # Serviço MySQL
