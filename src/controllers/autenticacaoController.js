@@ -48,12 +48,13 @@ const exibirHome = async (req, res) => {
             const usuarioId = req.session.usuario.id;
 
             // Chama listarEventos para buscar os eventos
-            const eventos = await eventoController.listarEventos();
+            const todosOsEventos = await eventoController.listarEventos();
+            const eventosDoUsuario = await eventoController.listarEventosPorCriador(usuarioId);
 
             // Renderiza a home com as informações dos eventos e do usuário logado
             const usuarioLogado = true; // Definindo diretamente como true, pois a autenticação passou
-            console.log('Dados para home.html:', { usuarioLogado, usuarioId, eventos });
-            res.render('home.html', { usuarioLogado, usuarioId, eventos });
+            console.log('Dados para home.html:', { usuarioLogado, usuarioId, todosOsEventos, eventosDoUsuario });
+            res.render('home.html', { usuarioLogado, usuarioId, todosOsEventos, eventosDoUsuario });
             console.log('Renderizando home.html com usuarioLogado:', usuarioLogado);
         });
     } catch (erro) {

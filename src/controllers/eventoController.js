@@ -3,7 +3,8 @@ const Evento = require('../models/evento');
 // Criar evento
 const criarEvento = async (req, res) => {
   try {
-    const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim, criador } = req.body;
+    const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim } = req.body;
+    const criador = req.session.usuario.id;z
 
     const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador };
     await Evento.criar(eventoData);
@@ -64,11 +65,10 @@ const listarEventos = async () => {
   }
 };
 
-const listarEventosPorCriador = async (req, res) => {
+const listarEventosPorCriador = async (idUsuario) => {
   try {
-    const { id } = req.params;
-    const eventos = await Evento.procurarPorIdCriador(id);
-    return eventos;
+    const eventosDoCriador = await Evento.procurarPorIdCriador(idUsuario);
+    return eventosDoCriador;
   } catch (erro) {
     console.error('Erro ao listar eventos por criador:', erro);
   }
