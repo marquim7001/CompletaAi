@@ -41,3 +41,8 @@ exports.procurarPorId = (id) => {
             }
         });
 };
+
+exports.adicionarUsuarioAoEvento = (idUsuario, idEvento) => {
+    const query = 'INSERT INTO eventos_usuarios (id_evento, id_usuario) VALUES (?, ?)';
+    return db.execute(query, [idUsuario, idEvento]);
+}

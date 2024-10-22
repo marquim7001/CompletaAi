@@ -3,14 +3,12 @@ const Evento = require('../models/evento');
 // Criar evento
 const criarEvento = async (req, res) => {
   try {
-    // console.log(`req.body: ${JSON.stringify(req.body)}`);  // Exibe o corpo da requisição
     const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim, criador } = req.body;
 
     const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador };
-    // console.log(`eventoData: ${JSON.stringify(eventoData)}`);  // Exibe os dados do evento
-    await Evento.criar(eventoData);  // Chama a função para inserir no banco de dados
+    await Evento.criar(eventoData);
 
-    res.redirect('/home');  // Redireciona para a página de eventos após o sucesso
+    res.redirect('/home');
   } catch (erro) {
     console.error('Erro ao criar evento:', erro);
     res.render('criar_evento.html', { erro_cadastro: true });
@@ -22,9 +20,8 @@ const editarEvento = async (req, res) => {
   const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim, criador } = req.body;
   const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador };
   try {
-    // Atualizar evento no banco de dados
     await Evento.editar(id, eventoData);
-    res.redirect('/home');  // Redirecionar após a atualização
+    res.redirect('/home');
   } catch (erro) {
     console.error('Erro ao editar evento:', erro);
     res.render('editar_evento.html', { erro_edicao: true, evento: req.body });
@@ -51,7 +48,7 @@ const encontrarEvento = async (req, res) => {
 const excluirEvento = async (req, res) => {
   try {
     await Evento.deletar(req.params.id);
-    res.redirect('/home');  // Redireciona após a exclusão
+    res.redirect('/home');
   } catch (erro) {
     res.render('home.html', { erro_exclusao: true });
   }
@@ -59,13 +56,23 @@ const excluirEvento = async (req, res) => {
 
 const listarEventos = async () => {
   try {
-    const resultado = await Evento.procurarTodos();  // Aguarda a lista de eventos
-    return resultado;  // Retorna a lista de eventos para ser usada em outra função
+    const eventos = await Evento.procurarTodos();
+    return eventos;
   } catch (erro) {
     console.error('Erro ao listar eventos:', erro);
-    throw erro;  // Lança o erro para ser tratado pela função que chamar listarEventos
+    throw erro;
   }
 };
+
+const listarEventosPorCriador = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const eventos = await Evento.procurarPorIdCriador(id);
+    return eventos;
+  } catch (erro) {
+    console.error('Erro ao listar eventos por criador:', erro);
+  }
+}
 
 const exibirCriarEvento = (req, res) => {
   res.render('criar_evento.html');
@@ -74,9 +81,9 @@ const exibirCriarEvento = (req, res) => {
 const exibirDetalhesEvento = async (req, res) => {
   const { id } = req.params;
   try {
-    const evento = await Evento.procurarPorId(id);  // Busca o evento pelo ID
+    const evento = await Evento.procurarPorId(id);
     if (evento) {
-      res.render('detalhes_evento.html', { evento });  // Renderiza a página com os detalhes do evento
+      res.render('detalhes_evento.html', { evento });
     } else {
       res.status(404).send('Evento não encontrado');
     }
@@ -93,7 +100,7 @@ const exibirEditarEvento = async (req, res) => {
     if (evento) {
       res.render('editar_evento.html', { evento });
     } else {
-      res.redirect('/home');  // Redireciona se o evento não for encontrado
+      res.redirect('/home');
     }
   } catch (erro) {
     console.error('Erro ao exibir a página de edição:', erro);
@@ -105,6 +112,7 @@ module.exports = {
   criarEvento,
   editarEvento,
   listarEventos,
+  listarEventosPorCriador,
   encontrarEvento,
   excluirEvento,
   exibirCriarEvento,

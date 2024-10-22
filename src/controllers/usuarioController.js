@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');  // Adicionar bcrypt para encriptação de senhas
+const bcrypt = require('bcrypt');
 const Usuario = require('../models/usuario');
 
 // Criar usuario
@@ -8,7 +8,7 @@ const criarUsuario = async (req, res) => {
         const { email, senha, nome, 'data-nascimento': data_nascimento } = req.body;
 
         // Encriptar a senha antes de armazenar no banco de dados
-        const saltRounds = 10;  // Número de rounds para o salt (quanto maior, mais seguro e mais lento)
+        const saltRounds = 10;
         const senhaHash = await bcrypt.hash(senha, saltRounds);
 
         // Criar objeto de usuário com a senha encriptada
@@ -44,12 +44,12 @@ const editarUsuario = async (req, res) => {
             email,
             nome,
             data_nascimento,
-            ...(senhaHash && { senha: senhaHash })  // Adiciona a senha encriptada somente se foi fornecida
+            ...(senhaHash && { senha: senhaHash })
         };
 
         // Atualizar usuário no banco de dados
         await Usuario.editar(id, usuarioData);
-        res.redirect('/home_usuario');  // Redirecionar após a atualização
+        res.redirect('/home_usuario');
     } catch (erro) {
         console.error('Erro ao editar usuário:', erro);
         res.render('cadastro.html', { erro_edicao: true, usuario: req.body });
@@ -60,7 +60,7 @@ const editarUsuario = async (req, res) => {
 const excluirUsuario = async (req, res) => {
     try {
         await Usuario.deletar(req.params.id);
-        res.redirect('/home');  // Redireciona após a exclusão
+        res.redirect('/home');
     } catch (erro) {
         res.render('home.html', { erro_exclusao: true });
     }
@@ -80,10 +80,21 @@ const encontrarUsuario = async (req, res) => {
     }
 };
 
+const adicionarUsuarioAoEvento = async (req, res) => {
+    const { id_usuario, id_evento } = req.body;
+    try {
+        await Usuario.adicionarUsuarioAoEvento(id_usuario, id_evento);
+        res.redirect('/home');
+    } catch (erro) {
+        console.error('Erro ao adicionar usuário ao evento:', erro);
+        res.render('home.html', { erro_adicao: true });
+    }
+}
+
 // Listar todos os eventos
 const listarUsuarios = async (req, res) => {
     try {
-        const resultado = await Usuario.procurarTodos();  // Aguarda a lista de usuariosz
+        const resultado = await Usuario.procurarTodos();
         res.render('home_usuario.html', { usuarios: resultado });
     } catch (erro) {
         console.error('Erro ao listar eventos:', erro);
@@ -99,9 +110,9 @@ const exibirCriarUsuario = (req, res) => {
 const exibirDetalhesUsuario = async (req, res) => {
     const { id } = req.params;
     try {
-        const usuario = await Usuario.procurarPorId(id);  // Busca o usuario pelo ID
+        const usuario = await Usuario.procurarPorId(id);
         if (usuario) {
-            res.render('perfil_usuario.html', { usuario });  // Renderiza a página com os detalhes do usuario
+            res.render('perfil_usuario.html', { usuario });
         } else {
             res.status(404).send('Usuário não encontrado');
         }
@@ -118,7 +129,7 @@ const exibirEditarUsuario = async (req, res) => {
         if (usuario) {
             res.render('editar_usuario.html', { usuario });
         } else {
-            res.redirect('/home');  // Redireciona se o usuario não for encontrado
+            res.redirect('/home');
         }
     } catch (erro) {
         console.error('Erro ao exibir a página de edição:', erro);
@@ -134,5 +145,6 @@ module.exports = {
     listarUsuarios,
     exibirCriarUsuario,
     exibirDetalhesUsuario,
-    exibirEditarUsuario
+    exibirEditarUsuario,
+    adicionarUsuarioAoEvento
 };

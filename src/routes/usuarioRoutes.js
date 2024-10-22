@@ -13,10 +13,9 @@ router.post('/cadastro', usuarioController.criarUsuario);
 router.post('/editar_usuario/:id', usuarioController.editarUsuario);
 router.post('/excluir_usuario/:id', usuarioController.excluirUsuario);
 
-
 //TEMP
-router.get('/login', (req, res) => {
-    res.render('login.html');
-});
+// router.get('/login', (req, res) => {
+//     res.render('login.html');
+// });
 
 module.exports = router;

@@ -40,3 +40,9 @@ exports.procurarPorId = (id) => {
       }
     });
 };
+
+exports.procurarPorIdCriador = (id) => {
+  const query = 'SELECT * FROM eventos WHERE id_criador = ?';
+
+  return db.execute(query, [id]).then(([rows]) => rows);
+}
