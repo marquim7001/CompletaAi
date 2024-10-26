@@ -63,7 +63,8 @@ Na pasta raiz do projeto, criar um arquivo chamado Dockerfile e inserir essas in
 
 5. Criar uma nova conexão no MySQL Workbench:
 
-  ![image](https://github.com/user-attachments/assets/c7276b63-6103-4f0d-8820-f13fb2561c54)
+  ![image](https://github.com/user-attachments/assets/c7b7d84a-6776-4f2e-992d-fa0c1cd48973)
+
 
 6. No MySQL Workbench, criar as tabelas do banco de dados:
 
