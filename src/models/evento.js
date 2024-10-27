@@ -2,16 +2,16 @@ const db = require('../config/db');  // Arquivo de conexão com o banco
 
 // Função para criar um evento
 exports.criar = (eventoData) => {
-  const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador } = eventoData;
+  const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador } = eventoData;
   const query = `INSERT INTO eventos (nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador) VALUES (?, ?, ?, ?, ?, ?, ?)`;
-  return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador]);
+  return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador]);
 };
 
 exports.editar = (id, eventoData) => {
-  const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador } = eventoData;
+  const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador } = eventoData;
   const query = 'UPDATE eventos SET nome = ?, categoria = ?, num_vagas = ?, descricao = ?, data_inicio = ?, data_fim = ?, id_criador = ? WHERE id = ?';
 
-  return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador, id]);
+  return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, id]);
 };
 
 // Função para remover um evento
@@ -41,6 +41,7 @@ exports.procurarPorId = (id) => {
     });
 };
 
+// Função para encontrar os eventos de um criador
 exports.procurarPorIdCriador = (id) => {
   const query = 'SELECT * FROM eventos WHERE id_criador = ?';
 

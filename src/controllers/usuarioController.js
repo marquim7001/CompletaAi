@@ -80,6 +80,7 @@ const encontrarUsuario = async (req, res) => {
     }
 };
 
+// Adicionario usuario a um evento (usuario se inscreve no evento)
 const adicionarUsuarioAoEvento = async (req, res) => {
     const { id_usuario, id_evento } = req.body;
     try {

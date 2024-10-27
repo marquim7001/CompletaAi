@@ -4,9 +4,9 @@ const Evento = require('../models/evento');
 const criarEvento = async (req, res) => {
   try {
     const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim } = req.body;
-    const criador = req.session.usuario.id;z
+    const id_criador = req.session.usuario.id;
 
-    const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador };
+    const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador };
     await Evento.criar(eventoData);
 
     res.redirect('/home');
@@ -18,8 +18,8 @@ const criarEvento = async (req, res) => {
 
 const editarEvento = async (req, res) => {
   const id = req.params.id;
-  const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim, criador } = req.body;
-  const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador };
+  const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim, id_criador } = req.body;
+  const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador };
   try {
     await Evento.editar(id, eventoData);
     res.redirect('/home');
@@ -45,12 +45,18 @@ const encontrarEvento = async (req, res) => {
   }
 };
 
-// Remover evento
+// Excluir evento
 const excluirEvento = async (req, res) => {
   try {
-    await Evento.deletar(req.params.id);
-    res.redirect('/home');
+    const evento = await Evento.procurarPorId(req.params.id);
+    if (evento.criador === req.session.usuario.id) {
+      await Evento.deletar(req.params.id);
+      res.redirect('/home');
+    } else {
+      res.status(403).send('Você não tem permissão para excluir este evento');
+    }
   } catch (erro) {
+    console.error('Erro ao excluir evento:', erro);
     res.render('home.html', { erro_exclusao: true });
   }
 };
@@ -83,7 +89,8 @@ const exibirDetalhesEvento = async (req, res) => {
   try {
     const evento = await Evento.procurarPorId(id);
     if (evento) {
-      res.render('detalhes_evento.html', { evento });
+      const isEventoCriador = evento.id_criador == req.session.usuario.id;
+      res.render('detalhes_evento.html', { evento, isEventoCriador });
     } else {
       res.status(404).send('Evento não encontrado');
     }
