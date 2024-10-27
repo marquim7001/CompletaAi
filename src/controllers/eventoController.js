@@ -1,4 +1,5 @@
 const Evento = require('../models/evento');
+const Usuario = require('../models/usuario');
 
 // Criar evento
 const criarEvento = async (req, res) => {
@@ -85,12 +86,15 @@ const exibirCriarEvento = (req, res) => {
 };
 
 const exibirDetalhesEvento = async (req, res) => {
-  const { id } = req.params;
+  const id_evento = req.params.id;
+  const id_usuario = req.session.usuario.id;
+  
   try {
-    const evento = await Evento.procurarPorId(id);
+    const evento = await Evento.procurarPorId(id_evento);
     if (evento) {
-      const isEventoCriador = evento.id_criador == req.session.usuario.id;
-      res.render('detalhes_evento.html', { evento, isEventoCriador });
+      const isEventoCriador = evento.id_criador == id_usuario;
+      const isUsuarioInscrito = await Usuario.verificarUsuarioInscrito(id_usuario, id_evento);
+      res.render('detalhes_evento.html', { evento, isEventoCriador, isUsuarioInscrito });
     } else {
       res.status(404).send('Evento não encontrado');
     }

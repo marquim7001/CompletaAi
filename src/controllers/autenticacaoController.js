@@ -53,9 +53,7 @@ const exibirHome = async (req, res) => {
 
             // Renderiza a home com as informações dos eventos e do usuário logado
             const usuarioLogado = true; // Definindo diretamente como true, pois a autenticação passou
-            console.log('Dados para home.html:', { usuarioLogado, usuarioId, todosOsEventos, eventosDoUsuario });
             res.render('home.html', { usuarioLogado, usuarioId, todosOsEventos, eventosDoUsuario });
-            console.log('Renderizando home.html com usuarioLogado:', usuarioLogado);
         });
     } catch (erro) {
         console.error('Erro ao exibir a home:', erro);

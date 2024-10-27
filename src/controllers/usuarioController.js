@@ -82,13 +82,34 @@ const encontrarUsuario = async (req, res) => {
 
 // Adicionario usuario a um evento (usuario se inscreve no evento)
 const adicionarUsuarioAoEvento = async (req, res) => {
-    const { id_usuario, id_evento } = req.body;
+    const id_evento = req.body['id-evento'];
+    const id_usuario = req.session.usuario.id;
+    console.log('req.body:', req.body);
+    console.log('req.session.usuario.id:', req.session.usuario.id);
+    console.log('Adicionando usuário ao evento:', id_usuario, id_evento);
+
     try {
         await Usuario.adicionarUsuarioAoEvento(id_usuario, id_evento);
         res.redirect('/home');
     } catch (erro) {
         console.error('Erro ao adicionar usuário ao evento:', erro);
         res.render('home.html', { erro_adicao: true });
+    }
+};
+
+const removerUsuarioDoEvento = async (req, res) => {
+    const id_evento = req.body['id-evento'];
+    const id_usuario = req.session.usuario.id;
+    console.log('req.body:', req.body);
+    console.log('req.session.usuario.id:', req.session.usuario.id);
+    console.log('Removendo usuário do evento:', id_usuario, id_evento);
+
+    try {
+        await Usuario.removerUsuarioDoEvento(id_usuario, id_evento);
+        res.redirect('/home');
+    } catch (erro) {
+        console.error('Erro ao remover usuário do evento:', erro);
+        res.render('home.html', { erro_remocao: true });
     }
 }
 
@@ -138,6 +159,14 @@ const exibirEditarUsuario = async (req, res) => {
     }
 };
 
+const verificarUsuarioInscrito = async (idUsuario, idEvento) => {
+    console.log('idUsuarionocontroleler:', idUsuario);
+    console.log('idEventonocontroler:', idEvento);
+    const isUsuarioInscrito = await Usuario.verificarUsuarioInscrito(idUsuario, idEvento);
+    console.log('isUsuarioInscrito:', isUsuarioInscrito);
+    return isUsuarioInscrito;
+}
+
 module.exports = {
     criarUsuario,
     editarUsuario,
@@ -147,5 +176,7 @@ module.exports = {
     exibirCriarUsuario,
     exibirDetalhesUsuario,
     exibirEditarUsuario,
-    adicionarUsuarioAoEvento
+    adicionarUsuarioAoEvento,
+    removerUsuarioDoEvento,
+    verificarUsuarioInscrito
 };

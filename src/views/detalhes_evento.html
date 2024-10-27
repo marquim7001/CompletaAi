@@ -45,10 +45,23 @@
                 </p>
                 <p class="card-text"><strong>Data de Término:</strong> <span id="endDate">{{evento.data_fim}}</span></p>
                 <p class="card-text"><strong>Criador:</strong> {{evento.criador}}</p>
-                <button type="button" class="btn btn-primary" id="checkInButton">Fazer Check-in</button>
-                <a href="/editar_evento/{{evento.id}}" class="btn btn-secondary">Editar Evento</a>
                 {{#isEventoCriador}}
+                <a href="/editar_evento/{{evento.id}}" class="btn btn-secondary">Editar Evento</a>
                 <button id="delete-btn" class="btn btn-danger" data-id="{{evento.id}}">Excluir evento</button>
+                {{/isEventoCriador}}
+                {{^isEventoCriador}}
+                {{#isUsuarioInscrito}}
+                <form action="/desinscrever_do_evento/{{evento.id}}" method="post">
+                    <input type="hidden" name="id-evento" value="{{evento.id}}">
+                    <button type="submit" class="btn btn-primary" id="checkInButton">Desinscrever-se do evento</button>
+                </form>
+                {{/isUsuarioInscrito}}
+                {{^isUsuarioInscrito}}
+                <form action="/inscrever_no_evento/{{evento.id}}" method="post">
+                    <input type="hidden" name="id-evento" value="{{evento.id}}">
+                    <button type="submit" class="btn btn-primary" id="checkInButton">Inscrever-se no evento</button>
+                </form>
+                {{/isUsuarioInscrito}}
                 {{/isEventoCriador}}
                 <a href="/home" class="btn btn-link">Voltar para a Lista de Eventos</a>
             </div>
