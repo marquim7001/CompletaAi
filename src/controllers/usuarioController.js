@@ -98,14 +98,14 @@ const adicionarUsuarioAoEvento = async (req, res) => {
 };
 
 const removerUsuarioDoEvento = async (req, res) => {
-    const id_evento = req.body['id-evento'];
-    const id_usuario = req.session.usuario.id;
+    const idUsuario = req.session.usuario.id;
+    const idEvento = req.body['id-evento'];
     console.log('req.body:', req.body);
     console.log('req.session.usuario.id:', req.session.usuario.id);
-    console.log('Removendo usuário do evento:', id_usuario, id_evento);
+    console.log('Removendo usuário do evento:', idUsuario, idEvento);
 
     try {
-        await Usuario.removerUsuarioDoEvento(id_usuario, id_evento);
+        await Usuario.removerUsuarioDoEvento(idUsuario, idEvento);
         res.redirect('/home');
     } catch (erro) {
         console.error('Erro ao remover usuário do evento:', erro);
@@ -123,6 +123,15 @@ const listarUsuarios = async (req, res) => {
         res.render('erro.html', { erro_listagem: true });
     }
 };
+
+const listarIdsUsuariosPorIdEvento = async (idEvento) => {
+    try {
+        const idsUsuarios = await Usuario.listarIdsUsuariosPorIdEvento(idEvento);
+        return idsUsuarios;
+    } catch (erro) {
+        console.error('Erro ao listar usuários por evento:', erro);
+    }
+}
 
 const exibirCriarUsuario = (req, res) => {
     console.log('Exibindo página de cadastro');
@@ -173,6 +182,7 @@ module.exports = {
     encontrarUsuario,
     excluirUsuario,
     listarUsuarios,
+    listarIdsUsuariosPorIdEvento,
     exibirCriarUsuario,
     exibirDetalhesUsuario,
     exibirEditarUsuario,

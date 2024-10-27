@@ -81,6 +81,37 @@ const listarEventosPorCriador = async (idUsuario) => {
   }
 }
 
+const listarEventosInscritos = async (idUsuario) => {
+  console.log('ID do usuário:', idUsuario);
+  try {
+    const idsEventos = await listarIdsEventosPorIdUsuario(idUsuario);
+    console.log('IDs dos eventos inscritos:', idsEventos);
+
+    if (idsEventos.length === 0) {
+      return [];
+    }
+
+    const eventosInscritos = await Promise.all(idsEventos.map(async (evento) => {
+      return await Evento.procurarPorId(evento.id_evento);
+    }));
+
+    return eventosInscritos;
+  } catch (erro) {
+    console.error('Erro ao listar eventos inscritos:', erro);
+    return [];
+  }
+}
+
+const listarIdsEventosPorIdUsuario = async (idUsuario) => {
+  try {
+    const idsEventos = await Evento.listarIdsEventosPorIdUsuario(idUsuario);
+    console.log('idsEventos no listarIdsEventosPorIdUsuario:', idsEventos);
+    return idsEventos;
+  } catch (erro) {
+    console.error('Erro ao listar eventos por usuário:', erro);
+  }
+}
+
 const exibirCriarEvento = (req, res) => {
   res.render('criar_evento.html');
 };
@@ -88,7 +119,7 @@ const exibirCriarEvento = (req, res) => {
 const exibirDetalhesEvento = async (req, res) => {
   const id_evento = req.params.id;
   const id_usuario = req.session.usuario.id;
-  
+
   try {
     const evento = await Evento.procurarPorId(id_evento);
     if (evento) {
@@ -124,6 +155,8 @@ module.exports = {
   editarEvento,
   listarEventos,
   listarEventosPorCriador,
+  listarEventosInscritos,
+  listarIdsEventosPorIdUsuario,
   encontrarEvento,
   excluirEvento,
   exibirCriarEvento,

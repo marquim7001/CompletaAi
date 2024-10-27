@@ -59,3 +59,9 @@ exports.verificarUsuarioInscrito = (idUsuario, idEvento) => {
     return db.execute(query, [idUsuario, idEvento])
         .then(([rows]) => rows.length > 0);
 }
+
+exports.listarIdsUsuariosPorIdEvento = (idEvento) => {
+    const query = 'SELECT * FROM eventos_usuarios WHERE id_evento = ?';
+    return db.execute(query, [idEvento])
+        .then(([rows]) => rows);
+}

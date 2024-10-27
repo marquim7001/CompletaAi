@@ -47,3 +47,8 @@ exports.procurarPorIdCriador = (id) => {
 
   return db.execute(query, [id]).then(([rows]) => rows);
 }
+
+exports.listarIdsEventosPorIdUsuario = (idUsuario) => {
+  const query = 'SELECT * FROM eventos_usuarios WHERE id_usuario = ?';
+  return db.execute(query, [idUsuario]).then(([rows]) => rows);
+}
