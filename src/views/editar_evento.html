@@ -56,8 +56,16 @@
                 <input type="date" class="form-control" id="data-fim" name="data-fim" value="{{evento.data_fim}}" required>
             </div>
             <div class="form-group">
-                <label for="criador">Criador:</label>
-                <input type="text" class="form-control" id="criador" name="criador" required>
+                <label for="horaInicio">Hora de início</label>
+                <input type="time" class="form-control" id="horaInicio" name="hora-inicio" value="{{evento.hora_inicio}}" required>
+            </div>
+            <div class="form-group">
+                <label for="horaFim">Hora de Término</label>
+                <input type="time" class="form-control" id="horaFim" name="hora-fim" value="{{evento.hora_fim}}" required>
+            </div>
+            <div class="form-group">
+                <label for="dataFim">Localização</label>
+                <input type="text" class="form-control" id="localizacao" name="localizacao" value="{{evento.localizacao}}" required>
             </div>
             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
         </form>

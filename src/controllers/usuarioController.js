@@ -67,16 +67,17 @@ const excluirUsuario = async (req, res) => {
 };
 
 // Encontrar usuario por ID
-const encontrarUsuario = async (req, res) => {
+const encontrarUsuario = async (id) => {
     try {
-        const usuario = await Usuario.findById(req.params.id);
+        const usuario = await Usuario.procurarPorId(id);
         if (usuario) {
-            res.render('detalhes_usuario.html', { usuario });
+            return usuario;
         } else {
-            res.render('detalhes_usuario.html', { erro_nao_encontrado: true });
+            return null;
         }
     } catch (erro) {
-        res.render('detalhes_usuario.html', { erro_busca: true });
+        console.error('Erro ao encontrar usuário:', erro);
+        throw erro;
     }
 };
 

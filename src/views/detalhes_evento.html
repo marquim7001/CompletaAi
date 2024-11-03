@@ -36,15 +36,18 @@
         <h2>Detalhes do Evento</h2>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title" id="eventName">{{evento.nome}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted" id="eventCategory">{{evento.categoria}}</h6>
-                <p class="card-text" id="eventDescription">{{evento.descricao}}</p>
+                <h5 class="card-title" id="nome">{{evento.nome}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted" id="categoria">{{evento.categoria}}</h6>
+                <p class="card-text" id="descricao">{{evento.descricao}}</p>
                 <p class="card-text"><strong>Quantidade de Vagas:</strong> <span
-                        id="eventSlots">{{evento.num_vagas}}</span></p>
-                <p class="card-text"><strong>Data de Início:</strong> <span id="startDate">{{evento.data_inicio}}</span>
+                        id="vagas">{{evento.num_vagas}}</span></p>
+                <p class="card-text"><strong>Data de Início:</strong> <span id="dataInicio">{{evento.data_inicio}}</span>
                 </p>
-                <p class="card-text"><strong>Data de Término:</strong> <span id="endDate">{{evento.data_fim}}</span></p>
-                <p class="card-text"><strong>Criador:</strong> {{evento.criador}}</p>
+                <p class="card-text"><strong>Data de Término:</strong> <span id="dataFim">{{evento.data_fim}}</span></p>
+                <p class="card-text"><strong>Data de Término:</strong> <span id="horaInicio">{{evento.hora_inicio}}</span></p>
+                <p class="card-text"><strong>Data de Término:</strong> <span id="horaFim">{{evento.hora_fim}}</span></p>
+                <p class="card-text"><strong>Localização:</strong> <span id="localizacao">{{evento.localizacao}}</span></p>
+                <p class="card-text" id="criador"><strong>Criador:</strong> {{evento.criador}}</p>
                 {{#isEventoCriador}}
                 <a href="/editar_evento/{{evento.id}}" class="btn btn-secondary">Editar Evento</a>
                 <button id="delete-btn" class="btn btn-danger" data-id="{{evento.id}}">Excluir evento</button>
