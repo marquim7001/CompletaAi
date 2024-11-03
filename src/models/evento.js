@@ -2,16 +2,16 @@ const db = require('../config/db');  // Arquivo de conexão com o banco
 
 // Função para criar um evento
 exports.criar = (eventoData) => {
-  const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador } = eventoData;
-  const query = `INSERT INTO eventos (nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador) VALUES (?, ?, ?, ?, ?, ?, ?)`;
-  return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador]);
+  const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, localizacao, hora_inicio, hora_fim } = eventoData;
+  const query = `INSERT INTO eventos (nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, localizacao, hora_inicio, hora_fim) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+  return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, localizacao, hora_inicio, hora_fim]);
 };
 
 exports.editar = (id, eventoData) => {
-  const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador } = eventoData;
-  const query = 'UPDATE eventos SET nome = ?, categoria = ?, num_vagas = ?, descricao = ?, data_inicio = ?, data_fim = ?, id_criador = ? WHERE id = ?';
+  const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, localizacao, hora_inicio, hora_fim } = eventoData;
+  const query = 'UPDATE eventos SET nome = ?, categoria = ?, num_vagas = ?, descricao = ?, data_inicio = ?, data_fim = ?, id_criador = ?, localizacao = ?, hora_inicio = ?, hora_fim = ? WHERE id = ?';
 
-  return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador, id]);
+  return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, localizacao, hora_inicio, hora_fim, id]);
 };
 
 // Função para remover um evento
@@ -40,3 +40,15 @@ exports.procurarPorId = (id) => {
       }
     });
 };
+
+// Função para encontrar os eventos de um criador
+exports.procurarPorIdCriador = (id) => {
+  const query = 'SELECT * FROM eventos WHERE id_criador = ?';
+
+  return db.execute(query, [id]).then(([rows]) => rows);
+}
+
+exports.listarIdsEventosPorIdUsuario = (idUsuario) => {
+  const query = 'SELECT * FROM eventos_usuarios WHERE id_usuario = ?';
+  return db.execute(query, [idUsuario]).then(([rows]) => rows);
+}

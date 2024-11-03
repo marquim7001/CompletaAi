@@ -1,6 +1,6 @@
 # Completa Aí
 
-Aplicação web para criar, participar e organizar eventos.
+Aplicação web para criação, participação e organização de eventos
 
 ## Pré-requisitos
 

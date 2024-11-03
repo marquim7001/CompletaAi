@@ -104,8 +104,27 @@
                     <div class="col-md-12">
                         <h5>Meus Eventos</h5>
                         <div class="scrolling-wrapper">
-                            {{#eventos}}
+                            {{#eventosDoUsuario}}
                             <div class="card event-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{nome}}</h5>
+                                    <p class="card-text">{{descricao}}</p>
+                                    <p class="card-text"><small class="text-muted">{{data_inicio}} -
+                                            {{data_fim}}</small></p>
+                                    <a href="/detalhes_evento/{{id}}" class="btn btn-primary">Ver Detalhes</a>
+                                </div>
+                            </div>
+                            {{/eventosDoUsuario}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="mb-4">Eventos Diversos</h5>
+                        <div class="scrolling-wrapper">
+                            {{#todosOsEventos}}
+                            <div class="card event-card">
+                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
                                 <div class="card-body">
                                     <h5 class="card-title">{{nome}}</h5>
                                     <p class="card-text">{{descricao}}</p>
@@ -115,85 +134,27 @@
                                     <a href="/detalhes_evento/{{id}}" class="btn btn-primary">Ver Detalhes</a>
                                 </div>
                             </div>
-                            {{/eventos}}
+                            {{/todosOsEventos}}
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h5 class="mb-4">Eventos Diversos</h5>
+                        <h5 class="mb-4">Eventos Que Estou Participando</h5>
                         <div class="scrolling-wrapper">
+                            {{#eventosInscritos}}
                             <div class="card event-card">
                                 <img src="" class="card-img-top event-image" alt="Imagem do Evento">
                                 <div class="card-body">
-                                    <h5 class="card-title">Evento 1</h5>
-                                    <p class="card-text">Detalhamento evento</p>
-                                    <p class="card-text"><small class="text-muted">01/01/2024</small></p>
+                                    <h5 class="card-title">{{nome}}</h5>
+                                    <p class="card-text">{{descricao}}</p>
+                                    <p class="card-text"><small class="text-muted">{{data_inicio}} -
+                                            {{data_fim}}</small></p>
+                                    <p class="card-text"><small class="text-muted">Criado por: {{criador}}</small></p>
+                                    <a href="/detalhes_evento/{{id}}" class="btn btn-primary">Ver Detalhes</a>
                                 </div>
                             </div>
-                            <div class="card event-card">
-                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
-                                <div class="card-body">
-                                    <h5 class="card-title">Evento 2</h5>
-                                    <p class="card-text">Detalhamento evento</p>
-                                    <p class="card-text"><small class="text-muted">02/02/2024</small></p>
-                                </div>
-                            </div>
-                            <div class="card event-card">
-                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
-                                <div class="card-body">
-                                    <h5 class="card-title">Evento 3</h5>
-                                    <p class="card-text">Detalhamento evento</p>
-                                    <p class="card-text"><small class="text-muted">03/03/2024</small></p>
-                                </div>
-                            </div>
-                            <div class="card event-card">
-                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
-                                <div class="card-body">
-                                    <h5 class="card-title">Evento 4</h5>
-                                    <p class="card-text">Detalhamento evento</p>
-                                    <p class="card-text"><small class="text-muted">04/04/2024</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="mb-4">Eventos ao Vivo</h5>
-                        <div class="scrolling-wrapper">
-                            <div class="card event-card">
-                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
-                                <div class="card-body">
-                                    <h5 class="card-title">Evento ao Vivo 1</h5>
-                                    <p class="card-text">Detalhamento evento ao vivo</p>
-                                    <p class="card-text"><small class="text-muted">03/03/2024</small></p>
-                                </div>
-                            </div>
-                            <div class="card event-card">
-                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
-                                <div class="card-body">
-                                    <h5 class="card-title">Evento ao Vivo 2</h5>
-                                    <p class="card-text">Detalhamento evento ao vivo</p>
-                                    <p class="card-text"><small class="text-muted">04/04/2024</small></p>
-                                </div>
-                            </div>
-                            <div class="card event-card">
-                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
-                                <div class="card-body">
-                                    <h5 class="card-title">Evento ao Vivo 3</h5>
-                                    <p class="card-text">Detalhamento evento ao vivo</p>
-                                    <p class="card-text"><small class="text-muted">05/05/2024</small></p>
-                                </div>
-                            </div>
-                            <div class="card event-card">
-                                <img src="" class="card-img-top event-image" alt="Imagem do Evento">
-                                <div class="card-body">
-                                    <h5 class="card-title">Evento ao Vivo 4</h5>
-                                    <p class="card-text">Detalhamento evento ao vivo</p>
-                                    <p class="card-text"><small class="text-muted">06/06/2024</small></p>
-                                </div>
-                            </div>
+                            {{/eventosInscritos}}
                         </div>
                     </div>
                 </div>
@@ -233,7 +194,7 @@
             © 2024 CompletaAi
         </div>
     </footer>
-    
+
 </body>
 
 </html>
