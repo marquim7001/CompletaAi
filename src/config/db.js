@@ -6,7 +6,7 @@ const pool = mysql.createPool({
   // host: 'localhost',  // Usar esse se não estiver usando Docker
   port: 3306,
   user: 'root',
-  password: 'flamengo',  // Certifique-se de que essa é a senha correta
+  password: 'emilly123',  // Certifique-se de que essa é a senha correta
   database: 'completa_ai'  // Coloque o nome do banco de dados
 });
 
