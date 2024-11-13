@@ -1,0 +1,254 @@
+<style>
+    .event-cards {
+      display: flex;
+      align-items: flex-start;
+      gap: 41px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    
+    .event-card {
+      display: flex;
+      min-width: 240px;
+      flex-direction: column;
+      justify-content: flex-start;
+      flex-grow: 1;
+      width: 410px;
+      max-width: 100%;
+    }
+    
+    .event-card-content {
+      justify-content: center;
+      border-radius: 10px;
+      background-color: #fff;
+      display: flex;
+      width: 100%;
+      max-width: 512px;
+      padding-bottom: 51px;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .event-image {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      overflow: hidden;
+      color: #0c1239;
+      padding: 14px 14px 0 0;
+      font: 600 18px Open Sans, sans-serif;
+    }
+    
+    .event-category {
+      align-self: flex-start;
+      border-radius: 0 6px 0 0;
+      background-color: #e21516;
+      margin-top: 157px;
+      padding: 5px 10px;
+    }
+    
+    .event-details {
+      align-self: center;
+      margin-top: 18px;
+      width: 466px;
+      max-width: 100%;
+    }
+    
+    .event-info {
+      gap: 20px;
+      display: flex;
+    }
+    
+    .event-date {
+      display: flex;
+      margin-top: 4px;
+      flex-direction: column;
+      align-items: center;
+      font-family: Montserrat, sans-serif;
+      white-space: nowrap;
+      text-align: center;
+    }
+    
+    .event-month {
+      color: #4539b4;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    .event-day {
+      display: flex;
+      margin-top: 6px;
+      align-items: center;
+      gap: 4px;
+      font-size: 26px;
+      color: #2d2c3c;
+      font-weight: 700;
+      justify-content: center;
+    }
+    
+    .event-info-content {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      color: #5a5a5a;
+      font: 600 18px Open Sans, sans-serif;
+    }
+    
+    .event-title {
+      color: #2d2c3c;
+      font-size: 24px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    
+    .event-venue {
+      margin-top: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    .event-time {
+      font-weight: 400;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+    
+    .event-ticket-info {
+      display: flex;
+      margin-top: 10px;
+      align-items: center;
+      gap: 9px;
+    }
+    
+    .ticket-price {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    
+    .ticket-icon {
+      width: 22px;
+      height: 22px;
+    }
+    
+    .ticket-availability {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    @media (max-width: 991px) {
+      .event-card,
+      .event-card-content,
+      .event-image {
+        max-width: 100%;
+      }
+    
+      .event-category {
+        margin-top: 40px;
+      }
+    
+      .event-info {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+    
+      .event-date,
+      .event-info-content {
+        margin-top: 19px;
+      }
+    }
+    </style>
+    
+    <section class="event-cards">
+      <article class="event-card">
+        <div class="event-card-content">
+          <div class="event-image">
+            <div class="event-category">Viagem e Aventura</div>
+          </div>
+          <div class="event-details">
+            <div class="event-info">
+              <div class="event-date">
+                <span class="event-month">NOV</span>
+                <div class="event-day">
+                  <span>25</span>
+                  <span>-</span>
+                  <span>26</span>
+                </div>
+              </div>
+              <div class="event-info-content">
+                <h2 class="event-title">Acampamento Corumba</h2>
+                <p class="event-venue">Lago Corumba, Alexania-GO</p>
+                <p class="event-time">8:30 AM - 7:30 PM</p>
+                <div class="event-ticket-info">
+                  <div class="ticket-price">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db099a3a27e0f32dde481686ce1f042dad5bf03d16de98857e164107cbc9f79d?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" alt="" class="ticket-icon">
+                    <span class="ticket-availability">15 vagas</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    
+      <article class="event-card">
+        <div class="event-card-content">
+          <div class="event-image">
+            <div class="event-category">Culturais e Artistico</div>
+          </div>
+          <div class="event-details">
+            <div class="event-info">
+              <div class="event-date">
+                <span class="event-month">DEZ</span>
+                <span class="event-day">02</span>
+              </div>
+              <div class="event-info-content">
+                <h2 class="event-title">Musical de Natal</h2>
+                <p class="event-venue">Igreja CCB, Brasilia</p>
+                <p class="event-time">6:30 PM - 9:30 PM</p>
+                <div class="event-ticket-info">
+                  <div class="ticket-price">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/29d8096b73fb2865f442256db5cb7909dcd417c840a8fd0b317e287f18596f8c?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" alt="" class="ticket-icon">
+                    <span class="ticket-availability">10 vagas</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    
+      <article class="event-card">
+        <div class="event-card-content">
+          <div class="event-image">
+            <div class="event-category">Cultural & Artistico</div>
+          </div>
+          <div class="event-details">
+            <div class="event-info">
+              <div class="event-date">
+                <span class="event-month">NOV</span>
+                <span class="event-day">25</span>
+              </div>
+              <div class="event-info-content">
+                <h2 class="event-title">Um dia de bem-estar e criatividade</h2>
+                <p class="event-venue">Parque da Cidade, Brasilia</p>
+                <p class="event-time">10 AM - 8:30 PM</p>
+                <div class="event-ticket-info">
+                  <div class="ticket-price">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9c73151928429cb93e19935a5c48f0b9ce8bdc0ada431c3c1ea999c726c388bd?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" alt="" class="ticket-icon">
+                    <span class="ticket-availability">15 vagas</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    
+    </section>

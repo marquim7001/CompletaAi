@@ -1,0 +1,497 @@
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #131838;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 50px;
+            align-items: center;
+        }
+
+        header nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        header nav ul li {
+            color: white;
+            cursor: pointer;
+        }
+
+        header nav ul li.active {
+            border-bottom: 2px solid red;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-image {
+            width: 30px;
+            height: auto;
+        }
+
+        .logo-container h2 {
+            font-size: 24px;
+            color: white;
+            margin: 0;
+        }
+
+        .action-button {
+            align-self: stretch;
+            padding: 4px 20px;
+            /* Ajuste no padding para dar mais espaço */
+            display: inline-flex;
+            justify-content: center;
+            align-items: top;
+            font-size: 16px;
+            /* Tamanho da fonte ajustado */
+            font-weight: bold;
+            /* Deixe o texto em negrito */
+            cursor: pointer;
+            /* Adiciona um cursor para indicar que o botão é clicável */
+            transition: background-color 0.3s, transform 0.2s;
+            /* Transições suaves */
+        }
+
+        .signup-button {
+            border-radius: 12px;
+            /* Bordas mais arredondadas */
+            background-color: var(--Completa-A-Coral, #e21516);
+            color: var(--Completa-A-Grayish-Blue, #0c1239);
+            border: none;
+            /* Remove a borda padrão */
+        }
+
+        .signup-button:hover {
+            background-color: #c10f10;
+            /* Cor de fundo ao passar o mouse */
+            transform: scale(1.05);
+            /* Leve aumento ao passar o mouse */
+        }
+
+        .signup-button:focus {
+            outline: none;
+            /* Remove o contorno padrão ao clicar */
+            box-shadow: 0 0 0 2px #e21516;
+            /* Adiciona um contorno sutil */
+        }
+
+
+        /* Hero */
+        .hero {
+            background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/652942c6ce9f735747ebff454caf8720d36e8d0c9674f1f21a8315b4ff72043a?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            z-index: 2;
+
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 23px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero p span {
+            color: #FFC107;
+            /* Destaque em amarelo */
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .search-box input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 450px;
+        }
+
+        .search-box select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100px;
+        }
+
+
+        /* Seção Categorias */
+        .categories {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .categories-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .category-list {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-item {
+            width: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .category-image img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .category-label {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+/* Seção de Eventos */
+.events {
+    padding: 40px;
+}
+
+.events-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.event-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.event-filters button {
+    padding: 5px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.event-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.event-card {
+    width: 100%;
+    max-width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-image {
+    width: 100%;
+    height: 180px;
+    background-color: #aaa;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.event-category {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.event-details {
+    padding: 15px;
+}
+
+.event-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.event-venue {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.event-time {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.event-ticket-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-price {
+    font-weight: bold;
+}
+
+.ticket-availability {
+    font-size: 14px;
+    color: #e21516;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .event-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .event-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .event-card {
+        max-width: 100%;
+    }
+}
+
+
+        /* Botão Mais */
+        .load-more {
+            text-align: center; /* Centraliza o conteúdo dentro da div */
+            margin-top: 20px; /* Adiciona um espaço acima do botão, se necessário */
+        }
+        
+        #load-more-button {
+            padding: 10px 20px; /* Ajuste o tamanho do botão */
+            font-size: 16px; /* Tamanho da fonte */
+            background-color: #007BFF; /* Cor de fundo do botão */
+            color: white; /* Cor do texto */
+            border: none; /* Remove a borda */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Muda o cursor para indicar interatividade */
+        }
+        
+        #load-more-button:hover {
+            background-color: #0056b3; /* Muda a cor de fundo quando o botão é hover */
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .event-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .event-card {
+                max-width: 100%;
+            }
+        }
+
+
+        /* Seção de Criação de Evento */
+        .create-event-section {
+            background-color: #e0e0e0;
+            padding: 40px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .create-event-section h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .create-event-section p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .create-event-section button {
+            padding: 10px 20px;
+            background-color: #ffc107;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Rodapé */
+        .footer {
+            background: var(--Completa-A-Grayish-Blue, #0c1239);
+            display: flex;
+            margin-top: 124px;
+            flex-direction: column;
+            overflow: hidden;
+            align-items: center;
+            padding: 50px 80px 20px;
+          }
+          
+          .footer-content {
+            display: flex;
+            width: 100%;
+            max-width: 1560px;
+            flex-direction: column;
+          }
+          
+          .footer-links-container {
+            display: flex;
+            width: 100%;
+            gap: 40px 100px;
+            flex-wrap: wrap;
+          }
+          
+          .footer-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+          }
+          
+          .footer-heading {
+            color: var(--Assignment-1-White, #fff);
+            font: 600 20px Montserrat, sans-serif;
+          }
+          
+          .footer-links {
+            display: flex;
+            margin-top: 24px;
+            flex-direction: column;
+            align-items: start;
+            color: rgba(169, 169, 169, 1);
+            justify-content: start;
+            font: 400 14px Open Sans, sans-serif;
+            
+          }
+          
+          .footer-link {
+            align-self: stretch;
+            margin-top: 8px;
+          }
+          
+          .footer-separator {
+            width: 100%;
+            margin-top: 52px;
+          }
+          
+          .copyright-section {
+            display: flex;
+            margin-top: 16px;
+            align-items: center;
+            gap: 2px;
+            color: rgba(169, 169, 169, 1);
+            justify-content: center;
+            font: 400 18px Open Sans, sans-serif;
+          }
+          
+          .copyright-icon {
+            width: 17px;
+            height: 17px;
+            margin: auto 0;
+          }
+          
+          @media (max-width: 991px) {
+            .footer {
+              max-width: 100%;
+              margin-top: 40px;
+              padding: 0 20px;
+            }
+          
+            .footer-content {
+              max-width: 100%;
+            }
+          
+            .footer-links-container {
+              max-width: 100%;
+              margin-right: 10px;
+            }
+          
+            .footer-column {
+              margin-top: 40px;
+            }
+          
+            .footer-separator {
+              max-width: 100%;
+              margin-top: 40px;
+            }
+          }
+          
+          .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+          }

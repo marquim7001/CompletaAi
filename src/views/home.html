@@ -5,287 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Completa Aí - Home</title>
-    <style>
-        /* Reset básico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+    <link rel="stylesheet" href="/src/public/css/styles-home.css">
 
-        /* Cabeçalho */
-        header {
-            background-color: #131838;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 50px;
-            align-items: center;
-        }
-
-        header nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-
-        header nav ul li {
-            color: white;
-            cursor: pointer;
-        }
-
-        header nav ul li.active {
-            border-bottom: 2px solid red;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-image {
-            width: 30px;
-            height: auto;
-        }
-
-        .logo-container h2 {
-            font-size: 24px;
-            color: white;
-            margin: 0;
-        }
-
-        /* Hero */
-        .hero {
-            background-image: url('https://cdn.builder.io/api/v1/image/assets/TEMP/652942c6ce9f735747ebff454caf8720d36e8d0c9674f1f21a8315b4ff72043a?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c');
-            background-size: cover;
-            background-position: center;
-            padding: 80px 20px;
-            color: white;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            z-index: 2;
-            
-        }
-
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            text-align: left;
-        }
-
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .hero p span {
-            color: #FFC107;
-            /* Destaque em amarelo */
-        }
-
-        .search-box {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .search-box input {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            width: 450px;
-        }
-        .search-box select {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            width: 100px;
-        }
-
-
-        /* Seção Categorias */
-        .categories {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .categories-title {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .category-list {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .category-item {
-            width: 120px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .category-image img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .category-label {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        /* Seção de Eventos */
-        .events {
-            padding: 40px;
-        }
-
-        .events-title {
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .event-filters {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .event-filters button {
-            padding: 5px 15px;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-            background-color: #f5f5f5;
-            cursor: pointer;
-        }
-
-        .event-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            justify-items: center;
-        }
-
-        .event-card {
-            width: 100%;
-            max-width: 250px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            overflow: hidden;
-            background-color: #fff;
-            text-align: left;
-        }
-
-        .event-image {
-            width: 100%;
-            height: 150px;
-            background-color: #aaa;
-        }
-
-        .event-content {
-            padding: 15px;
-        }
-
-        .event-tag {
-            background-color: yellow;
-            padding: 3px 5px;
-            font-size: 12px;
-            border-radius: 5px;
-        }
-
-        .event-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        /* Botão Mais */
-        .load-more {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .load-more button {
-            padding: 10px 20px;
-            border: 1px solid #ccc;
-            background-color: #f5f5f5;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        /* Seção de Criação de Evento */
-        .create-event-section {
-            background-color: #e0e0e0;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .create-event-section h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .create-event-section p {
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .create-event-section button {
-            padding: 10px 20px;
-            background-color: #ffc107;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* Rodapé */
-        footer {
-            background-color: #131838;
-            color: white;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-        }
-
-        .footer-section {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-    </style>
 </head>
 
 <body>
@@ -301,8 +22,10 @@
                 <li id="home-link" class="active">Home</li>
                 <li id="events-link">Eventos</li>
                 <li id="about-link">Sobre</li>
-                <li id="contact-link">Contato</li>
                 <li id="create-event-link">Criar evento</li>
+                <li href="cadastro.html" class="action-button signup-button">Cadastre-se</li>
+
+
             </ul>
         </nav>
     </header>
@@ -362,45 +85,98 @@
             </div>
         </div>
     </section>
+
     <!-- Principais Eventos -->
-    <section class="events">
-        <h2 class="events-title">Principais Eventos</h2>
-        <div class="event-filters">
-            <button id="filter-all">Todos</button>
-            <button id="filter-today">Hoje</button>
-            <button id="filter-tomorrow">Amanhã</button>
-            <button id="filter-weekend">Esse fim de semana</button>
-        </div>
-        <div class="event-list">
-            <div id="event-1" class="event-card">
-                <div class="event-image"></div>
-                <div class="event-content">
-                    <div class="event-tag">Tag</div>
-                    <h3 class="event-title">Título do Evento</h3>
-                    <p class="event-description">Descrição breve do evento.</p>
+        
+        <section class="event-cards">
+          <article class="event-card">
+            <div class="event-card-content">
+              <div class="event-image">
+                <div class="event-category">Esportes</div>
+              </div>
+              <div class="event-details">
+                <div class="event-info">
+                  <div class="event-date">
+                    <span class="event-month">NOV</span>
+                    <div class="event-day">
+                      <span>25</span>
+                      <span>-</span>
+                      <span>26</span>
+                    </div>
+                  </div>
+                  <div class="event-info-content">
+                    <h2 class="event-title">Acampamento Corumba</h2>
+                    <p class="event-venue">Lago Corumba, Alexania-GO</p>
+                    <p class="event-time">8:30 AM - 7:30 PM</p>
+                    <div class="event-ticket-info">
+                      <div class="ticket-price">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db099a3a27e0f32dde481686ce1f042dad5bf03d16de98857e164107cbc9f79d?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" alt="" class="ticket-icon">
+                        <span class="ticket-availability">15 vagas</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div id="event-2" class="event-card">
-                <div class="event-image"></div>
-                <div class="event-content">
-                    <div class="event-tag">Tag</div>
-                    <h3 class="event-title">Título do Evento</h3>
-                    <p class="event-description">Descrição breve do evento.</p>
+          </article>
+        
+          <article class="event-card">
+            <div class="event-card-content">
+              <div class="event-image">
+                <div class="event-category">Tecnologia</div>
+              </div>
+              <div class="event-details">
+                <div class="event-info">
+                  <div class="event-date">
+                    <span class="event-month">DEZ</span>
+                    <span class="event-day">02</span>
+                  </div>
+                  <div class="event-info-content">
+                    <h2 class="event-title">Musical de Natal</h2>
+                    <p class="event-venue">Taguatinga Park</p>
+                    <p class="event-time">6:30 PM - 9:30 PM</p>
+                    <div class="event-ticket-info">
+                      <div class="ticket-price">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/29d8096b73fb2865f442256db5cb7909dcd417c840a8fd0b317e287f18596f8c?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" alt="" class="ticket-icon">
+                        <span class="ticket-availability">10 vagas</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-            <div id="event-3" class="event-card">
-                <div class="event-image"></div>
-                <div class="event-content">
-                    <div class="event-tag">Tag</div>
-                    <h3 class="event-title">Título do Evento</h3>
-                    <p class="event-description">Descrição breve do evento.</p>
+          </article>
+        
+          <article class="event-card">
+            <div class="event-card-content">
+              <div class="event-image">
+                <div class="event-category">Entretenimento</div>
+              </div>
+              <div class="event-details">
+                <div class="event-info">
+                  <div class="event-date">
+                    <span class="event-month">NOV</span>
+                    <span class="event-day">25</span>
+                  </div>
+                  <div class="event-info-content">
+                    <h2 class="event-title">Um dia de bem-estar e criatividade</h2>
+                    <p class="event-venue">Parque da Cidade, Brasilia</p>
+                    <p class="event-time">10 AM - 8:30 PM</p>
+                    <div class="event-ticket-info">
+                      <div class="ticket-price">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9c73151928429cb93e19935a5c48f0b9ce8bdc0ada431c3c1ea999c726c388bd?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" alt="" class="ticket-icon">
+                        <span class="ticket-availability">15 vagas</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="load-more">
+          </article>
+          <div class="load-more">
             <button id="load-more-button">Carregar mais</button>
         </div>
-    </section>
+        </section>
 
     <!-- Criar Evento -->
     <section class="create-event-section">
@@ -410,16 +186,49 @@
     </section>
 
     <!-- Rodapé -->
-    <footer>
-        <div class="footer-section">
-            <p>&copy; 2023 Completa Aí</p>
-            <p>Todos os direitos reservados.</p>
+    <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-links-container">
+            <section class="footer-column">
+              <h2 class="footer-heading">Informações</h2>
+              <nav class="footer-links">
+                <a href="#" class="footer-link">Sobre nós</a>
+                <a href="#" class="footer-link">Entre em contato</a>
+                <a href="#" class="footer-link">Políticas de Privacidade</a>
+                <a href="#" class="footer-link">FAQs</a>
+                <a href="#" class="footer-link">Termos de Serviço</a>
+              </nav>
+            </section>
+            
+            <section class="footer-column">
+              <h2 class="footer-heading">Categorias</h2>
+              <nav class="footer-links">
+                <a href="#" class="footer-link">Entretenimento</a>
+                <a href="#" class="footer-link">Educação</a>
+                <a href="#" class="footer-link">Esportes</a>
+                <a href="#" class="footer-link">Eventos tecnologia</a>
+                <a href="#" class="footer-link">Jogos</a>
+              </nav>
+            </section>
+            
+            <section class="footer-column">
+              <h2 class="footer-heading">Siga a gente!</h2>
+              <nav class="footer-links">
+                <a href="#" class="footer-link">Facebook</a>
+                <a href="#" class="footer-link">Instagram</a>
+                <a href="#" class="footer-link">Twitter</a>
+              </nav>
+            </section>
+          </div>
+          
+          <img class="footer-separator" src="https://cdn.builder.io/api/v1/image/assets/TEMP/1e547556609ad23b6bbcfd13b99069eb86ede48f4d9daa1f200c758e813cbd44?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" alt="" loading="lazy" />
+          
+          <div class="copyright-section">
+            <img class="copyright-icon" src="https://cdn.builder.io/api/v1/image/assets/TEMP/47d993b766dd392566c163c8640a5c6619e8ac49f376c3dbf46c2861af5c25d1?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" alt="" loading="lazy" />
+            <p>2024 CompletaAi. All rights reserved.</p>
+          </div>
         </div>
-        <div class="footer-section">
-            <p>Contato: contato@completaai.com</p>
-        </div>
-    </footer>
-
+      </footer>
 </body>
 
 </html>
