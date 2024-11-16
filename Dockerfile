@@ -22,7 +22,7 @@ RUN npm install
 COPY . .
 
 # Copiar o arquivo .env para o contêiner (usar essa linha quando rodar no Docker, comentar quando usar o Railway)
-# COPY .env.docker .env
+# COPY .env .env
 
 # Expor a porta usada pela aplicação
 EXPOSE 8080
