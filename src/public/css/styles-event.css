@@ -1,0 +1,551 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     font-family: Arial, sans-serif;
+     color: #333;
+ }
+      /* Cabeçalho */
+      header {
+        background-color: #131838;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 50px;
+        align-items: center;
+    }
+
+    header nav ul {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+    }
+
+    header nav ul li {
+        color: white;
+        cursor: pointer;
+    }
+
+    header nav ul li.active {
+        border-bottom: 2px solid red;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo-image {
+        width: 30px;
+        height: auto;
+    }
+
+    .logo-container h2 {
+        font-size: 24px;
+        color: white;
+        margin: 0;
+    }
+
+    .action-button {
+        align-self: stretch;
+        padding: 4px 20px;
+        /* Ajuste no padding para dar mais espaço */
+        display: inline-flex;
+        justify-content: center;
+        align-items: top;
+        font-size: 16px;
+        /* Tamanho da fonte ajustado */
+        font-weight: bold;
+        /* Deixe o texto em negrito */
+        cursor: pointer;
+        /* Adiciona um cursor para indicar que o botão é clicável */
+        transition: background-color 0.3s, transform 0.2s;
+        /* Transições suaves */
+    }
+
+    .signup-button {
+        border-radius: 12px;
+        /* Bordas mais arredondadas */
+        background-color: var(--Completa-A-Coral, #e21516);
+        color: var(--Completa-A-Grayish-Blue, #0c1239);
+        border: none;
+        /* Remove a borda padrão */
+    }
+
+    .signup-button:hover {
+        background-color: #c10f10;
+        transform: scale(1.05);
+    }
+
+    .signup-button:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px #e21516;
+    }
+    .user-icon {
+        font-size: 15px; /* Define o tamanho do ícone */
+        color: white;
+        text-decoration: none; /* Remove sublinhado */
+        padding: 5px; /* Adiciona espaçamento interno */
+        display: flex; /* Centraliza o ícone no contêiner */
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #ccc; /* Opcional: adiciona uma borda ao ícone */
+        border-radius: 50%; /* Faz o ícone ficar circular */
+        transition: 0.3s ease; /* Animação ao passar o mouse */
+    }
+    
+    .user-icon:hover {
+        color: #e21516; /* Muda a cor ao passar o mouse */
+        border-color: #e21516; /* Muda a cor da borda ao passar o mouse */
+    }nav ul li a {
+        text-decoration: none; /* Remove sublinhados */
+        color: #ffff; /* Cor padrão */
+        font-size: 16px; /* Tamanho da fonte */
+        padding: 8px 12px; /* Espaçamento interno */
+        transition: color 0.3s ease; /* Efeito suave ao passar o mouse */
+    }
+    
+    nav ul li a:hover {
+        color: #e21516; /* Cor ao passar o mouse */
+    }
+    
+    
+ /* Reset e estilo básico do corpo */
+ body {
+     font-family: 'Open Sans', sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: #f7f7f7;
+ }
+
+ /* Estrutura da página principal */
+ .event-page {
+     background-color: #fff;
+     display: flex;
+     flex-direction: column;
+     overflow: hidden;
+ }
+
+ /* Estilo do botão de criação de evento */
+ .create-event-btn {
+     align-self: stretch;
+     gap: 10px;
+     color: #fff;
+     text-align: center;
+     margin: auto 0;
+     padding: 10px 20px;
+     font: 500 24px Montserrat, sans-serif;
+ }
+
+ /* Dropdown do perfil do usuário */
+ .profile-dropdown {
+     display: flex;
+     height: 67px;
+     flex-direction: column;
+     overflow: hidden;
+     align-items: end;
+     justify-content: start;
+     flex-grow: 1;
+     width: fit-content;
+ }
+
+ /* Botão de alternância do perfil */
+ .profile-toggle {
+     display: flex;
+     min-height: 61px;
+     width: 68px;
+ }
+
+ /* Menu do perfil do usuário */
+ .profile-menu {
+     padding-bottom: 2px;
+     border-radius: 10px 0 10px 10px;
+     background-color: #fff;
+     box-shadow: 0 2px 8px 0 rgba(29, 29, 29, 0.3);
+     display: flex;
+     margin-top: 8px;
+     width: 100%;
+     max-width: 260px;
+     flex-direction: column;
+     overflow: hidden;
+ }
+
+ /* Itens do menu de perfil */
+ .profile-menu-item {
+     background-color: #fff;
+     display: flex;
+     padding: 20px 0;
+     width: 100%;
+     gap: 10px;
+ }
+
+ /* Conteúdo principal da página */
+ .main-content {
+     align-self: center;
+     display: flex;
+     margin-top: 40px;
+     width: 100%;
+     max-width: 1400px;
+     flex-direction: column;
+     align-items: start;
+     padding: 0 20px;
+     /* Adiciona um espaço nas laterais */
+ }
+
+ /* Banner do evento */
+ .event-banner {
+     border-radius: 20px;
+     background-color: #b9b9b9;
+     align-self: stretch;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 140px 80px;
+ }
+
+ /* Imagem do banner do evento */
+ .event-banner-image {
+     aspect-ratio: 1.36;
+     object-fit: contain;
+     object-position: center;
+     width: 170px;
+     margin-bottom: -34px;
+     max-width: 100%;
+ }
+
+ /* Título do evento */
+ .event-title {
+     color: #2d2c3c;
+     margin-top: 40px;
+     font: 800 45px Open Sans, sans-serif;
+ }
+
+ /* Seção de detalhes do evento */
+ .event-details {
+     align-self: stretch;
+     display: flex;
+     margin-top: 67px;
+     width: 100%;
+     align-items: start;
+     gap: 20px;
+     flex-wrap: wrap;
+     justify-content: space-between;
+ }
+
+ /* Data e hora do evento */
+ .date-time {
+     display: flex;
+     margin-top: 13px;
+     flex-direction: column;
+     color: #2d2c3c;
+ }
+
+ /* Seção de detalhes do evento */
+ .details-section {
+     display: flex;
+     flex-direction: column;
+     justify-content: start;
+ }
+
+ /* Título dos detalhes */
+ .details-title {
+     font-size: 20px;
+     font-weight: 700;
+ }
+
+ /* Conteúdo dos detalhes */
+ .details-content {
+     display: flex;
+     margin-top: 28px;
+     flex-direction: column;
+     font-size: 22px;
+     font-weight: 400;
+ }
+
+ /* Item específico de detalhe */
+ .details-item {
+     display: flex;
+     align-items: end;
+     gap: 20px;
+ }
+
+ /* Ícone de detalhe */
+ .details-icon {
+     aspect-ratio: 1;
+     object-fit: contain;
+     width: 30px;
+ }
+
+ /* Texto de detalhe */
+ .details-text {
+     flex-basis: auto;
+ }
+
+ /* Botão de registro para o evento */
+ .register-btn {
+     justify-content: center;
+     align-items: center;
+     border-radius: 10px;
+     background-color: #ffe047;
+     display: flex;
+     gap: 12px;
+     font-size: 25px;
+     color: #2b293d;
+     font-weight: 600;
+     padding: 15px 45px;
+ }
+
+ /* Ícone do botão de registro */
+ .register-btn-icon {
+     aspect-ratio: 1;
+     object-fit: contain;
+     width: 44px;
+     margin: auto 0;
+ }
+
+ /* Texto do botão de registro */
+ .register-btn-text {
+     margin: auto 0;
+ }
+
+ /* Seção de informações de localização, ingressos e organizador */
+ .location-map,
+ .ticket-info,
+ .host-info,
+ .event-description {
+     margin-top: 80px;
+ }
+
+ /* Título do organizador e descrição do evento */
+ .host-title,
+ .description-title,
+ .details-title {
+     color: #2d2c3c;
+     font-size: 30px;
+     font-weight: 700;
+ }
+
+ /* Detalhes do organizador */
+ .host-details {
+     display: flex;
+     margin-top: 42px;
+     align-items: start;
+     gap: 30px;
+     font-weight: 400;
+ }
+
+ /* Nome do organizador */
+ .host-name {
+     color: #2d2c3c;
+     font-size: 24px;
+     font-weight: 500;
+ }
+
+ /* Botão de contato do organizador */
+ .host-contact-btn {
+     display: flex;
+     margin-top: 26px;
+     width: 127px;
+     gap: 14px;
+     font-size: 24px;
+     color: #2b293d;
+ }
+
+ /* Estilo do texto do botão de contato do organizador */
+ .host-contact-btn-text {
+     border-radius: 6px;
+     border: 1px solid #2b293d;
+     background-color: #fff;
+     width: 127px;
+     padding: 7px 13px;
+ }
+
+ /* Conteúdo da descrição do evento */
+ .description-content {
+     color: #5a5a5a;
+     font-size: 24px;
+     font-weight: 400;
+     line-height: 37px;
+     margin-top: 30px;
+ }
+
+ /* Estilos para o modal */
+.modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo para o formulário dentro do modal */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content form label {
+    font-size: 18px;
+    color: #333;
+}
+
+.modal-content form input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.submit-btn {
+    background-color: #131838;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0f1029;
+}
+
+ /* Responsividade para dispositivos menores */
+ @media (max-width: 991px) {
+     /* Ajustes gerais para dispositivos móveis */
+
+     /* Limite de largura do cabeçalho */
+     .header-actions {
+         max-width: 100%;
+     }
+
+     /* Conteúdo principal da página */
+     .main-content {
+         max-width: 100%;
+     }
+
+     /* Banner do evento */
+     .event-banner {
+         max-width: 100%;
+         padding: 100px 20px;
+     }
+
+     /* Imagem do banner com ajuste de espaçamento inferior */
+     .event-banner-image {
+         margin-bottom: 10px;
+     }
+
+     /* Título do evento com tamanho reduzido */
+     .event-title {
+         font-size: 40px;
+     }
+
+     /* Ajuste do espaçamento superior para detalhes do evento */
+     .event-details {
+         margin-top: 40px;
+     }
+
+     /* Texto de detalhe com quebra automática */
+     .details-text {
+         white-space: initial;
+     }
+
+     /* Botão de registro com padding reduzido */
+     .register-btn {
+         padding: 0 20px;
+     }
+
+     /* Margem superior reduzida para seções adicionais */
+     .location-map,
+     .ticket-info,
+     .host-info,
+     .event-description {
+         margin-top: 40px;
+     }
+ }
+
+ /* Rodapé */
+ .footer {
+     background-color: #0c1239;
+     color: white;
+     text-align: center;
+     padding: 30px 0;
+     margin-top: 40px;
+     border-top-left-radius: 40px;
+     border-top-right-radius: 40px;
+ }
+
+ .footer-social a {
+     color: white;
+     margin: 0 15px;
+     font-size: 25px;
+     text-decoration: none;
+ }
+
+ .footer-links {
+     margin-top: 20px;
+ }
+
+ .footer-links a {
+     color: white;
+     margin: 0 15px;
+     text-decoration: none;
+     font-size: 16px;
+     transition: 0.5s;
+ }
+
+ .footer-links a:hover {
+     text-decoration: underline;
+
+ }
+
+ .footer-copyright {
+     margin-top: 20px;
+     font-size: 14px;
+ }
+
+ /* Estilo para ícones de redes sociais */
+ .footer-social a i {
+     transition: color 0.3s;
+ }
+
+ .footer-social a:hover i {
+     color: #e0e0e0;
+     /* Cor mais clara ao passar o mouse */
+     transform: translateY(-10px);
+ }
