@@ -5,9 +5,9 @@ const Usuario = require('../models/usuario');
 const criarEvento = async (req, res) => {
   try {
     const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim, localizacao, 'hora-inicio': hora_inicio, 'hora-fim': hora_fim } = req.body;
-    const id_criador = req.session.usuario.id;
+    const criador = req.session.usuario.id;
 
-    const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, localizacao, hora_inicio, hora_fim };
+    const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador, localizacao, hora_inicio, hora_fim };
     await Evento.criar(eventoData);
 
     res.redirect('/home');
