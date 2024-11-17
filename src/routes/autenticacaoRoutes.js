@@ -4,6 +4,7 @@ const autenticacaoController = require('../controllers/autenticacaoController');
 const carregarDadosCompartilhados = require('../middlewares/dadosCompartilhados');
 
 // GET
+router.get('/', carregarDadosCompartilhados, autenticacaoController.exibirHome);
 router.get('/home', carregarDadosCompartilhados, autenticacaoController.exibirHome);
 router.get('/sobre', carregarDadosCompartilhados, autenticacaoController.exibirSobre);
 router.get('/login', carregarDadosCompartilhados, autenticacaoController.exibirLogin);

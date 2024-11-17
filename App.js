@@ -28,6 +28,10 @@ app.use(session({
 // Middleware global para verificar autenticação em todas as rotas, exceto as publicas
 app.use(verificarAutenticacao);
 
+app.get('/', (req, res) => {
+  res.redirect('/home');
+});
+
 // Teste de conexão com o banco de dados
 const testDatabaseConnection = async () => {
   try {
