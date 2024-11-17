@@ -1,7 +1,7 @@
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const session = require('express-session');
-const db = require('./src/config/db');  // Conexão com o banco de dados
+const db = require('./src/config/db');
 const verificarAutenticacao = require('./src/middlewares/autenticacaoMiddleware');
 
 // Configuração do app
@@ -19,13 +19,13 @@ app.use(express.static(__dirname + '/public'));
 
 // Configuração de sessões (autenticação)
 app.use(session({
-  secret: 'segredo-super-seguro', // Troque por uma string secreta real em produção
+  secret: 'segredo-super-seguro',
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false } // true se estiver usando HTTPS
 }));
 
-// Middleware global para verificar autenticação em todas as rotas, exceto /login e /cadastro
+// Middleware global para verificar autenticação em todas as rotas, exceto as publicas
 app.use(verificarAutenticacao);
 
 // Teste de conexão com o banco de dados
@@ -45,7 +45,7 @@ const testDatabaseConnection = async () => {
 
 testDatabaseConnection();
 
-// Rotas do organizador de eventos e usuários
+// Rotas
 app.use('/', require('./src/routes/eventoRoutes'));
 app.use('/', require('./src/routes/usuarioRoutes'));
 app.use('/', require('./src/routes/autenticacaoRoutes'));

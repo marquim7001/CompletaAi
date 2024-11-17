@@ -8,7 +8,7 @@ const verificarAutenticacao = (req, res, next) => {
   if (req.session && req.session.usuario) {
       next(); // Usuário autenticado, prossiga
   } else {
-      res.redirect('/login'); // Redireciona para o login se não estiver autenticado
+      res.redirect('/home'); // Redireciona para o login se não estiver autenticado
   }
 };
 
