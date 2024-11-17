@@ -1,8 +1,8 @@
 const verificarAutenticacao = (req, res, next) => {
-  const paginasPublicas = ['/login', '/cadastro'];
+  const paginasPublicas = ['/login', '/cadastro', '/home', '/sobre'];
 
   if (paginasPublicas.includes(req.path)) {
-      return next(); // Se estiver acessando /login ou /cadastro, não verifica a autenticação
+      return next(); // Se estiver acessando algumas das paginas publicas, não verifica a autenticação
   }
 
   if (req.session && req.session.usuario) {
