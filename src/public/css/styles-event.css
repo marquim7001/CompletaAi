@@ -114,13 +114,6 @@
     }
     
     
- /* Reset e estilo básico do corpo */
- body {
-     font-family: 'Open Sans', sans-serif;
-     margin: 0;
-     padding: 0;
-     background-color: #f7f7f7;
- }
 
  /* Estrutura da página principal */
  .event-page {
@@ -189,10 +182,10 @@
      display: flex;
      margin-top: 40px;
      width: 100%;
-     max-width: 1400px;
+     max-width: 1250px;
      flex-direction: column;
      align-items: start;
-     padding: 0 20px;
+     padding: 0 30px;
      /* Adiciona um espaço nas laterais */
  }
 
@@ -222,7 +215,7 @@
  .event-title {
      color: #2d2c3c;
      margin-top: 40px;
-     font: 800 45px Open Sans, sans-serif;
+     font: 800 36px Open Sans, sans-serif;
  }
 
  /* Seção de detalhes do evento */
@@ -263,7 +256,7 @@
      display: flex;
      margin-top: 28px;
      flex-direction: column;
-     font-size: 22px;
+     font-size: 20px;
      font-weight: 400;
  }
 
@@ -294,7 +287,7 @@
      background-color: #ffe047;
      display: flex;
      gap: 12px;
-     font-size: 25px;
+     font-size: 22px;
      color: #2b293d;
      font-weight: 600;
      padding: 15px 45px;
@@ -326,7 +319,7 @@
  .description-title,
  .details-title {
      color: #2d2c3c;
-     font-size: 30px;
+     font-size: 26px;
      font-weight: 700;
  }
 

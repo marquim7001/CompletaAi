@@ -10,30 +10,30 @@
 </head>
 
 <body>
+    <!-- Cabeçalho -->
     <header>
         <div class="logo-container">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+            <img id="logo-image"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
                 alt="Completa Aí Logo" class="logo-image" />
             <h2>Completa Aí</h2>
         </div>
         <nav>
             <ul>
-                <li id="home-link">
-                    <a href="home.html">Home</a>
-                  </li>
-                  <li id="events-link" class="active">
-                    <a href="detalhes_evento.html">Eventos</a>
-                  </li>
-                  <li id="about-link" >
-                    <a href="sobre.html" >Sobre</a>
-                  </li>
-                  <li id="create-event-link">
-                    <a href="criar_evento.html">Criar evento</a>
-                  </li>
-                <li href="cadastro.html" class="action-button signup-button">Cadastre-se</li>
+                <li id="home-link" class="active"><a href="home.html">Home</a></li>
+                <li id="events-link"><a href="eventos.html">Eventos</a></li>
+                <li id="about-link"><a href="sobre.html">Sobre</a></li>
+                <li id="create-event-link"><a href="criar_evento.html">Criar evento</a></li>
+                {{^usuarioLogado}}
+                <li id="signup-link"><a href="cadastro.html" class="action-button signup-button">Cadastre-se</a></li>
+                {{/usuarioLogado}}
+                {{#usuarioLogado}}
+                <li id="user-profile-link"><a href="perfil_usuario.html" class="user-icon"><i class="fas fa-user"></i></a></li>
+                {{/usuarioLogado}}
             </ul>
         </nav>
     </header>
+
 
     <section class="event-page">
         <main class="main-content">
@@ -42,7 +42,7 @@
                     class="event-banner-image" alt="Event Banner" />
             </section>
 
-            <h1 class="event-title">Título Evento</h1>
+            <h1 class="event-title">{{evento.nome}}</h1>
 
             <section class="event-details">
                 <div class="date-time">
@@ -50,27 +50,47 @@
                     <div class="details-content">
                         <div class="details-item">
                             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/47ab333e2c8dccc5ac7f0f6bd880ded200a518f99569e93f9c7b5cf394081f73?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="details-icon" alt="Date Icon" />
-                            <span class="details-text">Data</span>
+                            <span class="details-text">{{evento.data_inicio}} - {{evento.data_fim}}</span>
                         </div>
                         <div class="details-item">
                             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/42557709449ef1bef285d10cceb598c25094c3e8c997c78e05afeb09a50f5407?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="details-icon" alt="Time Icon" />
-                            <span class="details-text">Hora</span>
+                            <span class="details-text">{{evento.hora_inicio}} - {{evento.hora_fim}}</span>
                         </div>
                     </div>
                 </div>
+                <button id="register-btn" class="register-btn" onclick="openModal()">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/221e6552c64079ac72183d4aadd39426c98dd5943c072058a0f3564ae9b9de71?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="register-btn-icon" alt="Register Icon" />
+                    <span class="register-btn-text">Inscreva-se</span>
+                </button>
+
+                {{#isEventoCriador}}
+                <a href="/editar_evento/{{evento.id}}" class="btn btn-secondary">Editar Evento</a>
+                <button id="delete-btn" class="btn btn-danger" data-id="{{evento.id}}">Excluir evento</button>
+                {{/isEventoCriador}}
+                {{^isEventoCriador}}
+                {{#isUsuarioInscrito}}
+                <form action="/desinscrever_do_evento/{{evento.id}}" method="post">
+                    <input type="hidden" name="id-evento" value="{{evento.id}}">
+                    <button type="submit" class="btn btn-primary" id="checkInButton">Desinscrever-se do evento</button>
+                </form>
+                {{/isUsuarioInscrito}}
+                {{^isUsuarioInscrito}}
                 <button class="register-btn" onclick="openModal()">
                     <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/221e6552c64079ac72183d4aadd39426c98dd5943c072058a0f3564ae9b9de71?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="register-btn-icon" alt="Register Icon" />
                     <span class="register-btn-text">Inscreva-se</span>
                 </button>
+                {{/isUsuarioInscrito}}
+                {{/isEventoCriador}}
             </section>
 
             <div id="modal" class="modal">
                 <div class="modal-content">
-                    <span class="close" onclick="closeModal()">&times;</span>
+                    <span id="close-modal" class="close" onclick="closeModal()">&times;</span>
                     <h2>Faça sua Inscrição</h2>
                     <p>Confirme seus dados para se inscrever neste evento.</p>
                     <!-- Conteúdo do formulário de inscrição -->
-                    <form action="inscricao_evento.html" method="POST">
+                   <!-- <form action="inscricao_evento.html" method="POST">
+                        
                         <label for="nome">Nome:</label>
                         <input type="text" id="nome" name="nome" required>
                         <label for="email">Email:</label>
@@ -80,6 +100,12 @@
                         <label for="observacoes">Observações:</label>
                         <textarea id="observacoes" name="observacoes" required></textarea>
                         <button type="submit" class="submit-btn">Inscrever-se</button>
+                        
+                    </form>
+                    -->
+                    <form action="/inscrever_no_evento/{{evento.id}}" method="post">
+                        <input type="hidden" name="id-evento" value="{{evento.id}}">
+                        <button type="submit" class="btn btn-primary" id="checkInButton">Inscrever-se no evento</button>
                     </form>
                 </div>
             </div>
@@ -90,7 +116,7 @@
                     <div class="details-item">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a4dd1b9a9f66e042358782c8b06ee209f1e8462950e4653bf2f69a0e145061b?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
                             class="details-icon" alt="Location Icon" />
-                        <span class="details-text">Endereço</span>
+                        <span class="details-text">{{evento.localizacao}}</sp</span>
                     </div>
                 </div>
             </section>
@@ -101,7 +127,7 @@
                     <div class="details-item">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f002198eedb7da9a2072634a9a29dfbe047bff7e9d997f83ab3c471996f6cc21?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
                             class="details-icon" alt="Ticket Icon" />
-                        <span class="details-text">Total de vagas disponíveis para completar esse evento: 5/10</span>
+                        <span class="details-text">Total de vagas disponíveis para completar esse evento: {{evento.num_vagas}}</span>
                     </div>
                 </div>
             </section>
@@ -110,10 +136,7 @@
                 <h2 class="host-title">Criador</h2>
                 <div class="host-details">
                     <div class="host-name-actions">
-                        <h3 class="host-name">Nome Criador</h3>
-                        <div class="host-contact-btn">
-                            <button class="host-contact-btn-text">Contato</button>
-                        </div>
+                        <h3 class="host-name">{{evento.criador}}</h3>
                     </div>
                 </div>
             </section>
@@ -121,29 +144,24 @@
             <section class="event-description">
                 <h2 class="description-title">Descrição do Evento</h2>
                 <p class="description-content">
-                    Lorem ipsum dolor sit amet consectetur. Eget vulputate sociis sit urna sit aliquet. Vivamus
-                    facilisis diam libero dolor volutpat diam eu. Quis a id posuere etiam at enim vivamus. Urna nisi
-                    malesuada libero enim ornare in viverra. Nibh commodo quis tellus aliquet nibh tristique lobortis
-                    id. Consequat ultricies vulputate turpis neque viverra tempor nunc. Et amet massa tellus consequat
-                    mauris imperdiet tellus. Praesent risus magna nisl turpis egestas ultrices viverra pellentesque
-                    blandit. Rutrum consequat eu penatibus ipsum at.
+                    {{evento.descricao}}
                 </p>
             </section>
 
         </main>
-        <footer class="footer">
-            <div class="footer-social">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+        <footer class="footer" id="footer">
+            <div class="footer-social" id="footer-social">
+                <a href="#" id="facebook-link"><i class="fab fa-facebook"></i></a>
+                <a href="#" id="twitter-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" id="instagram-link"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="footer-links">
-                <a href="home.html">Home</a>
-                <a href="sobre.html">Sobre</a>
-                <a href="home.html">Eventos</a>
-                <a href="perfil_usuario.html">Perfil</a>
+            <div class="footer-links" id="footer-links">
+                <a href="home.html" id="footer-home-link">Home</a>
+                <a href="sobre.html" id="footer-about-link">Sobre</a>
+                <a href="eventos.html" id="footer-events-link">Eventos</a>
+                <a href="perfil_usuario.html" id="footer-profile-link">Perfil</a>
             </div>
-            <div class="footer-copyright">
+            <div class="footer-copyright" id="footer-copyright">
                 &copy;2024 Completa Aí | All Rights Reserved
             </div>
         </footer>
@@ -165,6 +183,27 @@
             if (event.target == modal) {
                 modal.style.display = 'none';
             }
+        }
+        console.log("Script carregado!");
+        const deleteBtn = document.querySelector("#delete-btn");
+        deleteBtn.addEventListener("click", () => {
+            criarFormularioDelecao(deleteBtn.dataset.id);
+        });
+
+        function criarFormularioDelecao(id) {
+            console.log("Criando formulário de deleção para o id:", id);
+            const formularioDelecao = document.createElement("form");
+            formularioDelecao.setAttribute("action", "/excluir_evento/" + id);
+            formularioDelecao.setAttribute("method", "POST");
+
+            const inputId = document.createElement("input");
+            inputId.setAttribute("type", "hidden");
+            inputId.setAttribute("name", "id");
+            inputId.setAttribute("value", id);
+
+            formularioDelecao.appendChild(inputId);
+            document.body.appendChild(formularioDelecao);
+            formularioDelecao.submit();
         }
     </script>
 </body>

@@ -211,9 +211,24 @@
 
         .category-label {
             margin-top: 10px;
-            font-size: 14px;
+            font-size: 16px;
             color: #666;
+            font-weight: bold;
         }
+
+        .category-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+          
+          .category-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+          }
+          
 
         /* Seção de Eventos */
         .events {
