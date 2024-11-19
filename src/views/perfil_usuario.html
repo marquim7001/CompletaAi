@@ -4,11 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Completa Aí - Perfil Usuario</title>
+  <title>Completa Aí - Perfil Usuário</title>
   <link rel="stylesheet" href="/src/public/css/perfil_usuario.css">
   <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
 </head>
-
 
 <body>
   <!-- Cabeçalho -->
@@ -51,18 +50,18 @@
     <div class="content-wrapper">
       <aside class="sidebar">
         <div class="sidebar-content">
-          <h2 class="sidebar-title">Configurações</h2>
-          <a href="#" class="sidebar-option">Informações de Conta</a>
-          <a href="alterar_email_senha.html" class="sidebar-option-alt">Alterar Email e Senha</a>
+          <h2 id="settings-title" class="sidebar-title">Configurações</h2>
+          <a href="#" id="account-info-link" class="sidebar-option">Informações de Conta</a>
+          <a href="alterar_email_senha.html" id="change-email-password-link" class="sidebar-option-alt">Alterar Email e Senha</a>
         </div>
       </aside>
       <section class="main-column">
         <div class="account-info">
           <div class="account-info-header">
-            <h1 class="account-info-title">Informações da conta</h1>
-            <h2 class="personal-data-title">Dados pessoais</h2>
+            <h1 id="account-info-title" class="account-info-title">Informações da conta</h1>
+            <h2 id="personal-data-title" class="personal-data-title">Dados pessoais</h2>
           </div>
-          <form class="profile-info" action="/editar_usuario/{{id}}" method="post">
+          <form id="profile-info-form" class="profile-info" action="/editar_usuario/{{id}}" method="post">
             <div class="info-field">
               <label for="firstName" class="info-label">Nome</label>
               <input id="firstName" type="text" class="info-input" placeholder="Digite o nome completo"
@@ -70,21 +69,20 @@
             </div>
             <div class="info-field">
               <label for="dataNasc" class="info-label">Data Nascimento</label>
-              <input id="dataNasc" type="date" class="info-input" placeholder="Digite sua data de Nascimento" value />
+              <input id="dataNasc" type="date" class="info-input" placeholder="Digite sua data de nascimento" />
             </div>
             <div class="contact-info">
-              <h2 class="contact-title">Contato</h2>
-
+              <h2 id="contact-title" class="contact-title">Contato</h2>
             </div>
             <div class="info-field">
               <label for="phone" class="info-label">Telefone</label>
-              <input id="phone" type="tel" class="info-input" placeholder="Digite seu numero" />
+              <input id="phone" type="tel" class="info-input" placeholder="Digite seu número" />
             </div>
             <div class="info-field">
               <label for="address" class="info-label">Endereço:</label>
               <textarea id="address" class="address-input" placeholder="Digite seu endereço"></textarea>
             </div>
-            <button type="submit" class="save-button">Salvar</button>
+            <button id="save-profile-button" type="submit" class="save-button">Salvar</button>
           </form>
         </div>
       </section>
