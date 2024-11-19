@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completa Aí - Eventos</title>
+    <link rel="stylesheet" href="/src/public/css/eventos.css">
+    <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+     <!-- Cabeçalho -->
+            <header id="header">
+                <div class="logo-container" id="logo-container">
+                <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                    alt="Completa Aí Logo" class="logo-image" id="logo-image" />
+                <h2 id="logo-title">Completa Aí</h2>
+                </div>
+                <nav id="navigation">
+                <ul id="nav-list">
+                    <li id="home-link" class="active">
+                    <a href="home.html" id="home-anchor">Home</a>
+                    </li>
+                    <li id="events-link">
+                    <a href="eventos.html" id="events-anchor">Eventos</a>
+                    </li>
+                    <li id="about-link">
+                    <a href="sobre.html" id="about-anchor">Sobre</a>
+                    </li>
+                    <li id="create-event-link">
+                    <a href="criar_evento.html" id="create-event-anchor">Criar evento</a>
+                    </li>
+                    {{^usuarioLogado}}
+                    <li id="signup-button" href="cadastro.html" class="action-button signup-button">Cadastre-se</li>
+                    {{/usuarioLogado}}
+                    {{#usuarioLogado}}
+                    <li id="user-icon">
+                    <a href="perfil_usuario.html" class="user-icon" id="profile-anchor">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    </li>
+                    {{/usuarioLogado}}
+                </ul>
+                </nav>
+            </header>
+    <!-- Seção de Eventos -->
+    <main>
+        <!-- Eventos Diversos -->
+        <section id="diverse-events" class="event-section">
+            <h2 class="section-title">Eventos Diversos</h2>
+                            <section class="event-cards">
+                                {{#eventosDoUsuario}}
+                                <article class="event-card">
+                                  <div class="event-card-content">
+                                    <div class="event-image">
+                                      <div class="event-category">Esportes</div>
+                                    </div>
+                                    <div class="event-details">
+                                      <div class="event-info">
+                                        <div class="event-date">
+                                          <span class="event-month">{{data_inicio}}</span>
+                                          <div class="event-day">
+                                            <span>{{data_inicio}}</span>
+                                            <span>-</span>
+                                            <span>{{data_fim}}</span>
+                                          </div>
+                                        </div>
+                                        <div class="event-info-content">
+                                          <h2 class="event-title">{{nome}}</h2>
+                                          <p class="event-venue">{{localizacao}}</p>
+                                          <p class="event-time">{{hora_inicio}} - {{hora_fim}}</p>
+                                          <div class="event-ticket-info">
+                                            <div class="ticket-price">
+                                              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db099a3a27e0f32dde481686ce1f042dad5bf03d16de98857e164107cbc9f79d?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" alt="" class="ticket-icon">
+                                              <span class="ticket-availability">{{num_vagas}}</span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </article>
+                                {{/eventosDoUsuario}} 
+                        </li>
+                        <!-- Repetir cards aqui -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Meus Eventos -->
+                    <section id="my-events" class="event-section">
+                        <h2 class="section-title">Meus Eventos</h2>
+                        <section class="event-cards">
+                            {{#eventosDoUsuario}}
+                            <article class="event-card">
+                            <div class="event-card-content">
+                                <div class="event-image">
+                                <div class="event-category">Esportes</div>
+                                </div>
+                                <div class="event-details">
+                                <div class="event-info">
+                                    <div class="event-date">
+                                    <span class="event-month">{{data_inicio}}</span>
+                                    <div class="event-day">
+                                        <span>{{data_inicio}}</span>
+                                        <span>-</span>
+                                        <span>{{data_fim}}</span>
+                                    </div>
+                                    </div>
+                                    <div class="event-info-content">
+                                    <h2 class="event-title">{{nome}}</h2>
+                                    <p class="event-venue">{{localizacao}}</p>
+                                    <p class="event-time">{{hora_inicio}} - {{hora_fim}}</p>
+                                    <div class="event-ticket-info">
+                                        <div class="ticket-price">
+                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db099a3a27e0f32dde481686ce1f042dad5bf03d16de98857e164107cbc9f79d?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" alt="" class="ticket-icon">
+                                        <span class="ticket-availability">{{num_vagas}}</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </article>
+                            {{/eventosDoUsuario}} 
+                    </li>
+                    <!-- Repetir cards aqui -->
+                </ul>
+            </div>
+            </div>
+            </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer" id="footer">
+        <div class="footer-social" id="footer-social">
+            <a href="#" id="facebook-link"><i class="fab fa-facebook"></i></a>
+            <a href="#" id="twitter-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" id="instagram-link"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="footer-links" id="footer-links">
+            <a href="home.html" id="footer-home-link">Home</a>
+            <a href="sobre.html" id="footer-about-link">Sobre</a>
+            <a href="eventos.html" id="footer-events-link">Eventos</a>
+            <a href="perfil_usuario.html" id="footer-profile-link">Perfil</a>
+        </div>
+        <div class="footer-copyright" id="footer-copyright">
+            &copy;2024 Completa Aí | All Rights Reserved
+        </div>
+    </footer>
+    <script>
+        new Splide('#diverse-carousel', { type: 'loop', perPage: 3, gap: '1rem' }).mount();
+        new Splide('#my-carousel', { type: 'loop', perPage: 3, gap: '1rem' }).mount();
+    </script>
+</body>
+
+</html>
