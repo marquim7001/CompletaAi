@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Completa Aí - Home</title>
-  <link rel="stylesheet" href="/src/public/css/styles-home.css">
+  <link rel="stylesheet" href="/css/styles-home.css">
   <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
@@ -22,23 +21,23 @@
     <nav id="navigation">
       <ul id="nav-list">
         <li id="home-link" class="active">
-          <a href="home.html" id="home-anchor">Home</a>
+          <a href="/home" id="home-anchor">Home</a>
         </li>
         <li id="events-link">
-          <a href="eventos.html" id="events-anchor">Eventos</a>
+          <a href="/eventos" id="events-anchor">Eventos</a>
         </li>
         <li id="about-link">
-          <a href="sobre.html" id="about-anchor">Sobre</a>
+          <a href="/sobre" id="about-anchor">Sobre</a>
         </li>
         <li id="create-event-link">
-          <a href="criar_evento.html" id="create-event-anchor">Criar evento</a>
+          <a href="/criar_evento" id="create-event-anchor">Criar evento</a>
         </li>
         {{^usuarioLogado}}
-        <li id="signup-button" href="cadastro.html" class="action-button signup-button">Cadastre-se</li>
+        <li><a id="signup-button" href="/cadastro" class="action-button signup-button">Cadastre-se</li>
         {{/usuarioLogado}}
         {{#usuarioLogado}}
         <li id="user-icon">
-          <a href="perfil_usuario.html" class="user-icon" id="profile-anchor">
+          <a href="/perfil_usuario/{{id}}" class="user-icon" id="profile-anchor">
             <i class="fas fa-user"></i>
           </a>
         </li>
