@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuario');
 
 // Criar usuario
@@ -10,7 +10,7 @@ const criarUsuario = async (req, res) => {
         // Encriptar a senha antes de armazenar no banco de dados
         const saltRounds = 10;
         console.log('senha no usuarioController', senha);
-        const senhaHash = await bcrypt.hash(senha, saltRounds);
+        const senhaHash = await bcryptjs.hash(senha, saltRounds);
 
         // Criar objeto de usuário com a senha encriptada
         const usuarioData = { email, senha: senhaHash, nome, data_nascimento };
