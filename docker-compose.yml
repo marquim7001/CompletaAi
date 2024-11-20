@@ -10,7 +10,7 @@ services:
       - DB_HOST=mysql
       - DB_PORT=3306
       - DB_USER=root
-      - DB_PASSWORD=emilly123
+      - DB_PASSWORD=flamengo
       - DB_NAME=completa_ai
     depends_on:
       - mysql
@@ -24,7 +24,7 @@ services:
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: emilly123
+      MYSQL_ROOT_PASSWORD: flamengo
       MYSQL_DATABASE: completa_ai
     ports:
       - "3307:3306"

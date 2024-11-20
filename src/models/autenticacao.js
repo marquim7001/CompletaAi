@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const db = require('../config/db');  // Conexão com o banco de dados
 
 // Função para autenticar o usuário
