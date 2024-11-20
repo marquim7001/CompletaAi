@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Completa Aí - Perfil Usuário</title>
+  <link rel="stylesheet" href="/src/public/css/perfil_usuario.css">
+  <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Cabeçalho -->
+  <header id="header">
+    <div class="logo-container" id="logo-container">
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+        alt="Completa Aí Logo" class="logo-image" id="logo-image" />
+      <h2 id="logo-title">Completa Aí</h2>
+    </div>
+    <nav id="navigation">
+      <ul id="nav-list">
+        <li id="home-link" class="active">
+          <a href="home.html" id="home-anchor">Home</a>
+        </li>
+        <li id="events-link">
+          <a href="eventos.html" id="events-anchor">Eventos</a>
+        </li>
+        <li id="about-link">
+          <a href="sobre.html" id="about-anchor">Sobre</a>
+        </li>
+        <li id="create-event-link">
+          <a href="criar_evento.html" id="create-event-anchor">Criar evento</a>
+        </li>
+        {{^usuarioLogado}}
+        <li id="signup-button" href="cadastro.html" class="action-button signup-button">Cadastre-se</li>
+        {{/usuarioLogado}}
+        {{#usuarioLogado}}
+        <li id="user-icon">
+          <a href="perfil_usuario.html" class="user-icon" id="profile-anchor">
+            <i class="fas fa-user"></i>
+          </a>
+        </li>
+        {{/usuarioLogado}}
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="content-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-content">
+          <h2 id="settings-title" class="sidebar-title">Configurações</h2>
+          <a href="#" id="account-info-link" class="sidebar-option">Informações de Conta</a>
+          <a href="alterar_email_senha.html" id="change-email-password-link" class="sidebar-option-alt">Alterar Email e Senha</a>
+        </div>
+      </aside>
+      <section class="main-column">
+        <div class="account-info">
+          <div class="account-info-header">
+            <h1 id="account-info-title" class="account-info-title">Informações da conta</h1>
+            <h2 id="personal-data-title" class="personal-data-title">Dados pessoais</h2>
+          </div>
+          <form id="profile-info-form" class="profile-info" action="/editar_usuario/{{id}}" method="post">
+            <div class="info-field">
+              <label for="firstName" class="info-label">Nome</label>
+              <input id="firstName" type="text" class="info-input" placeholder="Digite o nome completo"
+                value="{{usuario.nome}}" />
+            </div>
+            <div class="info-field">
+              <label for="dataNasc" class="info-label">Data Nascimento</label>
+              <input id="dataNasc" type="date" class="info-input" placeholder="Digite sua data de nascimento" />
+            </div>
+            <div class="contact-info">
+              <h2 id="contact-title" class="contact-title">Contato</h2>
+            </div>
+            <div class="info-field">
+              <label for="phone" class="info-label">Telefone</label>
+              <input id="phone" type="tel" class="info-input" placeholder="Digite seu número" />
+            </div>
+            <div class="info-field">
+              <label for="address" class="info-label">Endereço:</label>
+              <textarea id="address" class="address-input" placeholder="Digite seu endereço"></textarea>
+            </div>
+            <button id="save-profile-button" type="submit" class="save-button">Salvar</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+
+</html>

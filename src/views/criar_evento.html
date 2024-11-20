@@ -1,67 +1,174 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompletaAi - Criar Evento</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Completa Aí - Criar Evento</title>
+  <link rel="stylesheet" href="/src/public/css/criar_evento.css">
+  <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
 </head>
-<body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">CompletaAi</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Registrar-se</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
-    <div class="container mt-5">
-        <h2>Criar Evento</h2>
-        <form action="/criar_evento" method="POST">
-            <div class="form-group">
-                <label for="nome">Nome do Evento</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do evento" required>
-            </div>
-            <div class="form-group">
-                <label for="categoria">Categoria do Evento</label>
-                <input type="text" class="form-control" id="categoria" name="categoria" placeholder="Digite a categoria do evento" required>
-            </div>
-            <div class="form-group">
-                <label for="numVagas">Quantidade de Vagas</label>
-                <input type="number" class="form-control" id="numVagas" name="num-vagas" placeholder="Digite a quantidade de vagas" required>
-            </div>
-            <div class="form-group">
-                <label for="descricao">Descrição do Evento</label>
-                <textarea class="form-control" id="descricao" name="descricao" rows="3" placeholder="Digite a descrição do evento" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="dataInicio">Data de Início</label>
-                <input type="date" class="form-control" id="dataInicio" name="data-inicio" required>
-            </div>
-            <div class="form-group">
-                <label for="dataFim">Data de Término</label>
-                <input type="date" class="form-control" id="dataFim" name="data-fim" required>
-            </div>
-            <div class="form-group">
-                <label for="criador">Criador</label>
-                <input type="text" class="form-control" id="criador" name="criador" placeholder="Digite o nome do criador" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Criar Evento</button>
-        </form>
-        <a href="/home" class="btn btn-secondary mt-3">Voltar para a Lista de Eventos</a>
+<!-- Cabeçalho -->
+<header id="header">
+  <div class="logo-container" id="logo-container">
+    <img
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+      alt="Completa Aí Logo" class="logo-image" id="logo-image" />
+    <h2 id="logo-title">Completa Aí</h2>
+  </div>
+  <nav id="navigation">
+    <ul id="nav-list">
+      <li id="home-link" class="active">
+        <a href="home.html" id="home-anchor">Home</a>
+      </li>
+      <li id="events-link">
+        <a href="eventos.html" id="events-anchor">Eventos</a>
+      </li>
+      <li id="about-link">
+        <a href="sobre.html" id="about-anchor">Sobre</a>
+      </li>
+      <li id="create-event-link">
+        <a href="criar_evento.html" id="create-event-anchor">Criar evento</a>
+      </li>
+      {{^usuarioLogado}}
+      <li id="signup-button" href="cadastro.html" class="action-button signup-button">Cadastre-se</li>
+      {{/usuarioLogado}}
+      {{#usuarioLogado}}
+      <li id="user-icon">
+        <a href="perfil_usuario.html" class="user-icon" id="profile-anchor">
+          <i class="fas fa-user"></i>
+        </a>
+      </li>
+      {{/usuarioLogado}}
+    </ul>
+  </nav>
+</header>
+<h1 class="create-event-title">Criar Novo Evento</h1>
+
+
+<h2 class="event-details-title">Detalhes Evento</h2>
+<form action="/criar_evento" method="post">
+  <div class="form-group">
+    <label for="event-title" class="form-label">
+      <span class="form-label-text">Titulo Evento</span>
+      <span class="form-required">*</span>
+    </label>
+    <input type="text" id="event-title" class="form-input" placeholder="Digite o nome do seu evento">
+  </div>
+
+  <div class="form-group">
+    <label for="event-category" class="form-label">
+      <span class="form-label-text">Categoria Evento</span>
+      <span class="form-required">*</span>
+    </label>
+    <div class="form-select">
+      <span class="select-placeholder">Selecione um</span>
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/83a685bf682fb44b091e931d4b62304b209a392dc46369f280fb72c66670185f?placeholderIfAbsent=true&apiKey=c517ba6635024395acea44a8a8f4b6a5"
+        alt="Select arrow" class="select-icon">
     </div>
-</body>
-</html>
+  </div>
+
+  <div class="form-group">
+    <label for="event-capacity" class="form-label">
+      <span class="form-label-text">Vagas disponiveis</span>
+      <span class="form-required">*</span>
+    </label>
+    <input type="number" id="event-capacity" class="form-input" placeholder="Digite a quantidade de vagas disponiveis">
+  </div>
+
+
+  <h2 class="date-time-title">Data e Hora</h2>
+  <div class="date-time-container">
+    <div class="date-time-wrapper">
+      <div class="date-column">
+        <div class="date-inner">
+          <div class="date-row">
+            <div class="date-label-column">
+              <label class="date-label"></label>
+            </div>
+            <div class="date-input-column">
+              <div class="date-input-wrapper">
+                <label for="start-date" class="date-input-label">
+                  <span class="date-input-text">Data Início</span>
+                  <span class="form-required">*</span>
+                </label>
+                <input type="date" id="start-date" name="start-date" class="date-input">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="time-column">
+        <div class="time-wrapper">
+          <div class="time-input-wrapper">
+            <label for="start-time" class="time-input-label">
+              <span class="time-input-text">Hora Início</span>
+              <span class="form-required">*</span>
+            </label>
+            <input type="time" id="start-time" name="start-time" class="time-input">
+          </div>
+          <div class="time-input-wrapper">
+            <label for="end-time" class="time-input-label">
+              <span class="time-input-text">Hora Final</span>
+            </label>
+            <input type="time" id="end-time" name="end-time" class="time-input">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <h2 class="location-title">Localização</h2>
+  <div class="location-container">
+    <div class="location-wrapper">
+      <div class="location-label-column">
+        <label for="event-location" class="location-label">
+          <span class="location-label-text">Onde será realizado seu evento?</span>
+          <span class="form-required">*</span>
+        </label>
+      </div>
+      <div class="location-input-column">
+        <input type="text" id="event-location" class="location-input" placeholder="Digite o local">
+      </div>
+    </div>
+  </div>
+
+  <h2 class="additional-info-title">Informação Adicional</h2>
+  <div class="description-container">
+    <label for="event-description" class="description-label">
+      <span class="description-label-text">Descrição Evento</span>
+      <span class="form-required">*</span>
+    </label>
+    <textarea id="event-description" class="description-input"
+      placeholder="Descreva o que há de especial no seu evento e outros detalhes importantes."></textarea>
+  </div>
+
+
+
+  <input type="submit" id="create-event-button" class="save-button" value="Criar Evento">
+</main>
+
+
+</form>
+
+<footer class="footer" id="footer">
+  <div class="footer-social" id="footer-social">
+    <a href="#" id="facebook-link"><i class="fab fa-facebook"></i></a>
+    <a href="#" id="twitter-link"><i class="fab fa-twitter"></i></a>
+    <a href="#" id="instagram-link"><i class="fab fa-instagram"></i></a>
+  </div>
+  <div class="footer-links" id="footer-links">
+    <a href="home.html" id="footer-home-link">Home</a>
+    <a href="sobre.html" id="footer-about-link">Sobre</a>
+    <a href="eventos.html" id="footer-events-link">Eventos</a>
+    <a href="perfil_usuario.html" id="footer-profile-link">Perfil</a>
+  </div>
+  <div class="footer-copyright" id="footer-copyright">
+    &copy;2024 Completa Aí | All Rights Reserved
+  </div>
+</footer>
+<html>
