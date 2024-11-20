@@ -1,6 +1,6 @@
 # Completa Aí
 
-Aplicação web para criar, participar e organizar eventos.
+Aplicação web para criação, participação e organização de eventos
 
 ## Pré-requisitos
 
@@ -63,7 +63,8 @@ Na pasta raiz do projeto, criar um arquivo chamado Dockerfile e inserir essas in
 
 5. Criar uma nova conexão no MySQL Workbench:
 
-  ![image](https://github.com/user-attachments/assets/c7276b63-6103-4f0d-8820-f13fb2561c54)
+  ![image](https://github.com/user-attachments/assets/c7b7d84a-6776-4f2e-992d-fa0c1cd48973)
+
 
 6. No MySQL Workbench, criar as tabelas do banco de dados:
 
@@ -93,18 +94,21 @@ Na pasta raiz do projeto, criar um arquivo chamado Dockerfile e inserir essas in
     descricao text NOT NULL,
     data_inicio date NOT NULL,
     data_fim date NOT NULL,
+    hora_inicio time NOT NULL,
+    hora_fim time NOT NULL,
+    localizacao text NOT NULL,
     id_criador varchar(200) DEFAULT NULL,
     PRIMARY KEY (id)
   )
   ```
   ```sql
-  CREATE TABLE participacoes (
+  CREATE TABLE eventos_usuarios (
      id_usuario int NOT NULL,
      id_evento int NOT NULL,
      PRIMARY KEY (id_usuario, id_evento),
      KEY id_evento (id_evento),
-     CONSTRAINT participacoes_ibfk_1 FOREIGN KEY (id_usuario) REFERENCES usuarios (id),
-     CONSTRAINT participacoes_ibfk_2 FOREIGN KEY (id_evento) REFERENCES eventos (id)
+     CONSTRAINT eventos_usuarios_ibfk_1 FOREIGN KEY (id_usuario) REFERENCES usuarios (id),
+     CONSTRAINT eventos_usuarios_ibfk_2 FOREIGN KEY (id_evento) REFERENCES eventos (id)
    );
   ```
 

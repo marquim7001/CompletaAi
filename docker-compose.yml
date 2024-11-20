@@ -1,12 +1,10 @@
-version: '3.8'
 services:
   node-app:
-    # Serviço de produção
     build:
       context: .
-      dockerfile: Dockerfile # Usando Dockerfile para produção
+      dockerfile: Dockerfile
     ports:
-      - "3000:8080" # Mapeia a porta 8080 do contêiner para 3000 no host
+      - "3000:8080"
     environment:
       - NODE_ENV=production
       - DB_HOST=mysql
@@ -16,11 +14,11 @@ services:
     depends_on:
       - mysql
     volumes:
-      - .:/app # Monta o diretório atual no contêiner
-      - /app/node_modules # Volume separado para node_modules
+      - .:/app
+      - /app/node_modules
+    command: npm start
 
   mysql:
-    # Serviço MySQL
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: emilly123
@@ -29,6 +27,12 @@ services:
       - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
 
 volumes:
   mysql-data:
+
+networks:
+  app-network:
+    driver: bridge

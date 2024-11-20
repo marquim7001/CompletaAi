@@ -41,3 +41,27 @@ exports.procurarPorId = (id) => {
             }
         });
 };
+
+exports.adicionarUsuarioAoEvento = (idUsuario, idEvento) => {
+    const query = 'INSERT INTO eventos_usuarios (id_usuario, id_evento) VALUES (?, ?)';
+    return db.execute(query, [idUsuario, idEvento]);
+}
+
+exports.removerUsuarioDoEvento = (idUsuario, idEvento) => {
+    const query = 'DELETE FROM eventos_usuarios WHERE id_usuario = ? AND id_evento = ?';
+    return db.execute(query, [idUsuario, idEvento]);
+}
+
+exports.verificarUsuarioInscrito = (idUsuario, idEvento) => {
+    console.log('idUsuario:', idUsuario);
+    console.log('idEvento:', idEvento);
+    const query = 'SELECT * FROM eventos_usuarios WHERE id_usuario = ? AND id_evento = ?';
+    return db.execute(query, [idUsuario, idEvento])
+        .then(([rows]) => rows.length > 0);
+}
+
+exports.listarIdsUsuariosPorIdEvento = (idEvento) => {
+    const query = 'SELECT * FROM eventos_usuarios WHERE id_evento = ?';
+    return db.execute(query, [idEvento])
+        .then(([rows]) => rows);
+}

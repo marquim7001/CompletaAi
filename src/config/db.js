@@ -1,13 +1,17 @@
+require('dotenv').config();
 const mysql = require('mysql2/promise');
 
-// Criação da conexão com o banco de dados usando pool de conexões
-const pool = mysql.createPool({
-  host: 'mysql',  // Use o nome do serviço definido no docker-compose.yml
-  // host: 'localhost',  // Usar esse se não estiver usando Docker
-  port: 3306,
-  user: 'root',
-  password: 'emilly123',  // Certifique-se de que essa é a senha correta
-  database: 'completa_ai'  // Coloque o nome do banco de dados
-});
+// usar essa pool com o docker
+// const pool = mysql.createPool({
+//   host: process.env.DB_HOST,
+//   port: process.env.DB_PORT,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_DATABASE,
+// });
+
+//usar essa pool com o railway
+const DATABASE_URL_RAILWAY = `mysql://${process.env.DB_USER_RAILWAY}:${process.env.DB_PASSWORD_RAILWAY}@${process.env.DB_HOST_RAILWAY}:${process.env.DB_PORT_RAILWAY}/${process.env.DB_DATABASE_RAILWAY}`;
+const pool = mysql.createPool(DATABASE_URL_RAILWAY);
 
 module.exports = pool;
