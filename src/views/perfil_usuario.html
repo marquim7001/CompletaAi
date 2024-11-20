@@ -33,17 +33,12 @@
         <h2>Perfil do Usuário</h2>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title" id="eventName">{{evento.nome}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted" id="eventCategory">{{evento.categoria}}</h6>
-                <p class="card-text" id="eventDescription">{{evento.descricao}}</p>
-                <p class="card-text"><strong>Quantidade de Vagas:</strong> <span id="eventSlots">{{evento.num_vagas}}</span></p>
-                <p class="card-text"><strong>Data de Início:</strong> <span id="startDate">{{evento.data_inicio}}</span></p>
-                <p class="card-text"><strong>Data de Término:</strong> <span id="endDate">{{evento.data_fim}}</span></p>
-                <p class="card-text"><strong>Criador:</strong> {{evento.criador}}</p>
-                <button type="button" class="btn btn-primary" id="checkInButton">Fazer Check-in</button>
-                <a href="/editar_evento/{{evento.id}}" class="btn btn-secondary">Editar Evento</a>
-                <button id="delete-btn" class="btn btn-danger" data-id="{{evento.id}}">Excluir evento</button>
-                <a href="/home" class="btn btn-link">Voltar para a Lista de Eventos</a>
+                <h5 class="card-title" id="nome">{{usuario.nome}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted" id="email">{{usuario.email}}</h6>
+                <p class="card-text" id="dataNascimento">{{usuario.data_nascimento}}</p>
+                <a href="/editar_usuario/{{usuario.id}}" class="btn btn-secondary">Editar dados do usuário</a>
+                <button id="delete-btn" class="btn btn-danger" data-id="{{usuario.id}}">Excluir usuário</button>
+                <a href="/home" class="btn btn-link">Voltar para a Home</a>
             </div>
         </div>
     </div>
@@ -58,7 +53,7 @@
         function criarFormularioDelecao(id) {
             console.log("Criando formulário de deleção para o id:", id);
             const formularioDelecao = document.createElement("form");
-            formularioDelecao.setAttribute("action", "/excluir_evento/" + id);
+            formularioDelecao.setAttribute("action", "/excluir_usuario/" + id);
             formularioDelecao.setAttribute("method", "POST");
 
             const inputId = document.createElement("input");
