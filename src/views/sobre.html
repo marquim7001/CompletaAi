@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completa Aí - Sobre</title>
+    <link rel="stylesheet" href="/src/public/css/styles-about.css">
+    <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header id="header">
+        <div class="logo-container" id="logo-container">
+            <img 
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" 
+                alt="Completa Aí Logo" 
+                class="logo-image" 
+                id="logo-image" />
+            <h2 id="logo-title">Completa Aí</h2>
+        </div>
+        <nav id="navigation">
+            <ul id="nav-list">
+                <li id="home-link" class="active">
+                    <a href="home.html" id="home-anchor">Home</a>
+                </li>
+                <li id="events-link">
+                    <a href="eventos.html" id="events-anchor">Eventos</a>
+                </li>
+                <li id="about-link">
+                    <a href="sobre.html" id="about-anchor">Sobre</a>
+                </li>
+                <li id="create-event-link">
+                    <a href="criar_evento.html" id="create-event-anchor">Criar evento</a>
+                </li>
+                {{^usuarioLogado}}
+                <li id="signup-button" href="cadastro.html" class="action-button signup-button">Cadastre-se</li>
+                {{/usuarioLogado}}
+                {{#usuarioLogado}}
+                <li id="user-icon">
+                    <a href="perfil_usuario.html" class="user-icon" id="profile-anchor">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
+                {{/usuarioLogado}}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero-section">
+        <div class="heading" id="hero-heading">
+            <h1 id="about-title">Sobre Nós</h1>
+        </div>
+        <div class="hero-container" id="hero-container">
+            <div class="hero-content" id="hero-content">
+                <h2 id="about-subtitle">Conheça um pouco mais sobre a nossa história e propósito!</h2>
+                <p id="about-text">
+                    O Completa Aí foi criado por um grupo de alunos da Universidade Católica de Brasília com o objetivo de facilitar a
+                    integração entre pessoas com interesses semelhantes. Inspirados pela necessidade de conectar indivíduos
+                    para atividades em comum, desenvolvemos uma solução que transforma a dificuldade de encontrar parceiros
+                    em uma oportunidade de interação e colaboração.
+                </p>
+                <!-- Texto adicional inicialmente oculto -->
+                <div id="extra-text" class="hidden">
+                    <p>
+                        Nosso objetivo é promover conexões reais e criar comunidades dinâmicas, onde todos possam participar de atividades
+                        que amam. Acreditamos que compartilhar experiências enriquece vidas e fortalece laços sociais.
+                    </p>
+                    <p>
+                        Junte-se a nós no Completa Aí e descubra como é fácil encontrar pessoas que compartilham os mesmos interesses que você!
+                    </p>
+                </div>
+                <button id="learn-more-btn" class="learn-more-btn">Saiba Mais</button>
+            </div>
+            <div class="hero-image" id="hero-image">
+                <img src="/src/public/img/IMG_9887.HEIC" alt="Pessoas trabalhando juntas" id="about-image" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer" id="footer">
+        <div class="footer-social" id="footer-social">
+            <a href="#" id="facebook-link"><i class="fab fa-facebook"></i></a>
+            <a href="#" id="twitter-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" id="instagram-link"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="footer-links" id="footer-links">
+            <a href="home.html" id="footer-home-link">Home</a>
+            <a href="sobre.html" id="footer-about-link">Sobre</a>
+            <a href="eventos.html" id="footer-events-link">Eventos</a>
+            <a href="perfil_usuario.html" id="footer-profile-link">Perfil</a>
+        </div>
+        <div class="footer-copyright" id="footer-copyright">
+            &copy;2024 Completa Aí | All Rights Reserved
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("learn-more-btn").addEventListener("click", function () {
+            const extraText = document.getElementById("extra-text");
+            const button = this;
+
+            // Alterna a exibição do texto
+            if (extraText.classList.contains("hidden")) {
+                extraText.classList.remove("hidden");
+                button.textContent = "Mostrar Menos"; // Altera o texto do botão
+            } else {
+                extraText.classList.add("hidden");
+                button.textContent = "Saiba Mais"; // Volta o texto original do botão
+            }
+        });
+    </script>
+</body>
+
+</html>

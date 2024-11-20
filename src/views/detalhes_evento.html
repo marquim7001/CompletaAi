@@ -1,54 +1,189 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompletaAi - Detalhes do Evento</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Completa Aí - Detalhes do Evento</title>
+    <link rel="stylesheet" href="/src/public/css/styles-event.css">
+    <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">CompletaAi</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Registrar-se</a>
-                </li>
-            </ul>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo-container">
+            <img id="logo-image"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                alt="Completa Aí Logo" class="logo-image" />
+            <h2>Completa Aí</h2>
         </div>
-    </nav>
+        <nav>
+            <ul>
+                <li id="home-link" class="active"><a href="home.html">Home</a></li>
+                <li id="events-link"><a href="eventos.html">Eventos</a></li>
+                <li id="about-link"><a href="sobre.html">Sobre</a></li>
+                <li id="create-event-link"><a href="criar_evento.html">Criar evento</a></li>
+                {{^usuarioLogado}}
+                <li id="signup-link"><a href="cadastro.html" class="action-button signup-button">Cadastre-se</a></li>
+                {{/usuarioLogado}}
+                {{#usuarioLogado}}
+                <li id="user-profile-link"><a href="perfil_usuario.html" class="user-icon"><i class="fas fa-user"></i></a></li>
+                {{/usuarioLogado}}
+            </ul>
+        </nav>
+    </header>
 
-    <div class="container mt-5">
-        <h2>Detalhes do Evento</h2>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title" id="eventName">{{evento.nome}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted" id="eventCategory">{{evento.categoria}}</h6>
-                <p class="card-text" id="eventDescription">{{evento.descricao}}</p>
-                <p class="card-text"><strong>Quantidade de Vagas:</strong> <span id="eventSlots">{{evento.num_vagas}}</span></p>
-                <p class="card-text"><strong>Data de Início:</strong> <span id="startDate">{{evento.data_inicio}}</span></p>
-                <p class="card-text"><strong>Data de Término:</strong> <span id="endDate">{{evento.data_fim}}</span></p>
-                <p class="card-text"><strong>Criador:</strong> {{evento.criador}}</p>
-                <button type="button" class="btn btn-primary" id="checkInButton">Fazer Check-in</button>
+
+    <section class="event-page">
+        <main class="main-content">
+            <section class="event-banner">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b47822a97a4b242be6f04324e786a1960d7d01d0f525b2900a2aa0bda7cb83a7?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                    class="event-banner-image" alt="Event Banner" />
+            </section>
+
+            <h1 class="event-title">{{evento.nome}}</h1>
+
+            <section class="event-details">
+                <div class="date-time">
+                    <h2 class="details-title">Data e Hora</h2>
+                    <div class="details-content">
+                        <div class="details-item">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/47ab333e2c8dccc5ac7f0f6bd880ded200a518f99569e93f9c7b5cf394081f73?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="details-icon" alt="Date Icon" />
+                            <span class="details-text">{{evento.data_inicio}} - {{evento.data_fim}}</span>
+                        </div>
+                        <div class="details-item">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/42557709449ef1bef285d10cceb598c25094c3e8c997c78e05afeb09a50f5407?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="details-icon" alt="Time Icon" />
+                            <span class="details-text">{{evento.hora_inicio}} - {{evento.hora_fim}}</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="register-btn" class="register-btn" onclick="openModal()">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/221e6552c64079ac72183d4aadd39426c98dd5943c072058a0f3564ae9b9de71?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="register-btn-icon" alt="Register Icon" />
+                    <span class="register-btn-text">Inscreva-se</span>
+                </button>
+
+                {{#isEventoCriador}}
                 <a href="/editar_evento/{{evento.id}}" class="btn btn-secondary">Editar Evento</a>
                 <button id="delete-btn" class="btn btn-danger" data-id="{{evento.id}}">Excluir evento</button>
-                <a href="/home" class="btn btn-link">Voltar para a Lista de Eventos</a>
+                {{/isEventoCriador}}
+                {{^isEventoCriador}}
+                {{#isUsuarioInscrito}}
+                <form action="/desinscrever_do_evento/{{evento.id}}" method="post">
+                    <input type="hidden" name="id-evento" value="{{evento.id}}">
+                    <button type="submit" class="btn btn-primary" id="checkInButton">Desinscrever-se do evento</button>
+                </form>
+                {{/isUsuarioInscrito}}
+                {{^isUsuarioInscrito}}
+                <button class="register-btn" onclick="openModal()">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/221e6552c64079ac72183d4aadd39426c98dd5943c072058a0f3564ae9b9de71?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="register-btn-icon" alt="Register Icon" />
+                    <span class="register-btn-text">Inscreva-se</span>
+                </button>
+                {{/isUsuarioInscrito}}
+                {{/isEventoCriador}}
+            </section>
+
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span id="close-modal" class="close" onclick="closeModal()">&times;</span>
+                    <h2>Faça sua Inscrição</h2>
+                    <p>Confirme seus dados para se inscrever neste evento.</p>
+                    <!-- Conteúdo do formulário de inscrição -->
+                   <!-- <form action="inscricao_evento.html" method="POST">
+                        
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                        <label for="observacoes">Observações:</label>
+                        <textarea id="observacoes" name="observacoes" required></textarea>
+                        <button type="submit" class="submit-btn">Inscrever-se</button>
+                        
+                    </form>
+                    -->
+                    <form action="/inscrever_no_evento/{{evento.id}}" method="post">
+                        <input type="hidden" name="id-evento" value="{{evento.id}}">
+                        <button type="submit" class="btn btn-primary" id="checkInButton">Inscrever-se no evento</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </div>
+
+            <section class="location-map">
+                <h2 class="details-title">Localização</h2>
+                <div class="details-content">
+                    <div class="details-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a4dd1b9a9f66e042358782c8b06ee209f1e8462950e4653bf2f69a0e145061b?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                            class="details-icon" alt="Location Icon" />
+                        <span class="details-text">{{evento.localizacao}}</sp</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ticket-info">
+                <h2 class="details-title">Vagas disponíveis</h2>
+                <div class="details-content">
+                    <div class="details-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f002198eedb7da9a2072634a9a29dfbe047bff7e9d997f83ab3c471996f6cc21?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                            class="details-icon" alt="Ticket Icon" />
+                        <span class="details-text">Total de vagas disponíveis para completar esse evento: {{evento.num_vagas}}</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="host-info">
+                <h2 class="host-title">Criador</h2>
+                <div class="host-details">
+                    <div class="host-name-actions">
+                        <h3 class="host-name">{{evento.criador}}</h3>
+                    </div>
+                </div>
+            </section>
+
+            <section class="event-description">
+                <h2 class="description-title">Descrição do Evento</h2>
+                <p class="description-content">
+                    {{evento.descricao}}
+                </p>
+            </section>
+
+        </main>
+        <footer class="footer" id="footer">
+            <div class="footer-social" id="footer-social">
+                <a href="#" id="facebook-link"><i class="fab fa-facebook"></i></a>
+                <a href="#" id="twitter-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" id="instagram-link"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="footer-links" id="footer-links">
+                <a href="home.html" id="footer-home-link">Home</a>
+                <a href="sobre.html" id="footer-about-link">Sobre</a>
+                <a href="eventos.html" id="footer-events-link">Eventos</a>
+                <a href="perfil_usuario.html" id="footer-profile-link">Perfil</a>
+            </div>
+            <div class="footer-copyright" id="footer-copyright">
+                &copy;2024 Completa Aí | All Rights Reserved
+            </div>
+        </footer>
+    </section>
 
     <script>
+        // Funções para abrir e fechar o modal
+        function openModal() {
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Fecha o modal ao clicar fora dele
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
         console.log("Script carregado!");
         const deleteBtn = document.querySelector("#delete-btn");
         deleteBtn.addEventListener("click", () => {
@@ -71,6 +206,6 @@
             formularioDelecao.submit();
         }
     </script>
-
 </body>
+
 </html>

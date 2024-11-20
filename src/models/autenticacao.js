@@ -7,7 +7,6 @@ exports.autenticar = async (email, senha) => {
     
     // Como o e-mail é único, só esperamos um resultado
     const [rows] = await db.execute(query, [email]);
-    
     // Se não encontrou o usuário
     if (rows.length === 0) {
         return null;

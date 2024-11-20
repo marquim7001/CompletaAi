@@ -20,7 +20,6 @@ mysql-data/
 
 # Docker
 docker-compose.override.yml
-Dockerfile
 .dockerignore
 
 # Operating system files
