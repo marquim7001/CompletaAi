@@ -1,52 +1,240 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Completa ai</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Completa Aí</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Poppins, sans-serif;
+    }
+
+    /* Estilos gerais */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+    }
+
+    /* Contêiner principal */
+    .container {
+      position: relative;
+      width: 100vw;
+      /* Largura total da tela */
+      height: 100vh;
+      /* Altura total da tela */
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .form-box {
+      position: absolute;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      color: #2D2C3C;
+      text-align: left;
+      padding: 40px;
+      z-index: 1;
+    }
 
 
+    form {
+      width: 100%;
+      padding: 0 40px;
+    }
 
+    .container h1 {
+      font-size: 36px;
+      margin-bottom: 1rem;
+    }
+
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .input-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: normal;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .input-box {
+      position: relative;
+      margin: 30px 0;
+
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 10px 50px 10px 20px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 14px;
+      color: #333;
+      font-weight: light;
+    }
+
+    .esquecisenha {
+      margin-top: 10px;
+      font-weight: lighter;
+    }
+
+    .esquecisenha a {
+      color: #333;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 15px;
+      color: #333;
+    }
+
+    .register-link a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #131838;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .toggle-box {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .toggle-box::before {
+      content: '';
+      position: absolute;
+      left: -250%;
+      width: 300%;
+      height: 100%;
+      background-color: #131838;
+      border-radius: 1500px;
+      z-index: 2;
+    }
+
+    .toggle-panel {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background-color: #131838;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+      border-radius: 65px;
+    }
+
+    .toggle-panel p {
+      text-align: left;
+      width: 100%;
+      margin-left: 63px;
+      font-size: 18px;
+      font-weight: lighter;
+      font-size: 22px;
+    }
+
+    .toggle-panel h1 {
+      font-size: 80px;
+      margin-bottom: 20px;
+      margin-left: 25px;
+
+      margin-right: 120px;
+    }
+
+    .logo-container {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-image {
+      width: 40px;
+      aspect-ratio: 1.1;
+      object-fit: contain;
+    }
+
+    .logo-container h2 {
+      margin-top: 5px;
+      font-size: 30px;
+    }
+
+    .toggle-panel h2,
+    .toggle-panel p {
+      text-align: left;
+      line-height: 1.5;
+    }
+  </style>
 </head>
-<body class="d-flex justify-content-center align-items-center vh-100">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="text-center mb-4">Completa Aí</h3>
-                        <form action="/login" method="POST">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Digite seu email">
-                            </div>
-                            <div class="form-group">
-                                <label for="senha">Senha</label>
-                                <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="lembrar">
-                                <label class="form-check-label" for="lembrar">Lembrar-me</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-                            <div class="text-center mt-3">
-                                <a href="#">Esqueci minha senha</a>
-                            </div>
-                            <!-- <div class="text-center mt-3">
-                                <button type="button" class="btn btn-outline-secondary btn-block">Acesso institucional</button>
-                            </div> -->
-                            <div class="d-flex justify-content-center align-items-center gap-4">
-                                <p class="mb-0">Não tem uma conta ainda?</p>
-                                <a href="cadastro" class="mx-1">Cadastre-se agora</a>
-                            </div>                                                                               
-                        </form>
-                    </div>
-                </div>
-            </div>
+
+<body>
+
+  <div class="container">
+    <div class="form-box login">
+      <form action="/login" method="POST">
+        <h1>Login</h1>
+        <div class="input-box">
+          <label for="email" class="input-label">E-mail</label>
+          <input type="text" id="email" placeholder="Digite seu e-mail" required>
         </div>
+        <div class="input-box">
+          <label for="senha" class="input-label">Senha</label>
+          <input type="password" id="senha" placeholder="Digite a sua senha" required>
+        </div>
+        <button type="submit" id= "entrar" class="submit-button" href="home_usuario.html">Entrar</button>
+        <div class="esquecisenha">
+          Não tem uma conta? <a href="cadastro.html" class="bold-text">Cadastre-se aqui</a>
+        </div>
+      </form>
     </div>
+
+    <div class="toggle-box">
+      <div class="toggle-panel toggle left">
+        <header class="logo-container">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+            alt="Completa Aí Logo" class="logo-image" />
+          <h2>Completa Aí</h2>
+        </header>
+        <h1>Unindo interesses e criando conexões</h1>
+        <p> Complete seu grupo e divirta-se!</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+
 </html>
