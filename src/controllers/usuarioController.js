@@ -9,6 +9,7 @@ const criarUsuario = async (req, res) => {
 
         // Encriptar a senha antes de armazenar no banco de dados
         const saltRounds = 10;
+        console.log('senha no usuarioController', senha);
         const senhaHash = await bcrypt.hash(senha, saltRounds);
 
         // Criar objeto de usuário com a senha encriptada

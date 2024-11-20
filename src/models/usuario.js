@@ -3,6 +3,7 @@ const db = require('../config/db');  // Arquivo de conexão com o banco
 // Função para criar um usuario
 exports.criar = (usuarioData) => {
     const { email, senha, nome, data_nascimento } = usuarioData;
+    console.log('printando no usuario.js', email, senha, nome, data_nascimento);
     const query = `INSERT INTO usuarios (email, senha, nome, data_nascimento) VALUES (?, ?, ?, ?)`;
 
     return db.execute(query, [email, senha, nome, data_nascimento]);
