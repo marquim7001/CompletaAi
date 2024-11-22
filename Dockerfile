@@ -1,5 +1,3 @@
-# Dockerfile
-
 # Usar uma imagem base do Node.js
 FROM node:16
 
@@ -12,8 +10,8 @@ COPY package*.json ./
 # Instalar dependências
 RUN npm install
 
-# Copiar o restante do código para o diretório de trabalho
-COPY . .
+# Copiar todo o código do projeto para o contêiner
+COPY . ./
 
 # Expor a porta usada pela aplicação
 EXPOSE 8080

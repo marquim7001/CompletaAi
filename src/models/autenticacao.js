@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 const db = require('../config/db');  // Conexão com o banco de dados
 
 // Função para autenticar o usuário
@@ -14,7 +14,7 @@ exports.autenticar = async (email, senha) => {
 
     const usuario = rows[0];
     // Comparar a senha fornecida com a senha armazenada
-    const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
+    const senhaCorreta = await bcryptjs.compare(senha, usuario.senha);
 
     // Retornar o usuário se a senha estiver correta, ou null se incorreta
     return senhaCorreta ? usuario : null;
