@@ -2,58 +2,60 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Completa Aí - Home</title>
-  <link rel="stylesheet" href="/css/styles-home.css">
-  <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completa Aí - Home</title>
+    <link rel="stylesheet" href="/css/styles-home.css">
+    <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <!-- Cabeçalho -->
-  <header id="header">
-    <div class="logo-container" id="logo-container">
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-        alt="Completa Aí Logo" class="logo-image" id="logo-image" />
-      <h2 id="logo-title">Completa Aí</h2>
-    </div>
-    <nav id="navigation">
-      <ul id="nav-list">
-        <li id="home-link" class="active">
-          <a href="/home" id="home-anchor">Home</a>
-        </li>
-        <li id="events-link">
-          <a href="/eventos" id="events-anchor">Eventos</a>
-        </li>
-        <li id="about-link">
-          <a href="/sobre" id="about-anchor">Sobre</a>
-        </li>
-        <li id="create-event-link">
-          <a href="/criar_evento" id="create-event-anchor">Criar evento</a>
-        </li>
-        {{^usuarioLogado}}
-        <li><a id="signup-button" href="/cadastro" class="action-button signup-button">Cadastre-se</li>
-        {{/usuarioLogado}}
-        {{#usuarioLogado}}
-        <li id="user-icon">
-          <a href="/perfil_usuario/{{id}}" class="user-icon" id="profile-anchor">
-            <i class="fas fa-user"></i>
-          </a>
-        </li>
-        {{/usuarioLogado}}
-      </ul>
-    </nav>
-  </header>
+    <!-- Cabeçalho -->
+    <header id="header">
+        <a href="/home">
+            <div class="logo-container" id="logo-container">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                    alt="Completa Aí Logo" class="logo-image" id="logo-image" />
+                <h2 id="logo-title">Completa Aí</h2>
+            </div>
+        </a>
+        <nav id="navigation">
+            <ul id="nav-list">
+                <li id="home-link" class="active">
+                    <a href="/home" id="home-anchor">Home</a>
+                </li>
+                <li id="events-link">
+                    <a href="/eventos" id="events-anchor">Eventos</a>
+                </li>
+                <li id="about-link">
+                    <a href="/sobre" id="about-anchor">Sobre</a>
+                </li>
+                <li id="create-event-link">
+                    <a href="/criar_evento" id="create-event-anchor">Criar evento</a>
+                </li>
+                {{^usuarioLogado}}
+                <li><a id="login-button" href="/login" class="action-button signup-button">Login</a></li>
+                {{/usuarioLogado}}
+                {{#usuarioLogado}}
+                <li id="user-icon">
+                    <a href="/perfil_usuario/{{usuarioId}}" class="user-icon" id="profile-anchor">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
+                {{/usuarioLogado}}
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content" id="hero-content">
-      <h1 id="hero-title">Não fique de fora!</h1>
-      <p id="hero-text">Participe de <span>atividades</span> com pessoas que compartilham seus <span>interesses</span>!
-      </p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content" id="hero-content">
+            <h1 id="hero-title">Não fique de fora!</h1>
+            <p id="hero-text">Participe de <span>atividades</span> com pessoas que compartilham seus
+                <span>interesses</span>!
+            </p>
 
-      <!-- Filtro por texto e localidade
+            <!-- Filtro por texto e localidade
       <div class="search-box">
         <input id="search-input" type="text" placeholder="Pesquise por eventos, categorias, localidades" />
         <select id="location-select">
@@ -61,189 +63,128 @@
         </select>
       </div>
     -->
-    </div>
-  </section>
-
-  <!-- Categorias -->
-  <section class="categories" id="categories-section">
-    <h2 class="categories-title" id="categories-title">Categorias</h2>
-    <div class="category-list" id="category-list">
-      <div class="category-item" id="category-entertainment">
-        <a href="entretenimento.html" class="category-link" id="entertainment-anchor">
-          <div class="category-image" id="entertainment-image">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/e9cc8ab1a138054707cf92b20ca10e510c74f66631269cade0081c4b41159373?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-              alt="Categoria Entretenimento" loading="lazy" />
-          </div>
-          <div class="category-label" id="entertainment-label">Entretenimento</div>
-        </a>
-      </div>
-      <div class="category-item" id="category-education">
-        <a href="educacao.html" class="category-link" id="education-anchor">
-          <div class="category-image" id="education-image">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/64ad33108c8d33584e23d254a5d5e33d48dbb6b04d63c7d4208ea0e0f67b983c?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-              alt="Categoria Educação" loading="lazy" />
-          </div>
-          <div class="category-label" id="education-label">Educação</div>
-        </a>
-      </div>
-      <div class="category-item" id="category-sports">
-        <a href="esportes.html" class="category-link" id="sports-anchor">
-          <div class="category-image" id="sports-image">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/723cc7d3bc6582bc6abbf8371f7abe2eb7d4f5f2852b9db4f3942571d8e66e57?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-              alt="Categoria Esportes" loading="lazy" />
-          </div>
-          <div class="category-label" id="sports-label">Esportes</div>
-        </a>
-      </div>
-      <div class="category-item" id="category-tech">
-        <a href="tecnologia.html" class="category-link" id="tech-anchor">
-          <div class="category-image" id="tech-image">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/17395d8f96f597921e1e63b5f1a7a6e7122cf38e55e3f2dc40db206c00268996?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-              alt="Categoria Tecnologia" loading="lazy" />
-          </div>
-          <div class="category-label" id="tech-label">Tecnologia</div>
-        </a>
-      </div>
-      <div class="category-item" id="category-games">
-        <a href="jogos.html" class="category-link" id="games-anchor">
-          <div class="category-image" id="games-image">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/ab89e4a06362e1d00dc3a5487ec076fc9b453d0eb91c951ff6f2aec07030b77b?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-              alt="Categoria Jogos" loading="lazy" />
-          </div>
-          <div class="category-label" id="games-label">Jogos</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Principais Eventos -->
-  <section class="event-cards">
-    {{#eventosDoUsuario}}
-    <article class="event-card">
-      <div class="event-card-content">
-        <div class="event-image">
-          <div class="event-category">Esportes</div>
         </div>
-        <div class="event-details">
-          <div class="event-info">
-            <div class="event-date">
-              <span class="event-month">{{data_inicio}}</span>
-              <div class="event-day">
-                <span>{{data_inicio}}</span>
-                <span>-</span>
-                <span>{{data_fim}}</span>
-              </div>
+    </section>
+
+    <!-- Categorias -->
+    <section class="categories" id="categories-section">
+        <h2 class="categories-title" id="categories-title">Categorias</h2>
+        <div class="category-list" id="category-list">
+            <div class="category-item" id="category-entertainment">
+                <a href="entretenimento.html" class="category-link" id="entertainment-anchor">
+                    <div class="category-image" id="entertainment-image">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e9cc8ab1a138054707cf92b20ca10e510c74f66631269cade0081c4b41159373?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                            alt="Categoria Entretenimento" loading="lazy" />
+                    </div>
+                    <div class="category-label" id="entertainment-label">Entretenimento</div>
+                </a>
             </div>
-            <div class="event-info-content">
-              <h2 class="event-title">{{nome}}</h2>
-              <p class="event-venue">{{localizacao}}</p>
-              <p class="event-time">{{hora_inicio}} - {{hora_fim}}</p>
-              <div class="event-ticket-info">
-                <div class="ticket-price">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/db099a3a27e0f32dde481686ce1f042dad5bf03d16de98857e164107cbc9f79d?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-                    alt="" class="ticket-icon">
-                  <span class="ticket-availability">{{num_vagas}}</span>
+            <div class="category-item" id="category-education">
+                <a href="educacao.html" class="category-link" id="education-anchor">
+                    <div class="category-image" id="education-image">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/64ad33108c8d33584e23d254a5d5e33d48dbb6b04d63c7d4208ea0e0f67b983c?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                            alt="Categoria Educação" loading="lazy" />
+                    </div>
+                    <div class="category-label" id="education-label">Educação</div>
+                </a>
+            </div>
+            <div class="category-item" id="category-sports">
+                <a href="esportes.html" class="category-link" id="sports-anchor">
+                    <div class="category-image" id="sports-image">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/723cc7d3bc6582bc6abbf8371f7abe2eb7d4f5f2852b9db4f3942571d8e66e57?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                            alt="Categoria Esportes" loading="lazy" />
+                    </div>
+                    <div class="category-label" id="sports-label">Esportes</div>
+                </a>
+            </div>
+            <div class="category-item" id="category-tech">
+                <a href="tecnologia.html" class="category-link" id="tech-anchor">
+                    <div class="category-image" id="tech-image">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/17395d8f96f597921e1e63b5f1a7a6e7122cf38e55e3f2dc40db206c00268996?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                            alt="Categoria Tecnologia" loading="lazy" />
+                    </div>
+                    <div class="category-label" id="tech-label">Tecnologia</div>
+                </a>
+            </div>
+            <div class="category-item" id="category-games">
+                <a href="jogos.html" class="category-link" id="games-anchor">
+                    <div class="category-image" id="games-image">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ab89e4a06362e1d00dc3a5487ec076fc9b453d0eb91c951ff6f2aec07030b77b?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                            alt="Categoria Jogos" loading="lazy" />
+                    </div>
+                    <div class="category-label" id="games-label">Jogos</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Principais Eventos -->
+    <section class="event-cards">
+        {{#todosOsEventos}}
+        <article class="event-card">
+            <div class="event-card-content">
+                <a href="/detalhes_evento/{{id}}">
+                    <div class="event-image">
+                        <div class="event-category">{{categoria}}</div>
+                    </div>
+                </a>
+                <div class="event-details">
+                    <div class="event-info">
+                        <div class="event-date">
+                            <div class="event-day">
+                                <span class="data-evento-item">{{data_inicio}}</span>
+                                <span>-</span>
+                                <span class="data-evento-item">{{data_fim}}</span>
+                            </div>
+                        </div>
+                        <div class="event-info-content">
+                            <h2 class="event-title">{{nome}}</h2>
+                            <p class="event-venue">{{localizacao}}</p>
+                            <p class="hora-evento"><span class="hora-evento-item">{{hora_inicio}}</span> - <span
+                                    class="hora-evento-item">{{hora_fim}}</span></p>
+                            <div class="event-ticket-info">
+                                <div class="ticket-price">
+                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db099a3a27e0f32dde481686ce1f042dad5bf03d16de98857e164107cbc9f79d?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                                        alt="" class="ticket-icon">
+                                    <span class="ticket-availability">{{num_vagas}} vagas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </article>
-    {{/eventosDoUsuario}}
+        </article>
+        {{/todosOsEventos}}
 
-    <article class="event-card">
-      <div class="event-card-content">
-        <div class="event-image">
-          <div class="event-category">Tecnologia</div>
-        </div>
-        <div class="event-details">
-          <div class="event-info">
-            <div class="event-date">
-              <span class="event-month">DEZ</span>
-              <span class="event-day">02</span>
-            </div>
-            <div class="event-info-content">
-              <h2 class="event-title">Musical de Natal</h2>
-              <p class="event-venue">Taguatinga Park</p>
-              <p class="event-time">6:30 PM - 9:30 PM</p>
-              <div class="event-ticket-info">
-                <div class="ticket-price">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/29d8096b73fb2865f442256db5cb7909dcd417c840a8fd0b317e287f18596f8c?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-                    alt="" class="ticket-icon">
-                  <span class="ticket-availability">10 vagas</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
+    </section>
 
-    <article class="event-card">
-      <div class="event-card-content">
-        <div class="event-image">
-          <div class="event-category">Entretenimento</div>
-        </div>
-        <div class="event-details">
-          <div class="event-info">
-            <div class="event-date">
-              <span class="event-month">NOV</span>
-              <span class="event-day">25</span>
-            </div>
-            <div class="event-info-content">
-              <h2 class="event-title">Um dia de bem-estar e criatividade</h2>
-              <p class="event-venue">Parque da Cidade, Brasilia</p>
-              <p class="event-time">10 AM - 8:30 PM</p>
-              <div class="event-ticket-info">
-                <div class="ticket-price">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/9c73151928429cb93e19935a5c48f0b9ce8bdc0ada431c3c1ea999c726c388bd?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-                    alt="" class="ticket-icon">
-                  <span class="ticket-availability">15 vagas</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </section>
-
-  <!-- Criar Evento -->
-  <section class="create-event-section" id="create-event-section">
-    <h2 id="create-event-title">Crie seu Próprio Evento!</h2>
-    <p id="create-event-description">Tem um show, evento, atividade ou uma experiência incrível que precisa de mais
-      participantes? Compartilhe seu evento e complete seu grupo com a gente no Completa Aí!</p>
-    <a href="criar_evento.html" id="create-event-button">Criar Evento</a>
-  </section>
+    <!-- Criar Evento -->
+    <section class="create-event-section" id="create-event-section">
+        <h2 id="create-event-title">Crie seu Próprio Evento!</h2>
+        <p id="create-event-description">Tem um show, evento, atividade ou uma experiência incrível que precisa de mais
+            participantes? Compartilhe seu evento e complete seu grupo com a gente no Completa Aí!</p>
+        <a href="/criar_evento" id="create-event-button">Criar Evento</a>
+    </section>
 
 
-  <!-- Rodapé -->
-  <footer class="footer" id="footer">
-    <div class="footer-social" id="footer-social">
-      <a href="#" id="facebook-link"><i class="fab fa-facebook"></i></a>
-      <a href="#" id="twitter-link"><i class="fab fa-twitter"></i></a>
-      <a href="#" id="instagram-link"><i class="fab fa-instagram"></i></a>
-    </div>
-    <div class="footer-links" id="footer-links">
-      <a href="home.html" id="footer-home-link">Home</a>
-      <a href="sobre.html" id="footer-about-link">Sobre</a>
-      <a href="eventos.html" id="footer-events-link">Eventos</a>
-      <a href="perfil_usuario.html" id="footer-profile-link">Perfil</a>
-    </div>
-    <div class="footer-copyright" id="footer-copyright">
-      &copy;2024 Completa Aí | All Rights Reserved
-    </div>
-  </footer>
+    <!-- Rodapé -->
+    <footer class="footer" id="footer">
+        <div class="footer-social" id="footer-social">
+            <a href="#" id="facebook-link"><i class="fab fa-facebook"></i></a>
+            <a href="#" id="twitter-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" id="instagram-link"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="footer-links" id="footer-links">
+            <a href="/home" id="footer-home-link">Home</a>
+            <a href="/sobre" id="footer-about-link">Sobre</a>
+            <a href="/eventos" id="footer-events-link">Eventos</a>
+        </div>
+        <div class="footer-copyright" id="footer-copyright">
+            &copy;2024 Completa Aí | All Rights Reserved
+        </div>
+    </footer>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>

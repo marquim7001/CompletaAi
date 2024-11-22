@@ -5,30 +5,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Completa Aí - Detalhes do Evento</title>
-    <link rel="stylesheet" href="/src/public/css/styles-event.css">
+    <link rel="stylesheet" href="/css/styles-event.css">
     <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
+    <style>
+        /* Sobreposição preta */
+        .sobreposicao-tela-preta {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Fundo semi-transparente */
+            display: none;
+            /* Inicialmente escondido */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            /* Fica acima de outros elementos */
+        }
+
+        /* Caixa de confirmação */
+        .excluir-confirma {
+            background-color: #fff;
+            /* Fundo branco */
+            padding: 20px;
+            /* Espaçamento interno */
+            border-radius: 8px;
+            /* Bordas arredondadas */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Sombra suave */
+            text-align: center;
+            max-width: 400px;
+            /* Largura máxima */
+            width: 90%;
+            /* Responsividade para telas menores */
+        }
+
+        /* Texto de alerta */
+        .excluir-confirma p {
+            margin: 10px 0;
+            /* Espaçamento entre os parágrafos */
+            font-size: 16px;
+            color: #333;
+            /* Cor do texto */
+        }
+
+        /* Botões no modal */
+        .excluir-confirma .btn {
+            padding: 10px 20px;
+            /* Tamanho do botão */
+            margin: 10px;
+            /* Espaçamento entre os botões */
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            /* Transição suave no hover */
+        }
+
+        /* Botão "Cancelar" */
+        .excluir-confirma .btn.cancela {
+            background-color: #ccc;
+            /* Cinza claro */
+            color: #000;
+            /* Texto preto */
+        }
+
+        .excluir-confirma .btn.cancela:hover {
+            background-color: #bbb;
+            /* Cinza mais escuro no hover */
+        }
+
+        /* Botão "Excluir" */
+        .excluir-confirma .btn.exclui {
+            background-color: #e74c3c;
+            /* Vermelho */
+            color: #fff;
+            /* Texto branco */
+        }
+
+        .excluir-confirma .btn.exclui:hover {
+            background-color: #c0392b;
+            /* Vermelho mais escuro no hover */
+        }
+
+        /* Botão principal "Excluir evento" */
+        #delete-btn {
+            background-color: #e74c3c;
+            /* Vermelho */
+            color: #fff;
+            /* Texto branco */
+            border: none;
+            padding: 10px 15px;
+            /* Tamanho do botão */
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #delete-btn:hover {
+            background-color: #c0392b;
+            /* Vermelho mais escuro no hover */
+        }
+    </style>
 </head>
 
 <body>
     <!-- Cabeçalho -->
-    <header>
-        <div class="logo-container">
-            <img id="logo-image"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-                alt="Completa Aí Logo" class="logo-image" />
-            <h2>Completa Aí</h2>
-        </div>
-        <nav>
-            <ul>
-                <li id="home-link" class="active"><a href="home.html">Home</a></li>
-                <li id="events-link"><a href="eventos.html">Eventos</a></li>
-                <li id="about-link"><a href="sobre.html">Sobre</a></li>
-                <li id="create-event-link"><a href="criar_evento.html">Criar evento</a></li>
+    <header id="header">
+        <a href="/home">
+            <div class="logo-container" id="logo-container">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                    alt="Completa Aí Logo" class="logo-image" id="logo-image" />
+                <h2 id="logo-title">Completa Aí</h2>
+            </div>
+        </a>
+        <nav id="navigation">
+            <ul id="nav-list">
+                <li id="home-link" class="active">
+                    <a href="/home" id="home-anchor">Home</a>
+                </li>
+                <li id="events-link">
+                    <a href="/eventos" id="events-anchor">Eventos</a>
+                </li>
+                <li id="about-link">
+                    <a href="/sobre" id="about-anchor">Sobre</a>
+                </li>
+                <li id="create-event-link">
+                    <a href="/criar_evento" id="create-event-anchor">Criar evento</a>
+                </li>
                 {{^usuarioLogado}}
-                <li id="signup-link"><a href="cadastro.html" class="action-button signup-button">Cadastre-se</a></li>
+                <li><a id="login-button" href="/login" class="action-button signup-button">Login</a></li>
                 {{/usuarioLogado}}
                 {{#usuarioLogado}}
-                <li id="user-profile-link"><a href="perfil_usuario.html" class="user-icon"><i class="fas fa-user"></i></a></li>
+                <li id="user-icon">
+                    <a href="/perfil_usuario/{{usuarioId}}" class="user-icon" id="profile-anchor">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
                 {{/usuarioLogado}}
             </ul>
         </nav>
@@ -49,19 +166,19 @@
                     <h2 class="details-title">Data e Hora</h2>
                     <div class="details-content">
                         <div class="details-item">
-                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/47ab333e2c8dccc5ac7f0f6bd880ded200a518f99569e93f9c7b5cf394081f73?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="details-icon" alt="Date Icon" />
-                            <span class="details-text">{{evento.data_inicio}} - {{evento.data_fim}}</span>
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/47ab333e2c8dccc5ac7f0f6bd880ded200a518f99569e93f9c7b5cf394081f73?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                                class="details-icon" alt="Date Icon" />
+                            <span class="details-text"><span class="data-evento-item">{{evento.data_inicio}}</span> -
+                                <span class="data-evento-item">{{evento.data_fim}}</span></span>
                         </div>
                         <div class="details-item">
-                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/42557709449ef1bef285d10cceb598c25094c3e8c997c78e05afeb09a50f5407?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="details-icon" alt="Time Icon" />
-                            <span class="details-text">{{evento.hora_inicio}} - {{evento.hora_fim}}</span>
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/42557709449ef1bef285d10cceb598c25094c3e8c997c78e05afeb09a50f5407?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                                class="details-icon" alt="Time Icon" />
+                            <span class="details-text"><span class="hora-evento-item">{{evento.hora_inicio}}</span> -
+                                <span class="hora-evento-item">{{evento.hora_fim}}</span></span>
                         </div>
                     </div>
                 </div>
-                <button id="register-btn" class="register-btn" onclick="openModal()">
-                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/221e6552c64079ac72183d4aadd39426c98dd5943c072058a0f3564ae9b9de71?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="register-btn-icon" alt="Register Icon" />
-                    <span class="register-btn-text">Inscreva-se</span>
-                </button>
 
                 {{#isEventoCriador}}
                 <a href="/editar_evento/{{evento.id}}" class="btn btn-secondary">Editar Evento</a>
@@ -69,46 +186,21 @@
                 {{/isEventoCriador}}
                 {{^isEventoCriador}}
                 {{#isUsuarioInscrito}}
-                <form action="/desinscrever_do_evento/{{evento.id}}" method="post">
-                    <input type="hidden" name="id-evento" value="{{evento.id}}">
-                    <button type="submit" class="btn btn-primary" id="checkInButton">Desinscrever-se do evento</button>
-                </form>
+                <button class="register-btn" onclick="openModalDesinscrever()">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/221e6552c64079ac72183d4aadd39426c98dd5943c072058a0f3564ae9b9de71?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                        class="register-btn-icon" alt="Register Icon" />
+                    <span class="register-btn-text">Desinscreva-se</span>
+                </button>
                 {{/isUsuarioInscrito}}
                 {{^isUsuarioInscrito}}
-                <button class="register-btn" onclick="openModal()">
-                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/221e6552c64079ac72183d4aadd39426c98dd5943c072058a0f3564ae9b9de71?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c" class="register-btn-icon" alt="Register Icon" />
+                <button class="register-btn" onclick="openModalInscrever()">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/221e6552c64079ac72183d4aadd39426c98dd5943c072058a0f3564ae9b9de71?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                        class="register-btn-icon" alt="Register Icon" />
                     <span class="register-btn-text">Inscreva-se</span>
                 </button>
                 {{/isUsuarioInscrito}}
                 {{/isEventoCriador}}
             </section>
-
-            <div id="modal" class="modal">
-                <div class="modal-content">
-                    <span id="close-modal" class="close" onclick="closeModal()">&times;</span>
-                    <h2>Faça sua Inscrição</h2>
-                    <p>Confirme seus dados para se inscrever neste evento.</p>
-                    <!-- Conteúdo do formulário de inscrição -->
-                   <!-- <form action="inscricao_evento.html" method="POST">
-                        
-                        <label for="nome">Nome:</label>
-                        <input type="text" id="nome" name="nome" required>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                        <label for="telefone">Telefone:</label>
-                        <input type="tel" id="telefone" name="telefone" required>
-                        <label for="observacoes">Observações:</label>
-                        <textarea id="observacoes" name="observacoes" required></textarea>
-                        <button type="submit" class="submit-btn">Inscrever-se</button>
-                        
-                    </form>
-                    -->
-                    <form action="/inscrever_no_evento/{{evento.id}}" method="post">
-                        <input type="hidden" name="id-evento" value="{{evento.id}}">
-                        <button type="submit" class="btn btn-primary" id="checkInButton">Inscrever-se no evento</button>
-                    </form>
-                </div>
-            </div>
 
             <section class="location-map">
                 <h2 class="details-title">Localização</h2>
@@ -116,7 +208,7 @@
                     <div class="details-item">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a4dd1b9a9f66e042358782c8b06ee209f1e8462950e4653bf2f69a0e145061b?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
                             class="details-icon" alt="Location Icon" />
-                        <span class="details-text">{{evento.localizacao}}</sp</span>
+                        <span class="details-text">{{evento.localizacao}}</span>
                     </div>
                 </div>
             </section>
@@ -127,7 +219,8 @@
                     <div class="details-item">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f002198eedb7da9a2072634a9a29dfbe047bff7e9d997f83ab3c471996f6cc21?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
                             class="details-icon" alt="Ticket Icon" />
-                        <span class="details-text">Total de vagas disponíveis para completar esse evento: {{evento.num_vagas}}</span>
+                        <span class="details-text">Total de vagas disponíveis para completar esse evento:
+                            {{evento.num_vagas}}</span>
                     </div>
                 </div>
             </section>
@@ -167,31 +260,112 @@
         </footer>
     </section>
 
+    <!-- Modais -->
+
+    <div id="modalInscrever" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close" onclick="closeModalInscrever()">&times;</span>
+            <h2>Faça sua inscrição</h2>
+            <p>Deseja se inscrever neste evento?</p>
+            <!-- Conteúdo do formulário de inscrição -->
+            <!--
+                <p>Confirme seus dados para se inscrever neste evento.</p>
+                
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required>
+                <label for="observacoes">Observações:</label>
+                <textarea id="observacoes" name="observacoes" required></textarea>
+                <button type="submit" class="submit-btn">Inscrever-se</button>
+                
+            -->
+            <form action="/inscrever_no_evento/{{evento.id}}" method="post">
+                <input type="hidden" name="id-evento" value="{{evento.id}}">
+                <button type="submit" class="btn btn-primary" id="checkInButton">Inscrever-se no evento</button>
+            </form>
+        </div>
+    </div>
+    <div id="modalDesinscrever" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close" onclick="closeModalDesinscrever()">&times;</span>
+            <h2>Cancele sua inscrição</h2>
+            <p>Deseja realmente se desinscrever deste evento?</p>
+            <form action="/desinscrever_do_evento/{{evento.id}}" method="post">
+                <input type="hidden" name="id-evento" value="{{evento.id}}">
+                <button type="submit" class="btn btn-primary" id="checkInButton">Desinscrever-se do evento</button>
+            </form>
+        </div>
+    </div>
+    <div class="sobreposicao-tela-preta" style="display: none;">
+        <div class="excluir-confirma">
+            <p><strong>ATENÇÃO:</strong> Todos os dados serão perdidos e não poderão ser recuperados.</p>
+            <p>Tem certeza que deseja excluir este evento?</p>
+            <div>
+                <button class="btn cancela">Cancelar</button>
+                <button class="btn exclui">Excluir</button>
+            </div>
+        </div>
+    </div>
     <script>
         // Funções para abrir e fechar o modal
-        function openModal() {
-            document.getElementById('modal').style.display = 'block';
+        function openModalInscrever() {
+            document.getElementById('modalInscrever').style.display = 'block';
         }
 
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
+        function closeModalInscrever() {
+            document.getElementById('modalInscrever').style.display = 'none';
+        }
+
+        function openModalDesinscrever() {
+            document.getElementById('modalDesinscrever').style.display = 'block';
+        }
+
+        function closeModalDesinscrever() {
+            document.getElementById('modalDesinscrever').style.display = 'none';
         }
 
         // Fecha o modal ao clicar fora dele
-        window.onclick = function(event) {
-            const modal = document.getElementById('modal');
+        window.onclick = function (event) {
+            const modal = document.getElementById('modalInscrever');
             if (event.target == modal) {
                 modal.style.display = 'none';
             }
         }
-        console.log("Script carregado!");
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('modalDesinscrever');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+
+        // ---------------- formulario Deletar -----------------------------------
+
         const deleteBtn = document.querySelector("#delete-btn");
+        const modal = document.querySelector(".sobreposicao-tela-preta");
+
         deleteBtn.addEventListener("click", () => {
-            criarFormularioDelecao(deleteBtn.dataset.id);
+            modal.style.display = "flex";
+        });
+
+        const btnCancela = document.querySelector(".cancela");
+        btnCancela.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        const btnExcluir = document.querySelector(".exclui");
+        btnExcluir.addEventListener("click", () => {
+            const id = deleteBtn.dataset.id;
+            criarFormularioDelecao(id);
         });
 
         function criarFormularioDelecao(id) {
-            console.log("Criando formulário de deleção para o id:", id);
+            console.log("Criando formulário de deleção para o ID:", id);
+
             const formularioDelecao = document.createElement("form");
             formularioDelecao.setAttribute("action", "/excluir_evento/" + id);
             formularioDelecao.setAttribute("method", "POST");
@@ -202,10 +376,12 @@
             inputId.setAttribute("value", id);
 
             formularioDelecao.appendChild(inputId);
+
             document.body.appendChild(formularioDelecao);
             formularioDelecao.submit();
         }
     </script>
+    <script src="/js/detalhes.js"></script>
 </body>
 
 </html>
