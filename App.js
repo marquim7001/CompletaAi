@@ -64,3 +64,5 @@ testDatabaseConnection().then(() => {
   console.error('Erro fatal ao iniciar a aplicação:', err.message);
   process.exit(1);
 });
+
+module.exports = app;
