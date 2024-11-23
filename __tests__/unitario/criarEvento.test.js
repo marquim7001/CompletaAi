@@ -8,7 +8,6 @@ describe('criarEvento', () => {
     let req, res;
 
     beforeEach(() => {
-        // Mock do objeto req
         req = {
             body: {
                 nome: 'Evento Teste',
@@ -22,11 +21,10 @@ describe('criarEvento', () => {
                 'hora-fim': '18:00',
             },
             session: {
-                usuario: { id: 1 }, // Simula um usuário logado
+                usuario: { id: 1 }, 
             },
         };
 
-        // Mock do objeto res
         res = {
             redirect: jest.fn(),
             render: jest.fn(),
@@ -38,7 +36,6 @@ describe('criarEvento', () => {
     });
 
     test('Deve criar um evento com sucesso e redirecionar para /home', async () => {
-        // Mock do comportamento do método criar
         Evento.criar.mockResolvedValue();
 
         await criarEvento(req, res);
@@ -61,7 +58,6 @@ describe('criarEvento', () => {
     });
 
     test('Deve renderizar a página de criação com erro_cadastro em caso de exceção', async () => {
-        // Simula um erro ao criar o evento
         const erroMock = new Error('Erro ao criar evento');
         Evento.criar.mockRejectedValue(erroMock);
 

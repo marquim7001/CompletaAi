@@ -1,24 +1,21 @@
 const { excluirEvento } = require('../../src/controllers/eventoController.js');
 const Evento = require('../../src/models/evento.js');
 
-// Mock do modelo Evento
 jest.mock('../../src/models/evento');
 
 describe('excluirEvento', () => {
     let req, res;
 
     beforeEach(() => {
-        // Mock do objeto req
         req = {
             params: {
-                id: 1, // ID do evento a ser excluído
+                id: 1, 
             },
             session: {
-                usuario: { id: 2 }, // Simula o usuário logado
+                usuario: { id: 2 },
             },
         };
 
-        // Mock do objeto res
         res = {
             redirect: jest.fn(),
             status: jest.fn().mockReturnThis(),
@@ -34,7 +31,6 @@ describe('excluirEvento', () => {
     test('Deve excluir o evento com sucesso e redirecionar para /home', async () => {
         const eventoMock = { id: 1, id_criador: 2 };
 
-        // Mock do comportamento do modelo
         Evento.procurarPorId.mockResolvedValue(eventoMock);
         Evento.deletar.mockResolvedValue();
 
@@ -46,9 +42,8 @@ describe('excluirEvento', () => {
     });
 
     test('Deve retornar 403 se o usuário não tiver permissão para excluir o evento', async () => {
-        const eventoMock = { id: 1, id_criador: 3 }; // Criador diferente do usuário logado
+        const eventoMock = { id: 1, id_criador: 3 }; 
 
-        // Mock do comportamento do modelo
         Evento.procurarPorId.mockResolvedValue(eventoMock);
 
         await excluirEvento(req, res);
@@ -61,7 +56,6 @@ describe('excluirEvento', () => {
     test('Deve renderizar a home com erro_exclusao em caso de exceção', async () => {
         const erroMock = new Error('Erro ao excluir evento');
 
-        // Simula uma exceção ao buscar o evento
         Evento.procurarPorId.mockRejectedValue(erroMock);
 
         await excluirEvento(req, res);

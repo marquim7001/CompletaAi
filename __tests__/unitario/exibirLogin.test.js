@@ -4,12 +4,11 @@ describe('exibirLogin', () => {
     let req, res;
 
     beforeEach(() => {
-        // Mock do objeto req
+
         req = {
             session: {},
         };
 
-        // Mock do objeto res
         res = {
             redirect: jest.fn(),
             render: jest.fn(),

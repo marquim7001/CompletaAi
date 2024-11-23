@@ -4,10 +4,9 @@ describe('exibirHome', () => {
     let req, res;
 
     beforeEach(() => {
-        // Mock do objeto req
+
         req = {};
 
-        // Mock do objeto res
         res = {
             locals: {
                 usuarioId: 1,
@@ -36,7 +35,6 @@ describe('exibirHome', () => {
     });
 
     test('Deve renderizar a página home com erro_listagem em caso de exceção', () => {
-        // Força um erro ao acessar res.locals
         res.locals = null;
 
         exibirHome(req, res);

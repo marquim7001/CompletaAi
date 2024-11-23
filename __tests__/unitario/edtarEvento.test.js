@@ -1,20 +1,18 @@
 const { editarEvento } = require('../../src/controllers/eventoController.js');
 const Evento = require('../../src/models/evento.js');
 
-// Mock do modelo Evento
 jest.mock('../../src/models/evento');
 
 describe('editarEvento', () => {
     let req, res;
 
     beforeEach(() => {
-        // Mock do objeto req
         req = {
             params: {
-                id: 1, // ID do evento a ser editado
+                id: 1,
             },
             session: {
-                usuario: { id: 2 }, // Simula um usuário logado
+                usuario: { id: 2 }, 
             },
             body: {
                 nome: 'Evento Editado',
@@ -29,7 +27,6 @@ describe('editarEvento', () => {
             },
         };
 
-        // Mock do objeto res
         res = {
             redirect: jest.fn(),
             render: jest.fn(),
@@ -41,7 +38,6 @@ describe('editarEvento', () => {
     });
 
     test('Deve editar o evento com sucesso e redirecionar para /home', async () => {
-        // Mock do comportamento do método editar
         Evento.editar.mockResolvedValue();
 
         await editarEvento(req, res);
@@ -64,7 +60,6 @@ describe('editarEvento', () => {
     });
 
     test('Deve renderizar a página de edição com erro_edicao em caso de exceção', async () => {
-        // Simula um erro ao editar o evento
         const erroMock = new Error('Erro ao editar evento');
         Evento.editar.mockRejectedValue(erroMock);
 

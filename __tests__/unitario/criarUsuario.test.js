@@ -2,7 +2,6 @@ const { criarUsuario } = require('../../src/controllers/usuarioController.js');
 const Usuario = require('../../src/models/usuario.js');
 const bcryptjs = require('bcryptjs');
 
-// Mock dos módulos e funções utilizados
 jest.mock('../../src/models/usuario');
 jest.mock('bcryptjs');
 
@@ -10,7 +9,6 @@ describe('criarUsuario', () => {
     let req, res;
 
     beforeEach(() => {
-        // Mock do objeto req
         req = {
             body: {
                 email: 'usuario@gmail.com',
@@ -20,7 +18,6 @@ describe('criarUsuario', () => {
             },
         };
 
-        // Mock do objeto res
         res = {
             redirect: jest.fn(),
             render: jest.fn(),
@@ -34,7 +31,6 @@ describe('criarUsuario', () => {
     test('Deve criar o usuário com sucesso e redirecionar para /login', async () => {
         const senhaHashMock = 'hash-da-senha';
         
-        // Mock do comportamento de bcryptjs e modelo Usuario
         bcryptjs.hash.mockResolvedValue(senhaHashMock);
         Usuario.criar.mockResolvedValue();
 
@@ -56,7 +52,6 @@ describe('criarUsuario', () => {
     test('Deve renderizar a página de cadastro com erro_cadastro em caso de exceção', async () => {
         const erroMock = new Error('Erro ao criar usuário');
 
-        // Mock do comportamento para gerar uma exceção
         bcryptjs.hash.mockRejectedValue(erroMock);
 
         await criarUsuario(req, res);

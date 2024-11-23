@@ -1,15 +1,12 @@
-// Importações necessárias
 const { fazerLogin } = require('../../src/controllers/autenticacaoController.js');
 const Autenticacao = require('../../src/models/autenticacao.js');
 
-// Mock do módulo de autenticação
 jest.mock('../../src/models/autenticacao');
 
 describe('fazerLogin', () => {
     let req, res;
 
     beforeEach(() => {
-        // Mock do objeto req
         req = {
             body: {
                 email: 'usuario@gmail.com',

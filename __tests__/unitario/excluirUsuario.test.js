@@ -8,14 +8,13 @@ describe('excluirUsuario', () => {
     let req, res;
 
     beforeEach(() => {
-        // Mock do objeto req
+   
         req = {
             params: {
-                id: 1, // ID do usuário a ser excluído
+                id: 1, 
             },
         };
 
-        // Mock do objeto res
         res = {
             redirect: jest.fn(),
             render: jest.fn(),
@@ -27,7 +26,6 @@ describe('excluirUsuario', () => {
     });
 
     test('Deve excluir o usuário com sucesso e redirecionar para /home', async () => {
-        // Mock do comportamento do modelo
         Usuario.deletar.mockResolvedValue();
 
         await excluirUsuario(req, res);
@@ -39,7 +37,6 @@ describe('excluirUsuario', () => {
     test('Deve renderizar home com erro_exclusao em caso de exceção', async () => {
         const erroMock = new Error('Erro ao excluir usuário');
 
-        // Simula uma exceção ao tentar excluir o usuário
         Usuario.deletar.mockRejectedValue(erroMock);
 
         await excluirUsuario(req, res);

@@ -4,14 +4,12 @@ describe('fazerLogout', () => {
     let req, res;
 
     beforeEach(() => {
-        // Mock do objeto req
         req = {
             session: {
                 destroy: jest.fn(),
             },
         };
 
-        // Mock do objeto res
         res = {
             status: jest.fn().mockReturnThis(),
             send: jest.fn(),
