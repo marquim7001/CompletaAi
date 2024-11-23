@@ -3,6 +3,7 @@ const mustacheExpress = require('mustache-express');
 const session = require('express-session');
 const db = require('./src/config/db');
 const verificarAutenticacao = require('./src/middlewares/autenticacaoMiddleware');
+const request = require('supertest');
 
 // Configuração do app
 const app = express();
