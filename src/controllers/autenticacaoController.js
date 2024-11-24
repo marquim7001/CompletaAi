@@ -21,7 +21,7 @@ const fazerLogin = async (req, res) => {
         res.redirect('/home');
     } catch (erro) {
         console.error('Erro ao fazer login:', erro);
-        return res.status(500).send('Erro interno ao fazer login');
+        return res.status(500).send('Erro ao fazer login');
     }
 };
 
