@@ -53,11 +53,14 @@ const encontrarEvento = async (req, res) => {
 const excluirEvento = async (req, res) => {
   try {
     const evento = await Evento.procurarPorId(req.params.id);
+    if (!evento) {
+      return res.status(404).json({ erro: 'Evento não encontrado' });
+    }
     if (evento.id_criador == req.session.usuario.id) {
       await Evento.deletar(req.params.id);
       res.redirect('/home');
     } else {
-      res.status(403).send('Você não tem permissão para excluir este evento');
+      return res.status(403).send('Você não tem permissão para excluir este evento');
     }
   } catch (erro) {
     console.error('Erro ao excluir evento:', erro);
