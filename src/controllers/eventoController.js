@@ -3,11 +3,12 @@ const Usuario = require('../models/usuario');
 
 // Criar evento
 const criarEvento = async (req, res) => {
+  console.log('Criando evento:', req.body);
   try {
     const { nome, categoria, 'num-vagas': num_vagas, descricao, 'data-inicio': data_inicio, 'data-fim': data_fim, localizacao, 'hora-inicio': hora_inicio, 'hora-fim': hora_fim } = req.body;
-    const criador = req.session.usuario.id;
+    const id_criador = req.session.usuario.id;
 
-    const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, criador, localizacao, hora_inicio, hora_fim };
+    const eventoData = { nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, localizacao, hora_inicio, hora_fim };
     await Evento.criar(eventoData);
 
     res.redirect('/home');
@@ -52,11 +53,14 @@ const encontrarEvento = async (req, res) => {
 const excluirEvento = async (req, res) => {
   try {
     const evento = await Evento.procurarPorId(req.params.id);
-    if (evento.criador === req.session.usuario.id) {
+    if (!evento) {
+      return res.status(404).json({ erro: 'Evento não encontrado' });
+    }
+    if (evento.id_criador == req.session.usuario.id) {
       await Evento.deletar(req.params.id);
       res.redirect('/home');
     } else {
-      res.status(403).send('Você não tem permissão para excluir este evento');
+      return res.status(403).send('Você não tem permissão para excluir este evento');
     }
   } catch (erro) {
     console.error('Erro ao excluir evento:', erro);
@@ -99,7 +103,6 @@ const listarEventosPorCriador = async (idUsuario) => {
 }
 
 const listarEventosInscritos = async (idUsuario) => {
-  console.log('ID do usuário:', idUsuario);
   try {
     const idsEventos = await listarIdsEventosPorIdUsuario(idUsuario);
     console.log('IDs dos eventos inscritos:', idsEventos);
@@ -143,6 +146,8 @@ const exibirDetalhesEvento = async (req, res) => {
   const id_usuario = req.session.usuario.id;
 
   try {
+    const { usuarioId } = res.locals;
+
     const evento = await Evento.procurarPorId(id_evento);
     evento.data_inicio = formatarData(evento.data_inicio);
     evento.data_fim = formatarData(evento.data_fim);
@@ -151,7 +156,13 @@ const exibirDetalhesEvento = async (req, res) => {
     if (evento) {
       const isEventoCriador = evento.id_criador == id_usuario;
       const isUsuarioInscrito = await Usuario.verificarUsuarioInscrito(id_usuario, id_evento);
-      res.render('detalhes_evento.html', { evento, isEventoCriador, isUsuarioInscrito });
+      res.render('detalhes_evento.html', {
+        usuarioLogado: !!usuarioId,
+        usuarioId,
+        evento,
+        isEventoCriador,
+        isUsuarioInscrito
+      });
     } else {
       res.status(404).send('Evento não encontrado');
     }
@@ -164,19 +175,52 @@ const exibirDetalhesEvento = async (req, res) => {
 const exibirEditarEvento = async (req, res) => {
   const id = req.params.id;
   try {
+    const { usuarioId } = res.locals;
     const evento = await Evento.procurarPorId(id);
     evento.data_inicio = formatarData(evento.data_inicio);
     evento.data_fim = formatarData(evento.data_fim);
+
+    const categorias = {
+      Entretenimento: evento.categoria === 'Entretenimento',
+      Educacao: evento.categoria === 'Educação',
+      Esportes: evento.categoria === 'Esportes',
+      Tecnologia: evento.categoria === 'Tecnologia',
+      Jogos: evento.categoria === 'Jogos',
+    };
+
     if (evento) {
-      res.render('editar_evento.html', { evento });
+      res.render('editar_evento.html', {
+        evento,
+        usuarioLogado: !!usuarioId,
+        usuarioId,
+        ...categorias,
+        categoriaSelecionada: evento.categoria,
+      });
     } else {
       res.redirect('/home');
     }
   } catch (erro) {
     console.error('Erro ao exibir a página de edição:', erro);
-    // res.redirect('/home');
+    res.redirect('/home');
   }
 };
+
+const exibirPaginaEventos = async (req, res) => {
+  try {
+    const { usuarioId, eventosDoUsuario, eventosInscritos, todosOsEventos } = res.locals;
+
+    res.render('eventos.html', {
+      usuarioLogado: !!usuarioId,
+      usuarioId,
+      eventosDoUsuario,
+      eventosInscritos,
+      todosOsEventos
+    });
+  } catch (erro) {
+    console.error('Erro ao exibir a pagina eventos:', erro);
+    res.render('eventos.html', { erro_listagem: true });
+  }
+}
 
 // Função para formatar a data no formato YYYY-MM-DD para exibir
 const formatarData = (data) => {
@@ -197,5 +241,6 @@ module.exports = {
   excluirEvento,
   exibirCriarEvento,
   exibirDetalhesEvento,
-  exibirEditarEvento
+  exibirEditarEvento,
+  exibirPaginaEventos
 };

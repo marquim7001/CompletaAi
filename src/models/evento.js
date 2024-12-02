@@ -2,6 +2,7 @@ const db = require('../config/db');  // Arquivo de conexão com o banco
 
 // Função para criar um evento
 exports.criar = (eventoData) => {
+  console.log('Criando evento no usuario.js:', eventoData);
   const { nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, localizacao, hora_inicio, hora_fim } = eventoData;
   const query = `INSERT INTO eventos (nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, localizacao, hora_inicio, hora_fim) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
   return db.execute(query, [nome, categoria, num_vagas, descricao, data_inicio, data_fim, id_criador, localizacao, hora_inicio, hora_fim]);

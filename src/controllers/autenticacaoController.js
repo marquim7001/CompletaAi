@@ -21,7 +21,7 @@ const fazerLogin = async (req, res) => {
         res.redirect('/home');
     } catch (erro) {
         console.error('Erro ao fazer login:', erro);
-        res.status(500).send('Erro ao fazer login');
+        return res.status(500).send('Erro ao fazer login');
     }
 };
 
@@ -30,7 +30,7 @@ const fazerLogout = (req, res) => {
         if (err) {
             return res.status(500).send('Erro ao fazer logout');
         }
-        res.redirect('/login'); // Redireciona para a página de login
+        res.redirect('/home'); // Redireciona para a home
     });
 };
 
@@ -41,20 +41,16 @@ const exibirLogin = (req, res) => {
     res.render('login.html');
 };
 
-const exibirHome = async (req, res) => {
+const exibirHome = (req, res) => {
     try {
-        verificarAutenticacao(req, res, async () => {
-            // Obtém o ID do usuário logado
-            const usuarioId = req.session.usuario.id;
+        const { usuarioId, eventosDoUsuario, eventosInscritos, todosOsEventos } = res.locals;
 
-            // Chama listarEventos para buscar os eventos
-            const todosOsEventos = await eventoController.listarEventos();
-            const eventosDoUsuario = await eventoController.listarEventosPorCriador(usuarioId);
-            const eventosInscritos = await eventoController.listarEventosInscritos(usuarioId);
-
-            // Renderiza a home com as informações dos eventos e do usuário logado
-            const usuarioLogado = true; // Definindo diretamente como true, pois a autenticação passou
-            res.render('home.html', { usuarioLogado, usuarioId, todosOsEventos, eventosDoUsuario, eventosInscritos });
+        res.render('home.html', {
+            usuarioLogado: !!usuarioId,
+            usuarioId,
+            eventosDoUsuario,
+            eventosInscritos,
+            todosOsEventos
         });
     } catch (erro) {
         console.error('Erro ao exibir a home:', erro);
@@ -62,9 +58,24 @@ const exibirHome = async (req, res) => {
     }
 };
 
+const exibirSobre = (req, res) => {
+    try {
+        const { usuarioId } = res.locals;
+
+        res.render('sobre.html', {
+            usuarioLogado: !!usuarioId,
+            usuarioId,
+        });
+    } catch (erro) {
+        console.error('Erro ao exibir o sobre:', erro);
+        res.render('sobre.html', { erro_listagem: true });
+    }
+}
+
 module.exports = {
     fazerLogin,
     exibirLogin,
     fazerLogout,
-    exibirHome
+    exibirHome,
+    exibirSobre
 };

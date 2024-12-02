@@ -1,71 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CompletaAi - Perfil do Usuário</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Completa Aí - Perfil Usuário</title>
+    <link rel="stylesheet" href="/css/perfil_usuario.css">
+    <script src="https://kit.fontawesome.com/28fd1cdefc.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Completa Aí</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Registrar-se</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="container mt-5">
-        <h2>Perfil do Usuário</h2>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title" id="nome">{{usuario.nome}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted" id="email">{{usuario.email}}</h6>
-                <p class="card-text" id="dataNascimento">{{usuario.data_nascimento}}</p>
-                <a href="/editar_usuario/{{usuario.id}}" class="btn btn-secondary">Editar dados do usuário</a>
-                <button id="delete-btn" class="btn btn-danger" data-id="{{usuario.id}}">Excluir usuário</button>
-                <a href="/home" class="btn btn-link">Voltar para a Home</a>
+    <!-- Cabeçalho -->
+    <header id="header">
+        <a href="/home">
+            <div class="logo-container" id="logo-container">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5753f40c1c1a2d0e53642d573e22fff5d6086d58eaeef976ec40673ae371e10?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
+                    alt="Completa Aí Logo" class="logo-image" id="logo-image" />
+                <h2 id="logo-title">Completa Aí</h2>
             </div>
+        </a>
+        <nav id="navigation">
+            <ul id="nav-list">
+                <li id="home-link" class="active">
+                    <a href="/home" id="home-anchor">Home</a>
+                </li>
+                <li id="events-link">
+                    <a href="/eventos" id="events-anchor">Eventos</a>
+                </li>
+                <li id="about-link">
+                    <a href="/sobre" id="about-anchor">Sobre</a>
+                </li>
+                <li id="create-event-link">
+                    <a href="/criar_evento" id="create-event-anchor">Criar evento</a>
+                </li>
+                {{^usuarioLogado}}
+                <li><a id="login-button" href="/login" class="action-button signup-button">Login</a></li>
+                {{/usuarioLogado}}
+                {{#usuarioLogado}}
+                <li id="user-icon">
+                    <a href="/perfil_usuario/{{usuarioId}}" class="user-icon" id="profile-anchor">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </li>
+                {{/usuarioLogado}}
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <h2 id="settings-title" class="sidebar-title">Configurações</h2>
+                    <a href="/perfil_usuario/{{usuarioId}}" id="account-info-link" class="sidebar-option">Informações da
+                        Conta</a>
+                    <a href="/seguranca_acesso/{{usuarioId}}" id="change-email-password-link"
+                        class="sidebar-option-alt">Alterar
+                        Email e
+                        Senha</a>
+                    <a href="/logout" id="logout-link" class="sidebar-option-alt">Sair</a>
+                </div>
+            </aside>
+
+            <section class="main-column">
+                <div class="account-info">
+                    <div class="account-info-header">
+                        <h1 id="account-info-title" class="account-info-title">Informações da conta</h1>
+                        <h2 id="personal-data-title" class="personal-data-title">Dados pessoais</h2>
+                    </div>
+                    <form id="profile-info-form" class="profile-info" action="/editar_dados_pessoais/{{usuarioId}}"
+                        method="post">
+                        <div class="info-field">
+                            <label for="firstName" class="info-label">Nome</label>
+                            <input id="firstName" type="text" class="info-input" placeholder="Digite o nome completo"
+                                name="nome" value="{{usuario.nome}}" required />
+                        </div>
+                        <div class="info-field">
+                            <label for="dataNasc" class="info-label">Data Nascimento</label>
+                            <input id="dataNasc" type="date" class="info-input"
+                                placeholder="Digite sua data de nascimento" name="data-nascimento"
+                                value="{{usuario.data_nascimento}}" required />
+                        </div>
+                        <div class="contact-info">
+                            <h2 id="contact-title" class="contact-title">Contato</h2>
+                        </div>
+                        <div class="info-field">
+                            <label for="phone" class="info-label">Telefone</label>
+                            <input id="phone" type="tel" class="info-input" placeholder="Digite seu número"
+                                name="telefone" value="{{usuario.telefone}}" />
+                        </div>
+                        <!-- <div class="info-field">
+              <label for="address" class="info-label">Endereço:</label>
+              <textarea id="address" class="address-input" placeholder="Digite seu endereço"></textarea>
+            </div> -->
+                        <button id="save-profile-button" type="submit" class="save-button">Salvar</button>
+                    </form>
+                </div>
+            </section>
         </div>
-    </div>
-
-    <script>
-        console.log("Script carregado!");
-        const deleteBtn = document.querySelector("#delete-btn");
-        deleteBtn.addEventListener("click", () => {
-            criarFormularioDelecao(deleteBtn.dataset.id);
-        });
-
-        function criarFormularioDelecao(id) {
-            console.log("Criando formulário de deleção para o id:", id);
-            const formularioDelecao = document.createElement("form");
-            formularioDelecao.setAttribute("action", "/excluir_usuario/" + id);
-            formularioDelecao.setAttribute("method", "POST");
-
-            const inputId = document.createElement("input");
-            inputId.setAttribute("type", "hidden");
-            inputId.setAttribute("name", "id");
-            inputId.setAttribute("value", id);
-
-            formularioDelecao.appendChild(inputId);
-            document.body.appendChild(formularioDelecao);
-            formularioDelecao.submit();
-        }
-    </script>
-
+    </main>
 </body>
+
 </html>

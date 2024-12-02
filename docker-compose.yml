@@ -8,15 +8,17 @@ services:
     environment:
       - NODE_ENV=production
       - DB_HOST=mysql
+      - DB_PORT=3306
       - DB_USER=root
       - DB_PASSWORD=flamengo
-      - DB_NAME=completa_ai
+      - DB_DATABASE=completa_ai
     depends_on:
       - mysql
     volumes:
       - .:/app
-      - /app/node_modules
     command: npm start
+    networks:
+      - app-network
 
   mysql:
     image: mysql:8.0
