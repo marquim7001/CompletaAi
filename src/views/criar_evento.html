@@ -50,119 +50,113 @@
     <h1 class="create-event-title">Criar Novo Evento</h1>
 
 
-    <h2 class="event-details-title">Detalhes Evento</h2>
-    <form action="/criar_evento" method="post">
-        <div class="form-group">
-            <label for="event-title" class="form-label">
-                <span class="form-label-text">Titulo Evento</span>
-                <span class="form-required">*</span>
-            </label>
-            <input type="text" id="event-title" class="form-input" name="nome"
-                placeholder="Digite o nome do seu evento">
-        </div>
+    <main class="main-content">
+        <form action="/criar_evento" method="post">
+            <h2 class="event-details-title">Detalhes Evento</h2>
+            <div class="form-group">
+                <label for="event-title" class="form-label">
+                    <span class="form-label-text">Titulo Evento</span>
+                    <span class="form-required">*</span>
+                </label>
+                <input type="text" id="event-title" class="form-input" name="nome"
+                    placeholder="Digite o nome do seu evento">
+            </div>
 
-        <div class="form-group">
-            <label for="event-category" class="form-label">
-                <span class="form-label-text">Categoria do Evento</span>
-                <span class="form-required">*</span>
-            </label>
-            <select id="event-category" name="categoria" class="form-select" required>
-                <option value="" selected>Selecione uma categoria</option>
-                <option value="Entretenimento">Entretenimento</option>
-                <option value="Educação">Educação</option>
-                <option value="Esportes">Esportes</option>
-                <option value="Tecnologia">Tecnologia</option>
-                <option value="Jogos">Jogos</option>
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="event-category" class="form-label">
+                    <span class="form-label-text">Categoria do Evento</span>
+                    <span class="form-required">*</span>
+                </label>
+                <select id="event-category" name="categoria" class="form-select" required>
+                    <option value="" selected>Selecione uma categoria</option>
+                    <option value="Entretenimento">Entretenimento</option>
+                    <option value="Educação">Educação</option>
+                    <option value="Esportes">Esportes</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Jogos">Jogos</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="event-capacity" class="form-label">
-                <span class="form-label-text">Vagas disponiveis</span>
-                <span class="form-required">*</span>
-            </label>
-            <input type="number" id="event-capacity" class="form-input" name="num-vagas"
-                placeholder="Digite a quantidade de vagas disponiveis">
-        </div>
+            <div class="form-group">
+                <label for="event-capacity" class="form-label">
+                    <span class="form-label-text">Vagas disponiveis</span>
+                    <span class="form-required">*</span>
+                </label>
+                <input type="number" id="event-capacity" class="form-input" name="num-vagas"
+                    placeholder="Digite a quantidade de vagas disponiveis">
+            </div>
 
 
-        <h2 class="date-time-title">Data e Hora</h2>
-        <div class="date-time-container">
-            <div class="date-time-wrapper">
-                <div class="date-column">
-                    <div class="date-inner">
-                        <div class="date-row">
-                            <div class="date-label-column">
-                                <label class="date-label"></label>
+            <h2 class="date-time-title">Data e Hora</h2>
+            <div class="date-time-container">
+                <div class="date-time-wrapper">
+                    <div class="date-column">
+                        <div class="date-input-column">
+                            <div class="date-input-wrapper">
+                                <label for="start-date" class="date-input-label">
+                                    <span class="date-input-text">Data Início</span>
+                                    <span class="form-required">*</span>
+                                </label>
+                                <input type="date" id="start-date" name="data-inicio" class="date-input">
                             </div>
-                            <div class="date-input-column">
-                                <div class="date-input-wrapper">
-                                    <label for="start-date" class="date-input-label">
-                                        <span class="date-input-text">Data Início</span>
-                                        <span class="form-required">*</span>
-                                    </label>
-                                    <input type="date" id="start-date" name="data-inicio" class="date-input">
-                                </div>
-                                <div class="date-input-wrapper">
-                                    <label for="start-date" class="date-input-label">
-                                        <span class="date-input-text">Data Fim</span>
-                                        <span class="form-required">*</span>
-                                    </label>
-                                    <input type="date" id="start-date" name="data-fim" class="date-input">
-                                </div>
+                            <div class="date-input-wrapper">
+                                <label for="start-date" class="date-input-label">
+                                    <span class="date-input-text">Data Fim</span>
+                                    <span class="form-required">*</span>
+                                </label>
+                                <input type="date" id="start-date" name="data-fim" class="date-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="time-column">
+                        <div class="time-wrapper">
+                            <div class="time-input-wrapper">
+                                <label for="start-time" class="time-input-label">
+                                    <span class="time-input-text">Hora Início</span>
+                                    <span class="form-required">*</span>
+                                </label>
+                                <input type="time" id="start-time" name="hora-inicio" class="time-input">
+                            </div>
+                            <div class="time-input-wrapper">
+                                <label for="end-time" class="time-input-label">
+                                    <span class="time-input-text">Hora Final</span>
+                                </label>
+                                <input type="time" id="end-time" name="hora-fim" class="time-input">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="time-column">
-                    <div class="time-wrapper">
-                        <div class="time-input-wrapper">
-                            <label for="start-time" class="time-input-label">
-                                <span class="time-input-text">Hora Início</span>
-                                <span class="form-required">*</span>
-                            </label>
-                            <input type="time" id="start-time" name="hora-inicio" class="time-input">
-                        </div>
-                        <div class="time-input-wrapper">
-                            <label for="end-time" class="time-input-label">
-                                <span class="time-input-text">Hora Final</span>
-                            </label>
-                            <input type="time" id="end-time" name="hora-fim" class="time-input">
-                        </div>
+            </div>
+
+
+            <h2 class="location-title">Localização</h2>
+            <div class="location-container">
+                <div class="location-wrapper">
+                    <div class="location-label-column">
+                        <label for="event-location" class="location-label">
+                            <span class="location-label-text">Onde será realizado seu evento?</span>
+                            <span class="form-required">*</span>
+                        </label>
+                    </div>
+                    <div class="location-input-column">
+                        <input type="text" id="event-location" class="location-input" name="localizacao"
+                            placeholder="Digite o local">
                     </div>
                 </div>
             </div>
-        </div>
 
-
-        <h2 class="location-title">Localização</h2>
-        <div class="location-container">
-            <div class="location-wrapper">
-                <div class="location-label-column">
-                    <label for="event-location" class="location-label">
-                        <span class="location-label-text">Onde será realizado seu evento?</span>
-                        <span class="form-required">*</span>
-                    </label>
-                </div>
-                <div class="location-input-column">
-                    <input type="text" id="event-location" class="location-input" name="localizacao"
-                        placeholder="Digite o local">
-                </div>
+            <h2 class="additional-info-title">Informação Adicional</h2>
+            <div class="description-container">
+                <label for="event-description" class="description-label">
+                    <span class="description-label-text">Descrição Evento</span>
+                    <span class="form-required">*</span>
+                </label>
+                <textarea id="event-description" class="description-input" name="descricao"
+                    placeholder="Descreva o que há de especial no seu evento e outros detalhes importantes."></textarea>
             </div>
-        </div>
-
-        <h2 class="additional-info-title">Informação Adicional</h2>
-        <div class="description-container">
-            <label for="event-description" class="description-label">
-                <span class="description-label-text">Descrição Evento</span>
-                <span class="form-required">*</span>
-            </label>
-            <textarea id="event-description" class="description-input" name="descricao"
-                placeholder="Descreva o que há de especial no seu evento e outros detalhes importantes."></textarea>
-        </div>
-        <input type="submit" id="create-event-button" class="save-button" value="Salvar">
-    </form>
-
+            <input type="submit" id="create-event-button" class="save-button" value="Salvar">
+        </form>
+    </main>
     <!-- Rodapé -->
     <footer class="footer" id="footer">
         <div class="footer-social" id="footer-social">
@@ -179,5 +173,6 @@
             &copy;2024 Completa Aí | All Rights Reserved
         </div>
     </footer>
+    <script src="/js/header.js"></script>
 </body>
 <html>

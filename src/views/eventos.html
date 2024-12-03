@@ -24,7 +24,7 @@
         </a>
         <nav id="navigation">
             <ul id="nav-list">
-                <li id="home-link" class="active">
+                <li id="home-link">
                     <a href="/home" id="home-anchor">Home</a>
                 </li>
                 <li id="events-link">
@@ -60,24 +60,27 @@
                 <article class="event-card">
                     <div class="event-card-content">
                         <a href="/detalhes_evento/{{id}}">
-                            <div class="event-image">
+                            <div class="event-image" data-category="{{categoria}}">
                                 <div class="event-category">{{categoria}}</div>
                             </div>
                         </a>
                         <div class="event-details">
                             <div class="event-info">
                                 <div class="event-date">
-                                    <span class="event-month">{{data_inicio}}</span>
                                     <div class="event-day">
-                                        <span>{{data_inicio}}</span>
+                                        <span class="data-evento-item">{{data_inicio}}</span>
                                         <span>-</span>
-                                        <span>{{data_fim}}</span>
+                                        <span class="data-evento-item">{{data_fim}}</span>
                                     </div>
                                 </div>
                                 <div class="event-info-content">
                                     <h2 class="event-title">{{nome}}</h2>
                                     <p class="event-venue">{{localizacao}}</p>
-                                    <p class="event-time">{{hora_inicio}} - {{hora_fim}}</p>
+                                    <p class="hora-evento">
+                                        <span class="hora-evento-item">{{hora_inicio}}</span>
+                                        -
+                                        <span class="hora-evento-item">{{hora_fim}}</span>
+                                    </p>
                                     <div class="event-ticket-info">
                                         <div class="ticket-price">
                                             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db099a3a27e0f32dde481686ce1f042dad5bf03d16de98857e164107cbc9f79d?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
@@ -105,24 +108,27 @@
                 <article class="event-card">
                     <div class="event-card-content">
                         <a href="/detalhes_evento/{{id}}">
-                            <div class="event-image">
+                            <div class="event-image" data-category="{{categoria}}">
                                 <div class="event-category">{{categoria}}</div>
                             </div>
                         </a>
                         <div class="event-details">
                             <div class="event-info">
                                 <div class="event-date">
-                                    <span class="event-month">{{data_inicio}}</span>
                                     <div class="event-day">
-                                        <span>{{data_inicio}}</span>
+                                        <span class="data-evento-item">{{data_inicio}}</span>
                                         <span>-</span>
-                                        <span>{{data_fim}}</span>
+                                        <span class="data-evento-item">{{data_fim}}</span>
                                     </div>
                                 </div>
                                 <div class="event-info-content">
                                     <h2 class="event-title">{{nome}}</h2>
                                     <p class="event-venue">{{localizacao}}</p>
-                                    <p class="event-time">{{hora_inicio}} - {{hora_fim}}</p>
+                                    <p class="hora-evento">
+                                        <span class="hora-evento-item">{{hora_inicio}}</span>
+                                        -
+                                        <span class="hora-evento-item">{{hora_fim}}</span>
+                                    </p>
                                     <div class="event-ticket-info">
                                         <div class="ticket-price">
                                             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db099a3a27e0f32dde481686ce1f042dad5bf03d16de98857e164107cbc9f79d?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
@@ -150,24 +156,27 @@
                 <article class="event-card">
                     <div class="event-card-content">
                         <a href="/detalhes_evento/{{id}}">
-                            <div class="event-image">
+                            <div class="event-image" data-category="{{categoria}}">
                                 <div class="event-category">{{categoria}}</div>
                             </div>
                         </a>
                         <div class="event-details">
                             <div class="event-info">
                                 <div class="event-date">
-                                    <span class="event-month">{{data_inicio}}</span>
                                     <div class="event-day">
-                                        <span>{{data_inicio}}</span>
+                                        <span class="data-evento-item">{{data_inicio}}</span>
                                         <span>-</span>
-                                        <span>{{data_fim}}</span>
+                                        <span class="data-evento-item">{{data_fim}}</span>
                                     </div>
                                 </div>
                                 <div class="event-info-content">
                                     <h2 class="event-title">{{nome}}</h2>
                                     <p class="event-venue">{{localizacao}}</p>
-                                    <p class="event-time">{{hora_inicio}} - {{hora_fim}}</p>
+                                    <p class="hora-evento">
+                                        <span class="hora-evento-item">{{hora_inicio}}</span>
+                                        -
+                                        <span class="hora-evento-item">{{hora_fim}}</span>
+                                    </p>
                                     <div class="event-ticket-info">
                                         <div class="ticket-price">
                                             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db099a3a27e0f32dde481686ce1f042dad5bf03d16de98857e164107cbc9f79d?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
@@ -208,6 +217,9 @@
         new Splide('#diverse-carousel', { type: 'loop', perPage: 3, gap: '1rem' }).mount();
         new Splide('#my-carousel', { type: 'loop', perPage: 3, gap: '1rem' }).mount();
     </script>
+    <script src="/js/script.js"></script>
+    <script src="/js/home.js"></script>
+    <script src="/js/header.js"></script>
 </body>
 
 </html>

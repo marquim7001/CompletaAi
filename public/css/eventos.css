@@ -1,236 +1,257 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-     /* Reset básico */
-     * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-    }
+/* Cabeçalho */
+header {
+    background-color: #131838;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+    align-items: center;
+}
 
-    /* Cabeçalho */
-    header {
-        background-color: #131838;
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 50px;
-        align-items: center;
-    }
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
 
-    header nav ul {
-        display: flex;
-        list-style: none;
-        gap: 20px;
-    }
+header nav ul li {
+    color: white;
+    cursor: pointer;
+}
 
-    header nav ul li {
-        color: white;
-        cursor: pointer;
-    }
+header nav ul li.active {
+    border-bottom: 2px solid red;
+}
 
-    header nav ul li.active {
-        border-bottom: 2px solid red;
-    }
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-    .logo-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+.logo-image {
+    width: 30px;
+    height: auto;
+}
 
-    .logo-image {
-        width: 30px;
-        height: auto;
-    }
+.logo-container h2 {
+    font-size: 24px;
+    color: white;
+    margin: 0;
+}
 
-    .logo-container h2 {
-        font-size: 24px;
-        color: white;
-        margin: 0;
-    }
+header a {
+    text-decoration: none;
+}
 
-    .action-button {
-        align-self: stretch;
-        padding: 4px 20px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: top;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.3s, transform 0.2s;
-    }
+.action-button {
+    align-self: stretch;
+    padding: 4px 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: top;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
 
-    .signup-button {
-        border-radius: 12px;
-        /* Bordas mais arredondadas */
-        background-color: var(--Completa-A-Coral, #e21516);
-        color: var(--Completa-A-Grayish-Blue, #0c1239);
-        border: none;
-        /* Remove a borda padrão */
-    }
+.signup-button {
+    border-radius: 12px;
+    /* Bordas mais arredondadas */
+    background-color: var(--Completa-A-Coral, #e21516);
+    color: var(--Completa-A-Grayish-Blue, #0c1239);
+    border: none;
+    /* Remove a borda padrão */
+}
 
-    .signup-button:hover {
-        background-color: #c10f10;
-        transform: scale(1.05);
-    }
+.signup-button:hover {
+    background-color: #c10f10;
+    transform: scale(1.05);
+}
 
-    .signup-button:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px #e21516;
-    }
-    .user-icon {
-        font-size: 15px; /* Define o tamanho do ícone */
-        color: white;
-        text-decoration: none; /* Remove sublinhado */
-        padding: 5px; /* Adiciona espaçamento interno */
-        display: flex; /* Centraliza o ícone no contêiner */
-        align-items: center;
-        justify-content: center;
-        border: 2px solid #ccc; /* Opcional: adiciona uma borda ao ícone */
-        border-radius: 50%; /* Faz o ícone ficar circular */
-        transition: 0.3s ease; /* Animação ao passar o mouse */
-    }
-    
-    .user-icon:hover {
-        color: #e21516; /* Muda a cor ao passar o mouse */
-        border-color: #e21516; /* Muda a cor da borda ao passar o mouse */
-    }nav ul li a {
-        text-decoration: none; /* Remove sublinhados */
-        color: #ffff; /* Cor padrão */
-        font-size: 16px; /* Tamanho da fonte */
-        padding: 8px 12px; /* Espaçamento interno */
-        transition: color 0.3s ease; /* Efeito suave ao passar o mouse */
-    }
-    
-    nav ul li a:hover {
-        color: #e21516; /* Cor ao passar o mouse */
-    }
+.signup-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #e21516;
+}
 
-    .events {
-        padding: 40px;
-    }
+.user-icon {
+    font-size: 15px;
+    /* Define o tamanho do ícone */
+    color: white;
+    text-decoration: none;
+    /* Remove sublinhado */
+    padding: 5px;
+    /* Adiciona espaçamento interno */
+    display: flex;
+    /* Centraliza o ícone no contêiner */
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    /* Opcional: adiciona uma borda ao ícone */
+    border-radius: 50%;
+    /* Faz o ícone ficar circular */
+    transition: 0.3s ease;
+    /* Animação ao passar o mouse */
+}
 
-    .events-title {
-        font-size: 24px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+.user-icon:hover {
+    color: #e21516;
+    /* Muda a cor ao passar o mouse */
+    border-color: #e21516;
+    /* Muda a cor da borda ao passar o mouse */
+}
 
-    .event-filters {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
+nav ul li a {
+    text-decoration: none;
+    /* Remove sublinhados */
+    color: #ffff;
+    /* Cor padrão */
+    font-size: 16px;
+    /* Tamanho da fonte */
+    padding: 8px 12px;
+    /* Espaçamento interno */
+    transition: color 0.3s ease;
+    /* Efeito suave ao passar o mouse */
+}
 
-    .event-filters button {
-        padding: 5px 15px;
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        background-color: #f5f5f5;
-        cursor: pointer;
-    }
+nav ul li a:hover {
+    color: #e21516;
+    /* Cor ao passar o mouse */
+}
 
+.events {
+    padding: 40px;
+}
+
+.events-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.event-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.event-filters button {
+    padding: 5px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.event-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.event-card {
+    width: 100%;
+    max-width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-image {
+    width: 100%;
+    height: 180px;
+    background-color: #aaa;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.event-category {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.event-details {
+    padding: 15px;
+}
+
+.event-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.event-venue {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.event-time {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.event-ticket-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-price {
+    font-weight: bold;
+}
+
+.ticket-availability {
+    font-size: 14px;
+    color: #e21516;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
     .event-cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        justify-items: center;
-        margin-top: 20px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .event-cards {
+        grid-template-columns: 1fr;
     }
 
     .event-card {
-        width: 100%;
-        max-width: 350px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        overflow: hidden;
-        background-color: #fff;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
     }
+}
 
-    .event-image {
-        width: 100%;
-        height: 180px;
-        background-color: #aaa;
-        background-size: cover;
-        background-position: center;
-        position: relative;
-    }
-
-    .event-category {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background-color: rgba(0, 0, 0, 0.7);
-        color: white;
-        padding: 5px 10px;
-        font-size: 14px;
-        border-radius: 5px;
-    }
-
-    .event-details {
-        padding: 15px;
-    }
-
-    .event-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin: 10px 0;
-        color: #333;
-        text-transform: uppercase;
-    }
-
-    .event-venue {
-        color: #777;
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-
-    .event-time {
-        color: #555;
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-
-    .event-ticket-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .ticket-price {
-        font-weight: bold;
-    }
-
-    .ticket-availability {
-        font-size: 14px;
-        color: #e21516;
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-        .event-cards {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .event-cards {
-            grid-template-columns: 1fr;
-        }
-
-        .event-card {
-            max-width: 100%;
-        }
-    }
-
- /* Rodapé */
- .footer {
+/* Rodapé */
+.footer {
     background-color: #0c1239;
     color: white;
     text-align: center;
@@ -308,7 +329,7 @@
     text-align: center;
     padding-bottom: 8px;
 
-    
+
 }
 
 /* Botões de filtro (opcional) */
@@ -373,11 +394,15 @@
 
 /* Espaçamento e separação entre as seções */
 .event-section {
-    margin-bottom: 40px; /* Espaçamento abaixo de cada seção */
+    margin-bottom: 40px;
+    /* Espaçamento abaixo de cada seção */
 }
 
 .event-section:not(:first-of-type) {
-    padding-top: 20px; /* Espaçamento acima da linha divisória */
-    border-top: 2px solid #ccc; /* Linha divisória visível */
-    margin-top: 20px; /* Distância adicional entre as seções */
+    padding-top: 20px;
+    /* Espaçamento acima da linha divisória */
+    border-top: 2px solid #ccc;
+    /* Linha divisória visível */
+    margin-top: 20px;
+    /* Distância adicional entre as seções */
 }
