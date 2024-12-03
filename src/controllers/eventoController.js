@@ -102,6 +102,22 @@ const listarEventosPorCriador = async (idUsuario) => {
   }
 }
 
+const listarEventosPorCategoria = async (categoria) => {
+  try {
+    const eventosPorCategoria = await Evento.procurarPorCategoria(categoria);
+    const eventosFormatados = await Promise.all(eventosPorCategoria.map(async (evento) => {
+      evento.data_inicio = formatarData(evento.data_inicio);
+      evento.data_fim = formatarData(evento.data_fim);
+      const usuario = await Usuario.procurarPorId(evento.id_criador);
+      evento.criador = usuario ? usuario.nome : null;
+      return evento;
+    }));
+    return eventosFormatados;
+  } catch (erro) {
+    console.error('Erro ao listar eventos por categoria:', erro);
+  }
+};
+
 const listarEventosInscritos = async (idUsuario) => {
   try {
     const idsEventos = await listarIdsEventosPorIdUsuario(idUsuario);
@@ -138,7 +154,17 @@ const listarIdsEventosPorIdUsuario = async (idUsuario) => {
 }
 
 const exibirCriarEvento = (req, res) => {
-  res.render('criar_evento.html');
+  try {
+    const { usuarioId } = res.locals;
+
+    res.render('criar_evento.html', {
+      usuarioLogado: !!usuarioId,
+      usuarioId,
+    });
+  } catch (erro) {
+    console.error('Erro ao exibir a página de criar evento:', erro);
+    res.render('criar_evento.html', { erro_listagem: true });
+  }
 };
 
 const exibirDetalhesEvento = async (req, res) => {
@@ -235,6 +261,7 @@ module.exports = {
   editarEvento,
   listarEventos,
   listarEventosPorCriador,
+  listarEventosPorCategoria,
   listarEventosInscritos,
   listarIdsEventosPorIdUsuario,
   encontrarEvento,

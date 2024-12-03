@@ -21,7 +21,7 @@
         </a>
         <nav id="navigation">
             <ul id="nav-list">
-                <li id="home-link" class="active">
+                <li id="home-link">
                     <a href="/home" id="home-anchor">Home</a>
                 </li>
                 <li id="events-link">
@@ -71,7 +71,7 @@
         <h2 class="categories-title" id="categories-title">Categorias</h2>
         <div class="category-list" id="category-list">
             <div class="category-item" id="category-entertainment">
-                <a href="entretenimento.html" class="category-link" id="entertainment-anchor">
+                <a href="/home/entretenimento" class="category-link" id="entertainment-anchor">
                     <div class="category-image" id="entertainment-image">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e9cc8ab1a138054707cf92b20ca10e510c74f66631269cade0081c4b41159373?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
                             alt="Categoria Entretenimento" loading="lazy" />
@@ -80,7 +80,7 @@
                 </a>
             </div>
             <div class="category-item" id="category-education">
-                <a href="educacao.html" class="category-link" id="education-anchor">
+                <a href="/home/educacao" class="category-link" id="education-anchor">
                     <div class="category-image" id="education-image">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/64ad33108c8d33584e23d254a5d5e33d48dbb6b04d63c7d4208ea0e0f67b983c?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
                             alt="Categoria Educação" loading="lazy" />
@@ -89,7 +89,7 @@
                 </a>
             </div>
             <div class="category-item" id="category-sports">
-                <a href="esportes.html" class="category-link" id="sports-anchor">
+                <a href="/home/esportes" class="category-link" id="sports-anchor">
                     <div class="category-image" id="sports-image">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/723cc7d3bc6582bc6abbf8371f7abe2eb7d4f5f2852b9db4f3942571d8e66e57?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
                             alt="Categoria Esportes" loading="lazy" />
@@ -98,7 +98,7 @@
                 </a>
             </div>
             <div class="category-item" id="category-tech">
-                <a href="tecnologia.html" class="category-link" id="tech-anchor">
+                <a href="/home/tecnologia" class="category-link" id="tech-anchor">
                     <div class="category-image" id="tech-image">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/17395d8f96f597921e1e63b5f1a7a6e7122cf38e55e3f2dc40db206c00268996?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
                             alt="Categoria Tecnologia" loading="lazy" />
@@ -107,7 +107,7 @@
                 </a>
             </div>
             <div class="category-item" id="category-games">
-                <a href="jogos.html" class="category-link" id="games-anchor">
+                <a href="/home/jogos" class="category-link" id="games-anchor">
                     <div class="category-image" id="games-image">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ab89e4a06362e1d00dc3a5487ec076fc9b453d0eb91c951ff6f2aec07030b77b?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
                             alt="Categoria Jogos" loading="lazy" />
@@ -125,7 +125,7 @@
         <article class="event-card">
             <div class="event-card-content">
                 <a href="/detalhes_evento/{{id}}">
-                    <div class="event-image">
+                    <div class="event-image" data-category="{{categoria}}">
                         <div class="event-category">{{categoria}}</div>
                     </div>
                 </a>
@@ -141,8 +141,11 @@
                         <div class="event-info-content">
                             <h2 class="event-title">{{nome}}</h2>
                             <p class="event-venue">{{localizacao}}</p>
-                            <p class="hora-evento"><span class="hora-evento-item">{{hora_inicio}}</span> - <span
-                                    class="hora-evento-item">{{hora_fim}}</span></p>
+                            <p class="hora-evento">
+                                <span class="hora-evento-item">{{hora_inicio}}</span>
+                                -
+                                <span class="hora-evento-item">{{hora_fim}}</span>
+                            </p>
                             <div class="event-ticket-info">
                                 <div class="ticket-price">
                                     <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db099a3a27e0f32dde481686ce1f042dad5bf03d16de98857e164107cbc9f79d?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
@@ -185,6 +188,8 @@
         </div>
     </footer>
     <script src="/js/script.js"></script>
+    <script src="/js/home.js"></script>
+    <script src="/js/header.js"></script>
 </body>
 
 </html>

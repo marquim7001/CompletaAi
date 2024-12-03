@@ -28,6 +28,12 @@ exports.procurarTodos = () => {
   return db.execute(query).then(([rows]) => rows);  // Retorne apenas o array de resultados
 };
 
+// Função para listar eventos com base na categoria
+exports.procurarPorCategoria = (categoria) => {
+  const query = 'SELECT * FROM eventos WHERE categoria = ?';
+  return db.execute(query, [categoria]).then(([rows]) => rows);
+};
+
 // Função para encontrar um evento por ID
 exports.procurarPorId = (id) => {
   const query = 'SELECT * FROM eventos WHERE id = ?';

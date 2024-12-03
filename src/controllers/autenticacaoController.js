@@ -41,9 +41,15 @@ const exibirLogin = (req, res) => {
     res.render('login.html');
 };
 
-const exibirHome = (req, res) => {
+const exibirHome = async (req, res) => {
     try {
-        const { usuarioId, eventosDoUsuario, eventosInscritos, todosOsEventos } = res.locals;
+        const { usuarioId, eventosDoUsuario, eventosInscritos } = res.locals || {};
+
+        let todosOsEventos = await eventoController.listarEventos();
+
+        if (req.params?.categoria) {
+            todosOsEventos = await eventoController.listarEventosPorCategoria(req.params.categoria);
+        }
 
         res.render('home.html', {
             usuarioLogado: !!usuarioId,

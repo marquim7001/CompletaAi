@@ -108,7 +108,22 @@
 
         #delete-btn:hover {
             background-color: #c0392b;
-            /* Vermelho mais escuro no hover */
+        }
+
+        .btn-editar {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-editar:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
@@ -154,9 +169,7 @@
 
     <section class="event-page">
         <main class="main-content">
-            <section class="event-banner">
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b47822a97a4b242be6f04324e786a1960d7d01d0f525b2900a2aa0bda7cb83a7?placeholderIfAbsent=true&apiKey=a45041b1ff1c4ddc9b879ac51c79d14c"
-                    class="event-banner-image" alt="Event Banner" />
+            <section class="event-banner" data-category="{{evento.categoria}}">
             </section>
 
             <h1 class="event-title">{{evento.nome}}</h1>
@@ -181,7 +194,7 @@
                 </div>
 
                 {{#isEventoCriador}}
-                <a href="/editar_evento/{{evento.id}}" class="btn btn-secondary">Editar Evento</a>
+                <a href="/editar_evento/{{evento.id}}" class="btn-editar">Editar Evento</a>
                 <button id="delete-btn" class="btn btn-danger" data-id="{{evento.id}}">Excluir evento</button>
                 {{/isEventoCriador}}
                 {{^isEventoCriador}}
@@ -263,7 +276,7 @@
     <!-- Modais -->
 
     <div id="modalInscrever" class="modal">
-        <div class="modal-content">
+        <div class="modal-content excluir-confirma">
             <span id="close-modal" class="close" onclick="closeModalInscrever()">&times;</span>
             <h2>Faça sua inscrição</h2>
             <p>Deseja se inscrever neste evento?</p>
@@ -288,8 +301,9 @@
             </form>
         </div>
     </div>
+
     <div id="modalDesinscrever" class="modal">
-        <div class="modal-content">
+        <div class="modal-content excluir-confirma">
             <span id="close-modal" class="close" onclick="closeModalDesinscrever()">&times;</span>
             <h2>Cancele sua inscrição</h2>
             <p>Deseja realmente se desinscrever deste evento?</p>
